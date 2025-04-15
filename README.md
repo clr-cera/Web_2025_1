@@ -2,10 +2,11 @@
 Repository for ease of collaboration on Web Systems Development
 
 ## TODO
-- Main
-- Product
-- Login/Register
+- Main (html)
+- Product (html)
+- Login/Register (html)
 - About us
 - Cart
+- Admin
 - Navigation Diagram
 - Project Description
