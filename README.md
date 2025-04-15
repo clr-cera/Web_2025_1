@@ -6,5 +6,6 @@ Repository for ease of collaboration on Web Systems Development
 - Product
 - Login/Register
 - About us
+- Cart
 - Navigation Diagram
 - Project Description
