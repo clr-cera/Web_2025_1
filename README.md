@@ -2,11 +2,11 @@
 Repository for ease of collaboration on Web Systems Development
 
 ## TODO
-- Main (html)
-- Product (html)
-- Login/Register (html)
-- About us
-- Cart
-- Admin
-- Navigation Diagram
+- Main (html) - Clara
+- Product (html) - CLara
+- Login/Register (html) - Renan
+- About us - Barbosa
+- Cart - Barbosa
+- Admin - Barbosa
+- Navigation Diagram - Renan
 - Project Description
