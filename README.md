@@ -5,3 +5,6 @@ Repository for ease of collaboration on Web Systems Development
 - Main
 - Product
 - Login/Register
+- About us
+- Navigation Diagram
+- Project Description
