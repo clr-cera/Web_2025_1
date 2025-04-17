@@ -2,24 +2,102 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>YouFood Home</title>
+    <title>ElementStore Home</title>
     <link rel="stylesheet" href="../style/styling.css">
 </head>
 <body>
 <header>
-    <h1>YouFood</h1>
 </header>
 <nav>
+    <a class="HomeButton" href="index.html">
+        <h1>
+          ElementStore
+        </h1>
+    </a>
+    <ul class="links">
+        <li>
+            <a href="elements.html">
+                Elements
+            </a>
+        </li>
+
+        <li>
+            <a href="about.html">
+                About Us
+            </a>
+        </li>
+        <li>
+            <a href="auth.html">
+                Login/Register
+            </a>
+        </li>
+        <li>
+            <a href="cart.html">
+                <img height="17" src="../images/icons/shopping-cart.svg" alt="Cart">
+            </a>
+        </li>
+    </ul>
 </nav>
 <main>
+<section class="Banner">
+    <div class="BannerBig">
+        <h1>
+            Pure Elements, Pure Science
+        </h1>
+    </div>
+    <div class="BannerSmall">
+        Discover our premium collection of periodic elements
+    </div>
+    <div class="BannerButton">
+        <a href="elements.html">
+            <button style="background-color: white; color: #1e3c94">
+                <strong>Shop Elements</strong>
+            </button>
+        </a>
+        <a href="about.html">
+            <button>
+                <strong>Learn More</strong>
+            </button>
+        </a>
+    </div>
+</section>
+<section class="CategoriesBrowse">
+    <h1>
+        Browse by Category
+    </h1>
+    <ul class="categories">
+        <li>
+            <a href="category.html">
+                <div class="category">
+                    <img height="50" src="../images/icons/metal-bar.svg" alt="Metal Bar">
+                    <h4>Metals</h4>
+                    Conductive elements with metallic properties
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="category.html">
+                <div class="category">
+                    <img height="50" src="../images/icons/molecule.svg" alt="Molecule">
+                    <h4>Non-metals</h4>
+                    Essential elements for organic chemistry
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="category.html">
+                <div class="category">
+                    <img height="50" src="../images/icons/droplet.svg" alt="Droplet">
+                    <h4>Noble Gases</h4>
+                    Inate elements with unique properties
+                </div>
+            </a>
+        </li>
+    </ul>
+</section>
+
 
 </main>
 
-<footer>
-    <div class="footer description">
-        <h3>YouFood</h3>
-        <p>Connecting you to the food you love</p>
-    </div>
-</footer>
 </body>
 </html>

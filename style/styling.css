@@ -1,0 +1,127 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+.HomeButton {
+    color: #1e3a8a;
+    text-decoration: none;
+}
+nav {
+    height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 1rem;
+}
+.links {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-direction: row;
+    width: 100%;
+    list-style: none;
+}
+.links a {
+    text-decoration: none;
+    color: #374151;
+    padding: 10px;
+    font-size: 18px;
+}
+.links a:hover {
+    color: #1e3a8a;
+}
+
+.Banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 30rem;
+    width: 100%;
+    background-color: #1e3c94;
+    color: white;
+}
+.BannerBig {
+    font-size: 2rem;
+    padding: 2rem;
+}
+.BannerSmall {
+    font-size: 1.5rem;
+    padding: 2rem;
+}
+.BannerButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+}
+.Banner button {
+    background-color: #1e3c94;
+    color: white;
+    padding: 2rem;
+    text-decoration: none;
+    border-radius: 4rem;
+    font-size: 1.5rem;
+    border: 2px solid white;
+    margin: 1rem;
+}
+
+.CategoriesBrowse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+.categories {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    text-align: center;
+    list-style: none;
+    margin-top: 1.5rem;
+}
+.categories li {
+    padding: 1rem;
+}
+.categories li a {
+    text-decoration: none;
+}
+.category {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    list-style: none;
+    color: #4b5563;
+    padding: 1rem;
+    border: 2px solid #4b5563;
+    border-radius: 2rem;
+}
+.category h4 {
+    color: #020817;
+    font-size: 1.3rem;
+}
+
+@media only screen and (max-width: 800px) {
+    .categories {
+        flex-direction: column;
+    }
+    .category {
+        min-width: 28rem;
+    }
+}
