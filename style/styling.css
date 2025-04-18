@@ -193,6 +193,102 @@ nav {
     box-shadow: 1px 1px 6px #1e3c94;
 }
 
+.product {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 80%;
+    text-align: center;
+    list-style: none;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.product-image img {
+    border-radius: 1rem;
+    width: 36vw;
+    height: 36vw;
+}
+.product-title {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    list-style: none;
+    margin-bottom: 2rem;
+    margin-right: 10%;
+}
+.product-description {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    text-align: center;
+    list-style: none;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    margin-left: 5%;
+}
+.product-description h2 {
+    color: #1e3a8a;
+}
+.product-info h2 {
+    color: #020817;
+}
+.labels {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.labels div {
+    background-color: #f9fafb;
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 15rem;
+    height: 5rem;
+    margin: 1rem;
+    margin-left: 0;
+}
+
+.product-text {
+    text-align: start;
+    margin-top: 1.5rem;
+    color: #4d5764;
+}
+
+.product-interaction {
+    margin-top: 1.5rem;
+}
+.inc\/dec {
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+}
+
+.add-to-cart {
+    background-color: #0f172a;
+    color: white;
+    border: none;
+    padding: 0.8rem 7rem;
+    margin-left: 1rem;
+    border-radius: 0.5rem;
+    justify-content: space-between;
+    font-size: 1rem;
+}
+.add-to-cart img {
+    height: 1rem;
+    margin-top: 4px;
+    margin-right: 10px;
+}
+
 @media only screen and (max-width: 800px) {
     .categories {
         flex-direction: column;
@@ -211,5 +307,19 @@ nav {
     }
     main {
         margin-top: 4rem;
+    }
+    .product {
+        flex-direction: column;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+    .product-image img {
+        width: 60vw;
+        height: 60vw;
+        margin-top: 2rem;
+    }
+    .product-description {
+        margin-left: 0;
     }
 }
