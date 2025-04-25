@@ -4,7 +4,7 @@
 
 Nome - Número USP
 
-Clara Ernesto de Carvalho -
+Clara Ernesto de Carvalho - 14559479
 
 Gabriel Barbosa dos Santos - 14613991
 
