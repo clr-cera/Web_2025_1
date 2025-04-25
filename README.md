@@ -22,8 +22,7 @@ A loja terá 11 páginas.
 A página principal (home page), abaixo versão desktop e mobile. HTML presente em /pages/index.html
 
 ![image](https://github.com/user-attachments/assets/39c7e7c0-0012-4175-8926-780422fd5297)
-
-![image](https://github.com/user-attachments/assets/f68fb2b1-08a5-493b-8675-5adca288cadb)
+<img src="https://github.com/user-attachments/assets/f68fb2b1-08a5-493b-8675-5adca288cadb" alt="Mobile Home Page" style="height:400px;">
 
 A página about com informações sobre a empresa:
 
