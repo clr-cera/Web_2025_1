@@ -16,8 +16,7 @@ Ao final do desenvolvimento, devemos ter concluído uma aplicação web de pági
 
 ## Descrição
 Estamos desenvolvendo uma loja de elementos químicos da tabela periódica em forma pura, para que profissionais possam produzir quaisquer substâncias com esses elementos em suas casas.
-
-A loja terá 12 páginas.
+Abaixo temos mockups feitos no Figma de todas as páginas.
 
 A página principal (home page), abaixo versão desktop e mobile. HTML presente em /pages/index.html
 
