@@ -83,7 +83,7 @@ No momento não há programa para testar, mas no futuro haverá nessa seção o 
 No momento não houve testes realizados, mas no futuro haverá nessa seção os resultados dos testes.
 
 ## Problemas
-Ainda não houveram problemas na realização do projeto.
+Percebemos que a Barra de navegação é uma ótima ferramenta para adicionar a possibilidade de troca rápida entre páginas distintas do website, entretanto essa alta taxa de conecção entre as taxas dificultou a produção de um diagrama de navegação, pois tradicionalmente cada nó é uma página e as arestas é o link entre elas. Isso foi resolvido tornando a NavBar (Barra de navegação) um nó no diagrama de navegação, o que foge da regra de apenas páginas serem nós, mas facilita a produção do diagrama e a compreensão de quem o visualiza.
 
 ## Comentários
-Ainda não há nada a comentar sobre o projeto. Ao desenvolver o projeto comentários serão adicionados nessa seção.
+O Mockup das páginas foi produzido na ferramenta Figma.
