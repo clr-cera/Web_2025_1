@@ -39,7 +39,7 @@ Página com detalhes de um único produto, HTML presente em /pages/product.html.
 ![image](https://github.com/user-attachments/assets/aa9fa265-79d7-46b8-8941-b4e78e8b4c21)
 
 
-Widget do carrinho:
+Modal do carrinho:
 
 ![image](https://github.com/user-attachments/assets/466eb6f7-0dd9-4a8f-9a74-a1c759315d9e)
 
@@ -59,7 +59,7 @@ Dashboard do admin:
 ![image](https://github.com/user-attachments/assets/f97a9a41-588e-4756-8434-61dcb06bed44)
 
 
-Widget para um admin adicionar outros admins:
+Modal para um admin adicionar outros admins:
 
 ![image](https://github.com/user-attachments/assets/e9c1ac5b-f056-4e1f-98df-0af903af69b6)
 
