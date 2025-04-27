@@ -21,35 +21,58 @@ A loja terá 11 páginas.
 
 A página principal (home page), abaixo versão desktop e mobile. HTML presente em /pages/index.html
 
-![image](https://github.com/user-attachments/assets/39c7e7c0-0012-4175-8926-780422fd5297)
+![image](https://github.com/user-attachments/assets/f5300b8f-976d-4bc1-b90c-3b22ed535be7)
+
 <img src="https://github.com/user-attachments/assets/f68fb2b1-08a5-493b-8675-5adca288cadb" alt="Mobile Home Page" style="height:800px;">
 
 A página about com informações sobre a empresa:
 
-![image](https://github.com/user-attachments/assets/02fb52fb-8955-469d-8fcf-36c69763811d)
+![image](https://github.com/user-attachments/assets/73b150d9-4a03-4a48-838e-571483fd9aa0)
+
 
 A página para navegar pelos diferentes produtos:
 
-![image](https://github.com/user-attachments/assets/650202da-fdfb-4793-9f91-ab2ff082f4d6)
+![image](https://github.com/user-attachments/assets/680cf599-f3f4-4b4b-9656-306700ac54c9)
+
 
 Página com detalhes de um único produto, HTML presente em /pages/product.html. Imagem abaixo:
 
-![image](https://github.com/user-attachments/assets/e6cf857f-bf52-4d53-af44-c96c2dfe3ccd)
+![image](https://github.com/user-attachments/assets/aa9fa265-79d7-46b8-8941-b4e78e8b4c21)
+
 
 Widget do carrinho:
-![image](https://github.com/user-attachments/assets/7bff2571-deca-456d-9b2b-8b1170deb6dd)
+
+![image](https://github.com/user-attachments/assets/466eb6f7-0dd9-4a8f-9a74-a1c759315d9e)
+
 
 Página do carrinho/checkout:
-![image](https://github.com/user-attachments/assets/3ce4208f-577b-4cad-964c-0575eeca92f2)
+
+![image](https://github.com/user-attachments/assets/bf63c4b9-65a0-477c-894a-e4d0d67d68a9)
+
 
 Página de LogIn com HTML presente em /pages/auth.html. Imagem abaixo:
-![image](https://github.com/user-attachments/assets/34b80d05-c4f2-47b2-bc47-9629fc21e623)
+
+![image](https://github.com/user-attachments/assets/21dd721f-89fe-4ec8-a6e6-2d258a090f69)
+
 
 Dashboard do admin:
-![image](https://github.com/user-attachments/assets/612902bc-84b1-4d8f-b7a1-978016e42999)
+
+![image](https://github.com/user-attachments/assets/f97a9a41-588e-4756-8434-61dcb06bed44)
+
 
 Widget para um admin adicionar outros admins:
-![image](https://github.com/user-attachments/assets/c69b7599-cf24-4665-9993-759c28e6f04b)
+
+![image](https://github.com/user-attachments/assets/e9c1ac5b-f056-4e1f-98df-0af903af69b6)
+
+
+A funcionalidade que diferencia nossa loja das demais é uma tabela periódica onde todos os elementos a venda são expostos organizados na forma canônica e clicando em qualquer um dos elementos você é levado a página de comprar aquele produto:
+
+![image](https://github.com/user-attachments/assets/58343347-2caf-4525-95ad-3936d9e2d721)
+
+Diagrama de navegação entre as páginas:
+
+![image](https://github.com/user-attachments/assets/33f67354-5332-42d2-a6f0-0172c580813a)
+
 
 ## Comentários do Código
 No momento não há programa implementado, apenas mockups e páginas estáticas HTML, no futuro nessa seção haverão comentários sobre o código da implementação.
