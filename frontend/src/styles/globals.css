@@ -5,6 +5,7 @@
   --foreground: #171717;
 }
 
+/*Cores e configuracoes para o tawilwind*/
 @theme {
   --color-font-inter: "Inter", sans-serif;
   --color-primary-blue: #1E40AF;
@@ -16,6 +17,7 @@
   --color-secondary-gray: #F7F6FB;
   --color-background-purple: #F3F0FF;
   --color-background-blue: #F0FCFF;
+  --color-text-gray: #313131;
 }
 
 @media (prefers-color-scheme: dark) {
