@@ -28,7 +28,7 @@ export default function Header() {
                             type="text"
                             id="searchBar"
                             placeholder="Search elements..."
-                            className="border rounded-md border-primary-gray px-4 py-2 w-full"
+                            className="border rounded-md border-primary-gray px-4 py-2 w-full text-text-gray-darker"
                         />
                         <button type="submit" className="sr-only">Search</button>
                     </form>
