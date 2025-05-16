@@ -65,7 +65,7 @@ export default function Header() {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/#about" className="block px-4 py-2 hover:text-primary-blue font-medium">
+                            <Link href="/About" className="block px-4 py-2 hover:text-primary-blue font-medium">
                                 About
                             </Link>
                         </li>
