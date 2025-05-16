@@ -1,3 +1,5 @@
+"use client"
+
 import Element from "./Element";
 import elementsData from "@/data/elementsData.json"; // Importa os dados dos elementos
 
@@ -23,6 +25,7 @@ export default function FeatureElements() {
                         category={element.category}
                         state={element.state}
                         price={element.price}
+                        color="blue"
                     />
                 ))}
             </div>
