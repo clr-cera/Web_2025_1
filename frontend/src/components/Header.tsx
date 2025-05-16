@@ -70,7 +70,7 @@ export default function Header() {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/#admin" className="block px-4 py-2 hover:text-primary-blue font-medium">
+                            <Link href="/Login" className="block px-4 py-2 hover:text-primary-blue font-medium">
                                 Admin
                             </Link>
                         </li>

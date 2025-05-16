@@ -1,0 +1,42 @@
+[
+    {
+        "atomic_number": 1,
+        "atomic_mass": 1.008,
+        "symbol": "H",
+        "name": "Hydrogen",
+        "description": "Hydrogen is a colorless, odorless gas at room temperature. It is the lightest and most abundant element in the universe.",
+        "category": "Non-Metals",
+        "state": "Gas",
+        "price": 0.02
+    },
+    {
+        "atomic_number": 2,
+        "atomic_mass": 4.002602,
+        "symbol": "He",
+        "name": "Helium",
+        "description": "Helium is a colorless, odorless gas that is lighter than air. It is the second most abundant element in the universe.",
+        "category": "Noble Gases",
+        "state": "Gas",
+        "price": 0.01
+    },
+    {
+        "atomic_number": 3,
+        "atomic_mass": 6.94,
+        "symbol": "Li",
+        "name": "Lithium",
+        "description": "Lithium is a soft, silvery-white metal. It is the lightest metal and the least dense solid element.",
+        "category": "Alkali Metals",
+        "state": "Solid",
+        "price": 0.03
+    },
+    {
+        "atomic_number": 4,
+        "atomic_mass": 9.0122,
+        "symbol": "Be",
+        "name": "Beryllium",
+        "description": "Beryllium is a hard, grayish metal. It is the fourth element in the periodic table and has the atomic number 4.",
+        "category": "Alkaline Earth Metals",
+        "state": "Solid",
+        "price": 0.05
+    }
+]
