@@ -1,25 +1,72 @@
-"use client"
+"use client";
 
+import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Element from "../components/Element";
 import elementsData from "@/data/elementsData.json"; // Importa os dados dos elementos
 
+// Mapeamento de cores por categoria
+const categoryStyles: Record<string, { background: string; title: string; button: string }> = {
+    "All Elements": {
+        background: "bg-background-blue",
+        title: "text-primary-blue",
+        button: "bg-primary-blue text-white",
+    },
+    Metals: {
+        background: "bg-yellow-100/50",
+        title: "text-primary-yellow",
+        button: "bg-primary-yellow text-white",
+    },
+    "Non-metals": {
+        background: "bg-green-100/50",
+        title: "text-primary-green",
+        button: "bg-primary-green text-white",
+    },
+    "Noble Gases": {
+        background: "bg-background-purple",
+        title: "text-secondary-purple",
+        button: "bg-secondary-purple text-white",
+    },
+};
 
-export default function Elements(){
+// Mapeamento de cores para os elementos
+const elementColors: Record<string, string> = {
+    Metals: "yellow",
+    "Non-metals": "green",
+    "Noble Gases": "purple",
+    default: "blue", // Cor padrão para elementos sem categoria específica
+};
 
-    const searchParams = useSearchParams(); // Usa o hook para pegar os parâmetros da URL
-    const category = searchParams.get("category"); // Obtém a categoria da query string
+export default function Elements() {
+    const searchParams = useSearchParams(); // Hook para capturar os parâmetros da URL
+    const [selectedCategory, setSelectedCategory] = useState<keyof typeof categoryStyles>("All Elements"); // Estado para a categoria selecionada
 
-    // Filtra os elementos com base na categoria
-    const filteredElements = category
-        ? elementsData.filter((element) => element.category === category)
-        : elementsData;
+    // Atualiza a categoria com base no parâmetro da URL
+    useEffect(() => {
+        const categoryFromParams = searchParams.get("category") as keyof typeof categoryStyles;
+        if (categoryFromParams && categoryStyles[categoryFromParams]) {
+            setSelectedCategory(categoryFromParams);
+        }
+    }, [searchParams]);
 
-    return(
-        <div className="bg-background-purple w-screen h-screen text-black flex flex-col items-center pt-30 gap-4">
+    // Função para alterar a categoria selecionada
+    const handleCategoryChange = (category: keyof typeof categoryStyles) => {
+        setSelectedCategory(category);
+    };
 
+    // Filtra os elementos com base na categoria selecionada
+    const filteredElements =
+        selectedCategory === "All Elements"
+            ? elementsData
+            : elementsData.filter((element) => element.category === selectedCategory);
+
+    // Obtém os estilos da categoria selecionada
+    const styles = categoryStyles[selectedCategory];
+
+    return (
+        <div className={`${styles.background} w-screen min-h-screen text-black flex flex-col items-center pt-30 gap-4`}>
             {/* Título */}
-            <h1 className="font-extrabold text-2xl sm:text-3xl lg:text-4xl text-secondary-purple text-center">
+            <h1 className={`font-extrabold text-2xl sm:text-3xl lg:text-4xl ${styles.title} text-center`}>
                 Chemical Elements Store
             </h1>
             <p className="text-text-gray text-sm sm:text-base lg:text-lg w-11/12 sm:w-3/4 lg:w-1/2 text-center">
@@ -28,39 +75,40 @@ export default function Elements(){
 
             {/* Filtros */}
             <div className="flex flex-wrap justify-center mt-10 bg-white p-2 rounded-md border-2 border-border-gray gap-3 sm:gap-5 select-none">
-                <div className="bg-secondary-purple text-white px-4 py-2 rounded-md cursor-pointer text-sm sm:text-base">
-                    All Elements
-                </div>
-                <div className="bg-white px-4 py-2 rounded-md cursor-pointer text-sm sm:text-base  hover:bg-gray-100">
-                    Metals
-                </div>
-                <div className="bg-white px-4 py-2 rounded-md cursor-pointer text-sm sm:text-base  hover:bg-gray-100">
-                    Non-metals
-                </div>
-                <div className="bg-white px-4 py-2 rounded-md cursor-pointer text-sm sm:text-base  hover:bg-gray-100">
-                    Noble Gases
-                </div>
-            </div>
-
-            <div>
-                <div className="flex flex-wrap gap-20 justify-center mt-20"> 
-                {filteredElements.map(element => (
-                    <Element
-                        key={element.atomic_number}
-                        atomic_number={element.atomic_number}
-                        atomic_mass={element.atomic_mass}
-                        symbol={element.symbol}
-                        name={element.name}
-                        description={element.description}
-                        category={element.category}
-                        state={element.state}
-                        price={element.price}
-                        color="purple"
-                    />
+                {Object.keys(categoryStyles).map((category) => (
+                    <div
+                        key={category}
+                        onClick={() => handleCategoryChange(category as keyof typeof categoryStyles)} // Atualiza a categoria selecionada
+                        className={`px-4 py-2 rounded-md cursor-pointer text-sm sm:text-base transition-all duration-200 ${
+                            selectedCategory === category
+                                ? styles.button
+                                : "bg-white text-text-gray hover:bg-gray-100"
+                        }`}
+                    >
+                        {category}
+                    </div>
                 ))}
             </div>
-            </div>
 
+            {/* Lista de Elementos */}
+            <div>
+                <div className="flex flex-wrap gap-20 justify-center mt-20">
+                    {filteredElements.map((element) => (
+                        <Element
+                            key={element.atomic_number}
+                            atomic_number={element.atomic_number}
+                            atomic_mass={element.atomic_mass}
+                            symbol={element.symbol}
+                            name={element.name}
+                            description={element.description}
+                            category={element.category}
+                            state={element.state}
+                            price={element.price}
+                            color={elementColors[element.category as keyof typeof elementColors] || elementColors.default} // Cor dinâmica com base na categoria
+                        />
+                    ))}
+                </div>
+            </div>
         </div>
-    )
+    );
 }

@@ -26,7 +26,7 @@ export default function CategorySelector() {
                 </Link>
 
                 {/* Não metais */}
-                <Link href="/Elements?category=Non-Metals">
+                <Link href="/Elements?category=Non-metals">
                     <div className="flex flex-col bg-white border-1 rounded-lg border-border-gray px-6 py-5 gap-4 select-none cursor-pointer hover:bg-white/40 transition-all duration-200 w-96">
                         <div className="w-12 h-12 rounded-md bg-primary-green flex items-center justify-center">
                             <BiAtom size={30} color="white" />
@@ -39,7 +39,7 @@ export default function CategorySelector() {
                 </Link>
 
                 {/* Gases */}
-                <Link href="/Elements?category=Gases">
+                <Link href="/Elements?category=Noble Gases">
                     <div className="flex flex-col bg-white border-1 rounded-lg border-border-gray px-6 py-5 gap-4 select-none cursor-pointer hover:bg-white/40 transition-all duration-200 w-96">
                         <div className="w-12 h-12 rounded-md bg-primary-purple flex items-center justify-center">
                             <BiWater size={30} color="white" />
