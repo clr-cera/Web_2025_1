@@ -1,6 +1,17 @@
 import CartElement from "@/components/CartElement";
 
-export default function () {
+export default function ShippingPage() {
+    // Objeto com os dados dinâmicos
+    const shippingDetails = {
+        fullName: "Diogo Silva",
+        email: "DiogoSilva@email.com",
+        address: "rua episcopal",
+        city: "Sao Carlos",
+        cep: "4839204",
+        number: "49",
+        total: 1925.5,
+    };
+
     return (
         <div className="flex flex-col lg:flex-row pt-10 px-5 lg:px-20 gap-10 min-h-screen bg-background-blue text-black items-center">
             {/* Imagem do elemento */}
@@ -12,7 +23,7 @@ export default function () {
                         <div className="w-full h-px mb-4 bg-border-gray" />
                         <div className="w-full font-semibold flex justify-between">
                             <p>Total</p>
-                            <p>1925.5</p>
+                            <p>{shippingDetails.total}</p>
                         </div>
                     </div>
                 </div>
@@ -26,6 +37,7 @@ export default function () {
                         <h2 className="">Full Name</h2>
                         <input
                             type="text"
+                            value={shippingDetails.fullName}
                             readOnly
                             className="w-full h-10 bg-white border border-border-gray rounded px-3 outline-none"
                         />
@@ -35,6 +47,7 @@ export default function () {
                         <h2>Email</h2>
                         <input
                             type="text"
+                            value={shippingDetails.email}
                             readOnly
                             className="w-full h-10 bg-white border border-border-gray rounded px-3 outline-none"
                         />
@@ -44,6 +57,7 @@ export default function () {
                         <h2>Address</h2>
                         <input
                             type="text"
+                            value={shippingDetails.address}
                             readOnly
                             className="w-full h-10 bg-white border border-border-gray rounded px-3 outline-none"
                         />
@@ -53,6 +67,7 @@ export default function () {
                         <h2>City</h2>
                         <input
                             type="text"
+                            value={shippingDetails.city}
                             readOnly
                             className="w-full h-10 bg-white border border-border-gray rounded px-3 outline-none"
                         />
@@ -63,6 +78,7 @@ export default function () {
                             <h2>CEP</h2>
                             <input
                                 type="text"
+                                value={shippingDetails.cep}
                                 readOnly
                                 className="w-full h-10 bg-white border border-border-gray rounded px-3 outline-none"
                             />
@@ -71,6 +87,7 @@ export default function () {
                             <h2>Number</h2>
                             <input
                                 type="text"
+                                value={shippingDetails.number}
                                 readOnly
                                 className="w-full h-10 bg-white border border-border-gray rounded px-3 outline-none"
                             />
