@@ -79,8 +79,9 @@ export default function Header() {
 
                 {/* Carrinho */}
                 <div className="flex-shrink-0">
-                    <Link href="/cart" aria-label="View cart" className="flex items-center gap-2 text-text-gray hover:text-primary-blue">
+                    <Link href="/cart" aria-label="View cart" className="flex items-center gap-2 text-text-gray hover:text-primary-blue relative">
                         <FiShoppingCart size={24} />
+                        <p className="h-6 w-6 flex justify-center items-center absolute text-white bg-primary-blue rounded-2xl font-semibold left-3 top-2">1</p>
                     </Link>
                 </div>
             </div>
