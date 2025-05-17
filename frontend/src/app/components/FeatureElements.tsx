@@ -11,7 +11,7 @@ export default function FeatureElements() {
     
 
     return(
-        <div className="flex flex-col py-10 gap-10 px-20 items-center">
+        <div className="flex flex-col py-10 gap-10 px-20 items-center" id="FeaturedElementsSection">
             <h2 className="font-semibold text-2xl">Feature Elements</h2>
             <div className="flex flex-wrap gap-20 justify-center"> 
                 {elementsData.map(element => (

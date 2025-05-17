@@ -1,8 +1,20 @@
+"use client"
+
+import { useSearchParams } from "next/navigation";
 import Element from "../components/Element";
 import elementsData from "@/data/elementsData.json"; // Importa os dados dos elementos
 
 
 export default function Elements(){
+
+    const searchParams = useSearchParams(); // Usa o hook para pegar os parâmetros da URL
+    const category = searchParams.get("category"); // Obtém a categoria da query string
+
+    // Filtra os elementos com base na categoria
+    const filteredElements = category
+        ? elementsData.filter((element) => element.category === category)
+        : elementsData;
+
     return(
         <div className="bg-background-purple w-screen h-screen text-black flex flex-col items-center pt-30 gap-4">
 
@@ -32,7 +44,7 @@ export default function Elements(){
 
             <div>
                 <div className="flex flex-wrap gap-20 justify-center mt-20"> 
-                {elementsData.map(element => (
+                {filteredElements.map(element => (
                     <Element
                         key={element.atomic_number}
                         atomic_number={element.atomic_number}

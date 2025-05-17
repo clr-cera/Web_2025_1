@@ -1,3 +1,5 @@
+"use client"
+
 import Banner from "@/app/components/Banner";
 import CategorySelector from "@/app/components/CategorySelector";
 import FeatureElements from "@/app/components/FeatureElements";
