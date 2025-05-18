@@ -7,7 +7,7 @@ export default function Banner() {
     };
 
     return (
-        <div className="flex w-full bg-primary-blue items-center flex-col py-20 gap-10">
+        <div className="flex w-full bg-primary-blue items-center flex-col pb-20 gap-10 pt-40">
             <h1 className="font-bold text-white text-3xl sm:text-5xl">Pure Elements, Pure Science</h1>
 
             <p className="text-white font-medium text-lg">Discover our premium collection of periodic elements</p>

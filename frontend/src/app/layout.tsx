@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 
 import { Inter } from "next/font/google";
 import Header from "@/components/Header";
+import { SearchProvider } from "@/context/searchContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,8 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable}`}>
-        <Header />
-        {children}
+        <SearchProvider>
+          <Header />
+          {children}
+        </SearchProvider>
+
       </body>
     </html>
   );

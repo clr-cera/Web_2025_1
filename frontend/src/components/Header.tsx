@@ -4,12 +4,14 @@ import Link from "next/link";
 import { FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import {useSearch} from '@/context/searchContext' //Contexto para alterar o estado do texto no input
 
 export default function Header() {
     const pathname = usePathname(); // Obtem o pathname atual da URL
     const isHomePage = pathname === "/"; // Verifica se a página atual é a home page
     const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para o menu mobile
     const [cartCount, setCartCount] = useState<number | null>(null); // Estado para o número do carrinho
+    const { setSearchQuery } = useSearch();
 
     // Simula a obtenção do número de itens no carrinho no cliente
     useEffect(() => {
@@ -18,7 +20,7 @@ export default function Header() {
     }, []);
 
     return (
-        <header className="flex items-center justify-between px-4 py-3 bg-white shadow-md md:px-6 md:py-4">
+        <header className="flex items-center justify-between px-4 py-3 bg-white shadow-md md:px-6 md:py-4 fixed w-full">
             {/* Logo */}
             <div className="flex-shrink-0">
                 <h1 className="text-xl md:text-2xl text-primary-blue font-bold">
@@ -36,6 +38,7 @@ export default function Header() {
                             id="searchBar"
                             placeholder="Search elements..."
                             className="border rounded-md border-primary-gray px-4 py-2 w-full text-text-gray-darker"
+                            onChange={(e) => setSearchQuery(e.target.value)}
                         />
                         <button type="submit" className="sr-only">Search</button>
                     </form>
