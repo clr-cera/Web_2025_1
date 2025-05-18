@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Element from "../components/Element";
-import elementsData from "@/data/elementsData.json"; // Importa os dados dos elementos
+import { ElementType, fetchElementsByCategory } from "@/services/elementsServices";
 
-// Mapeamento de cores por categoria
+// Mapeamento de cores por categoria (PARA A PAGINA, nao para os elementos)
 const categoryStyles: Record<string, { background: string; title: string; button: string }> = {
     "All Elements": {
         background: "bg-background-blue",
@@ -17,7 +17,7 @@ const categoryStyles: Record<string, { background: string; title: string; button
         title: "text-primary-yellow",
         button: "bg-primary-yellow text-white",
     },
-    "Non-metals": {
+    "Non-Metals": {
         background: "bg-green-100/50",
         title: "text-primary-green",
         button: "bg-primary-green text-white",
@@ -32,7 +32,7 @@ const categoryStyles: Record<string, { background: string; title: string; button
 // Mapeamento de cores para os elementos
 const elementColors: Record<string, string> = {
     Metals: "yellow",
-    "Non-metals": "green",
+    "Non-Metals": "green",
     "Noble Gases": "purple",
     default: "blue", // Cor padrão para elementos sem categoria específica
 };
@@ -40,6 +40,9 @@ const elementColors: Record<string, string> = {
 export default function Elements() {
     const searchParams = useSearchParams(); // Hook para capturar os parâmetros da URL
     const [selectedCategory, setSelectedCategory] = useState<keyof typeof categoryStyles>("All Elements"); // Estado para a categoria selecionada
+    const [elements, setElements] = useState<ElementType[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     // Atualiza a categoria com base no parâmetro da URL
     useEffect(() => {
@@ -49,16 +52,29 @@ export default function Elements() {
         }
     }, [searchParams]);
 
+    // Carrega elementos da API
+    useEffect(() => {
+        const loadElements = async () => {
+        try {
+            setLoading(true);
+            const data = await fetchElementsByCategory(selectedCategory);
+            setElements(data);
+            setError(null);
+        } catch (err) {
+            setError("Erro ao carregar elementos.");
+        } finally {
+            setLoading(false);
+        }
+        };
+
+        loadElements();
+    }, [selectedCategory]);
+
+
     // Função para alterar a categoria selecionada
     const handleCategoryChange = (category: keyof typeof categoryStyles) => {
         setSelectedCategory(category);
     };
-
-    // Filtra os elementos com base na categoria selecionada
-    const filteredElements =
-        selectedCategory === "All Elements"
-            ? elementsData
-            : elementsData.filter((element) => element.category === selectedCategory);
 
     // Obtém os estilos da categoria selecionada
     const styles = categoryStyles[selectedCategory];
@@ -93,7 +109,7 @@ export default function Elements() {
             {/* Lista de Elementos */}
             <div>
                 <div className="flex flex-wrap gap-20 justify-center mt-20">
-                    {filteredElements.map((element) => (
+                    {elements.map((element) => (
                         <Element
                             key={element.atomic_number}
                             atomic_number={element.atomic_number}
@@ -104,7 +120,10 @@ export default function Elements() {
                             category={element.category}
                             state={element.state}
                             price={element.price}
-                            color={elementColors[element.category as keyof typeof elementColors] || elementColors.default} // Cor dinâmica com base na categoria
+                            color={
+                                elementColors[element.category.trim() as keyof typeof elementColors] ??
+                                elementColors.default
+                            }
                         />
                     ))}
                 </div>

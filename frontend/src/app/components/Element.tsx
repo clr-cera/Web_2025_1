@@ -22,11 +22,11 @@ const colorPresets: Record<string, { background: string; text: string; button: s
         button: "bg-green-700",
         buttonHover: "hover:bg-green-800",
     },
-    red: {
-        background: "bg-red-100",
-        text: "text-red-700",
-        button: "bg-red-700",
-        buttonHover: "hover:bg-red-800",
+    yellow: {
+        background: "bg-yellow-100",
+        text: "text-primary-yellow",
+        button: "bg-primary-yellow",
+        buttonHover: "hover:bg-yellow-600",
     },
     // Adicione mais cores conforme necessário
 };
@@ -45,7 +45,7 @@ export default function Element(props: ElementProps & { color: keyof typeof colo
                         {props.symbol}
                     </div>
                 </div>
-                <div className="px-4 py-2">
+                <div className="px-4 py-2 bg-white">
                     <h2 className={`font-medium text-lg text-black`}>
                         {props.name}
                     </h2>

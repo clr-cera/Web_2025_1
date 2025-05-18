@@ -20,7 +20,7 @@ export default function Header() {
     }, []);
 
     return (
-        <header className="flex items-center justify-between px-4 py-3 bg-white shadow-md md:px-6 md:py-4 fixed w-full">
+        <header className="flex items-center justify-between px-4 py-3 bg-white shadow-md md:px-6 md:py-4 fixed t-0 w-full z-50">
             {/* Logo */}
             <div className="flex-shrink-0">
                 <h1 className="text-xl md:text-2xl text-primary-blue font-bold">

@@ -2,7 +2,8 @@
 
 import { useSearch } from "@/context/searchContext";
 import Element from "./Element";
-import elementsData from "@/data/elementsData.json"; // Importa os dados dos elementos
+import { useEffect, useState } from "react";
+import { fetchAllElements, ElementType } from "@/services/elementsServices";
 
 // Componente de elementos químicos
 // Este componente exibe uma lista de elementos químicos com suas informações
@@ -10,7 +11,23 @@ import elementsData from "@/data/elementsData.json"; // Importa os dados dos ele
 export default function FeatureElements() {
     const { searchQuery } = useSearch();
 
-    const filteredElements = elementsData.filter(element =>
+      const [elements, setElements] = useState<ElementType[]>([]);
+
+        useEffect(() => {
+            const loadElements = async () => {
+                try {
+                const data = await fetchAllElements();
+                setElements(data);
+                } catch (err) {
+                console.error(err);
+                }
+            };
+
+            loadElements();
+        }, []);
+
+
+    const filteredElements = elements.filter(element =>
         element.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         element.symbol.toLowerCase().includes(searchQuery.toLowerCase())
     );
