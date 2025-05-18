@@ -1,8 +1,10 @@
-// src/components/AdminsTable.tsx
-import React from 'react';
-import { BsShield } from 'react-icons/bs';
+// src/components/AdminTable.tsx
+"use client";
+
+import React, { useState } from 'react';
 import { MdEdit } from 'react-icons/md';
 import { FaRegTrashCan } from 'react-icons/fa6';
+import { BsShield } from 'react-icons/bs';
 
 export interface Admin {
   id: number;
@@ -16,21 +18,30 @@ interface AdminsTableProps {
 }
 
 export const AdminsTable: React.FC<AdminsTableProps> = ({ data = [] }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredData = data.filter((user) =>
+    user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <section className="bg-white shadow rounded p-4 mt-5">
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center space-x-2">
-          <BsShield size={25} />
-          <h2 className="ml-2 text-2xl font-semibold">Admins</h2>
+          <BsShield size={22} />
+          <h2 className="ml-2 text-2xl font-semibold">Users</h2>
         </div>
         <button className="bg-primary-blue hover:bg-secondary-blue text-white font-medium px-4 py-2 rounded cursor-pointer">
-          Add Admin
+          Add User
         </button>
       </div>
 
       <input
         type="text"
-        placeholder="Search Admins"
+        placeholder="Search by name or email"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
         className="w-full px-3 py-2 border border-border-gray rounded mb-4"
       />
 
@@ -45,11 +56,11 @@ export const AdminsTable: React.FC<AdminsTableProps> = ({ data = [] }) => {
             </tr>
           </thead>
           <tbody>
-            {data.map(item => (
-              <tr key={item.id} className="border-t border-border-gray">
-                <td className="py-2 px-4 font-semibold">{item.name}</td>
-                <td className="py-2 px-4">{item.email}</td>
-                <td className="py-2 px-4">{item.role}</td>
+            {filteredData.map((admin) => (
+              <tr key={admin.id} className="border-t border-border-gray">
+                <td className="py-2 px-4">{admin.name}</td>
+                <td className="py-2 px-4">{admin.email}</td>
+                <td className="py-2 px-4">{admin.role}</td>
                 <td className="py-2 px-4 space-x-2">
                   <button className="text-black">
                     <MdEdit size={20} />
@@ -60,6 +71,13 @@ export const AdminsTable: React.FC<AdminsTableProps> = ({ data = [] }) => {
                 </td>
               </tr>
             ))}
+            {filteredData.length === 0 && (
+              <tr>
+                <td colSpan={4} className="text-center py-4 text-text-gray">
+                  No users found.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

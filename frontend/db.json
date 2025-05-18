@@ -8,7 +8,8 @@
       "description": "Hydrogen is a colorless, odorless gas at room temperature. It is the lightest and most abundant element in the universe.",
       "category": "Non-Metals",
       "state": "Gas",
-      "price": 0.02
+      "price": 0.02,
+      "stock": 150
     },
     {
       "atomic_number": 2,
@@ -18,7 +19,8 @@
       "description": "Helium is a colorless, odorless gas that is lighter than air. It is the second most abundant element in the universe.",
       "category": "Noble Gases",
       "state": "Gas",
-      "price": 0.01
+      "price": 0.01,
+      "stock": 100
     },
     {
       "atomic_number": 3,
@@ -28,7 +30,8 @@
       "description": "Lithium is a soft, silvery-white metal. It is the lightest metal and the least dense solid element.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.03
+      "price": 0.03,
+      "stock": 85
     },
     {
       "atomic_number": 4,
@@ -38,7 +41,8 @@
       "description": "Beryllium is a hard, grayish metal. It is the fourth element in the periodic table and has the atomic number 4.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.05
+      "price": 0.05,
+      "stock": 75
     },
     {
       "atomic_number": 5,
@@ -48,7 +52,8 @@
       "description": "Boron is a metalloid that is essential for plant growth. It is used in glass and ceramics.",
       "category": "Non-Metals",
       "state": "Solid",
-      "price": 0.04
+      "price": 0.04,
+      "stock": 60
     },
     {
       "atomic_number": 6,
@@ -58,7 +63,8 @@
       "description": "Carbon is a non-metal that is the basis of all known life. It exists in several forms, including graphite and diamond.",
       "category": "Non-Metals",
       "state": "Solid",
-      "price": 0.02
+      "price": 0.02,
+      "stock": 200
     },
     {
       "atomic_number": 7,
@@ -68,7 +74,8 @@
       "description": "Nitrogen is a colorless, odorless gas that makes up about 78% of the Earth's atmosphere.",
       "category": "Non-Metals",
       "state": "Gas",
-      "price": 0.01
+      "price": 0.01,
+      "stock": 180
     },
     {
       "atomic_number": 8,
@@ -78,7 +85,8 @@
       "description": "Oxygen is a colorless, odorless gas that is essential for respiration in most living organisms.",
       "category": "Non-Metals",
       "state": "Gas",
-      "price": 0.02
+      "price": 0.02,
+      "stock": 190
     },
     {
       "atomic_number": 10,
@@ -88,7 +96,8 @@
       "description": "Neon is a noble gas that is used in neon signs and high-voltage indicators.",
       "category": "Noble Gases",
       "state": "Gas",
-      "price": 0.03
+      "price": 0.03,
+      "stock": 70
     },
     {
       "atomic_number": 11,
@@ -98,7 +107,8 @@
       "description": "Sodium is a soft, silvery-white metal that reacts vigorously with water.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.04
+      "price": 0.04,
+      "stock": 95
     },
     {
       "atomic_number": 12,
@@ -108,7 +118,8 @@
       "description": "Magnesium is a shiny gray metal that is used in lightweight alloys and fireworks.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.03
+      "price": 0.03,
+      "stock": 110
     },
     {
       "atomic_number": 13,
@@ -118,7 +129,8 @@
       "description": "Aluminum is a lightweight, silvery-white metal used in a wide range of applications from packaging to aerospace.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.03
+      "price": 0.03,
+      "stock": 120
     },
     {
       "atomic_number": 14,
@@ -128,7 +140,8 @@
       "description": "Silicon is a metalloid essential in electronics and computer chips. It is also used in construction materials.",
       "category": "Non-Metals",
       "state": "Solid",
-      "price": 0.04
+      "price": 0.04,
+      "stock": 140
     },
     {
       "atomic_number": 15,
@@ -138,7 +151,8 @@
       "description": "Phosphorus is a reactive non-metal used in fertilizers, detergents, and explosives.",
       "category": "Non-Metals",
       "state": "Solid",
-      "price": 0.03
+      "price": 0.03,
+      "stock": 100
     },
     {
       "atomic_number": 16,
@@ -148,7 +162,8 @@
       "description": "Sulfur is a yellow solid non-metal used in industrial processes such as sulfuric acid production.",
       "category": "Non-Metals",
       "state": "Solid",
-      "price": 0.02
+      "price": 0.02,
+      "stock": 130
     },
     {
       "atomic_number": 17,
@@ -158,7 +173,8 @@
       "description": "Chlorine is a yellow-green gas used in disinfection, plastics, and water treatment.",
       "category": "Non-Metals",
       "state": "Gas",
-      "price": 0.02
+      "price": 0.02,
+      "stock": 160
     },
     {
       "atomic_number": 18,
@@ -168,7 +184,8 @@
       "description": "Argon is a noble gas commonly used in lighting and welding applications.",
       "category": "Noble Gases",
       "state": "Gas",
-      "price": 0.03
+      "price": 0.03,
+      "stock": 90
     },
     {
       "atomic_number": 19,
@@ -178,7 +195,8 @@
       "description": "Potassium is a soft metal essential for biological functions. It reacts violently with water.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.04
+      "price": 0.04,
+      "stock": 85
     },
     {
       "atomic_number": 20,
@@ -188,7 +206,8 @@
       "description": "Calcium is a metal used in building materials and is essential for bone health in living organisms.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.03
+      "price": 0.03,
+      "stock": 110
     },
     {
       "atomic_number": 21,
@@ -198,7 +217,8 @@
       "description": "Scandium is a soft, silvery metal often found in rare earth minerals and used in aerospace alloys.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.06
+      "price": 0.06,
+      "stock": 40
     },
     {
       "atomic_number": 22,
@@ -208,7 +228,8 @@
       "description": "Titanium is a strong, corrosion-resistant metal used in aerospace, medical implants, and pigments.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.07
+      "price": 0.07,
+      "stock": 70
     },
     {
       "atomic_number": 23,
@@ -218,7 +239,8 @@
       "description": "Vanadium is a hard, silvery metal used in steel alloys to improve strength and durability.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.06
+      "price": 0.06,
+      "stock": 60
     },
     {
       "atomic_number": 24,
@@ -228,7 +250,8 @@
       "description": "Chromium is a lustrous metal known for its high polish and used in stainless steel production.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.05
+      "price": 0.05,
+      "stock": 50
     },
     {
       "atomic_number": 25,
@@ -238,7 +261,8 @@
       "description": "Manganese is a brittle metal essential in steelmaking and used in batteries and pigments.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.04
+      "price": 0.04,
+      "stock": 65
     },
     {
       "atomic_number": 26,
@@ -248,7 +272,8 @@
       "description": "Iron is a magnetic metal crucial in construction, tools, and the human body's oxygen transport.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.03
+      "price": 0.03,
+      "stock": 200
     },
     {
       "atomic_number": 27,
@@ -258,7 +283,8 @@
       "description": "Cobalt is a magnetic metal used in batteries, magnets, and to produce blue pigments in glass.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.06
+      "price": 0.06,
+      "stock": 75
     },
     {
       "atomic_number": 28,
@@ -268,7 +294,8 @@
       "description": "Nickel is a silvery-white metal used in coins, batteries, and stainless steel.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.05
+      "price": 0.05,
+      "stock": 85
     },
     {
       "atomic_number": 29,
@@ -278,7 +305,8 @@
       "description": "Copper is a reddish metal known for its electrical conductivity, used in wiring and plumbing.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.04
+      "price": 0.04,
+      "stock": 95
     },
     {
       "atomic_number": 30,
@@ -288,7 +316,42 @@
       "description": "Zinc is a bluish-silver metal used to galvanize steel, in batteries, and as a dietary supplement.",
       "category": "Metals",
       "state": "Solid",
-      "price": 0.03
+      "price": 0.03,
+      "stock": 105
+    }
+  ],
+  
+  "users": [
+    {
+      "id": 1,
+      "name": "Gabriel Barbosa",
+      "email": "Gabriel@admin.com",
+      "role": "Admin"
+    },
+    {
+      "id": 2,
+      "name": "Bruno Lima",
+      "email": "bruno@user.com",
+      "role": "Customer"
+    },
+    {
+      "id": 3,
+      "name": "Clara Ernesto",
+      "email": "Clara@admin.com",
+      "role": "Admin"
+    },
+    {
+      "id": 4,
+      "name": "Shogo Silva",
+      "email": "Shogo Silva@user.com",
+      "role": "Customer"
+    },
+    {
+      "id": 5,
+      "name": "Renan",
+      "email": "Renan@admin.com",
+      "role": "Admin"
     }
   ]
+
 }

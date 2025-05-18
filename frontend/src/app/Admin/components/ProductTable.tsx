@@ -1,5 +1,7 @@
 // src/components/ProductsTable.tsx
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import { BsBoxSeam } from 'react-icons/bs';
 import { MdEdit } from 'react-icons/md';
 import { FaRegTrashCan } from 'react-icons/fa6';
@@ -16,6 +18,12 @@ interface ProductsTableProps {
 }
 
 export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredData = data.filter((item) =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <section className="bg-white shadow rounded p-4 mt-5">
       <div className="flex justify-between items-center mb-4">
@@ -23,7 +31,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
           <BsBoxSeam size={25} />
           <h2 className="ml-2 text-2xl font-semibold">Products</h2>
         </div>
-        <button className="bg-primary-blue hover:bg-secondary-blue text-white font-medium px-4 py-2 rounded  cursor-pointer">
+        <button className="bg-primary-blue hover:bg-secondary-blue text-white font-medium px-4 py-2 rounded cursor-pointer">
           Add Product
         </button>
       </div>
@@ -31,6 +39,8 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
       <input
         type="text"
         placeholder="Search Products"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
         className="w-full px-3 py-2 border border-border-gray rounded mb-4"
       />
 
@@ -45,7 +55,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             </tr>
           </thead>
           <tbody>
-            {data.map(item => (
+            {filteredData.map((item) => (
               <tr key={item.id} className="border-t border-border-gray">
                 <td className="py-2 px-4">{item.name}</td>
                 <td className="py-2 px-4 font-medium">${item.price}</td>
@@ -60,6 +70,13 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                 </td>
               </tr>
             ))}
+            {filteredData.length === 0 && (
+              <tr>
+                <td colSpan={4} className="text-center py-4 text-text-gray">
+                  No products found.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
