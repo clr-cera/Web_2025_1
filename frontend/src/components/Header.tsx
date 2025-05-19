@@ -3,102 +3,108 @@
 import Link from "next/link";
 import { FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import {useSearch} from '@/context/searchContext' //Contexto para alterar o estado do texto no input
+import { useState } from "react";
+import { useSearch } from "@/context/searchContext";
+import { useCart } from "@/context/CartContext";
+import CartModal from "@/components/CartModal"; // certifique-se do caminho correto
 
 export default function Header() {
-    const pathname = usePathname(); // Obtem o pathname atual da URL
-    const isHomePage = pathname === "/"; // Verifica se a página atual é a home page
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para o menu mobile
-    const [cartCount, setCartCount] = useState<number | null>(null); // Estado para o número do carrinho
-    const { setSearchQuery } = useSearch();
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { cartItems } = useCart();
+  const { setSearchQuery } = useSearch();
 
-    // Simula a obtenção do número de itens no carrinho no cliente
-    useEffect(() => {
-        // Aqui você pode buscar o número real do carrinho de um estado global ou API
-        setCartCount(1); // Exemplo: define o número do carrinho como 1
-    }, []);
+  return (
+    <>
+      <header className="flex items-center justify-between px-4 py-3 bg-white shadow-md md:px-6 md:py-4 fixed t-0 w-full z-50">
+        {/* Logo */}
+        <div className="flex-shrink-0">
+          <h1 className="text-xl md:text-2xl text-primary-blue font-bold">
+            <Link href="/">ElementStore</Link>
+          </h1>
+        </div>
 
-    return (
-        <header className="flex items-center justify-between px-4 py-3 bg-white shadow-md md:px-6 md:py-4 fixed t-0 w-full z-50">
-            {/* Logo */}
-            <div className="flex-shrink-0">
-                <h1 className="text-xl md:text-2xl text-primary-blue font-bold">
-                    <Link href="/">ElementStore</Link>
-                </h1>
-            </div>
+        {/* Search Bar */}
+        {isHomePage && (
+          <div className="hidden md:flex flex-grow max-w-2xl mx-5">
+            <form className="w-full" role="search">
+              <label htmlFor="searchBar" className="sr-only">Search elements</label>
+              <input
+                type="text"
+                id="searchBar"
+                placeholder="Search elements..."
+                className="border rounded-md border-primary-gray px-4 py-2 w-full text-text-gray-darker"
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button type="submit" className="sr-only">Search</button>
+            </form>
+          </div>
+        )}
 
-            {/* Search Bar */}
-            {isHomePage && (
-                <div className="hidden md:flex flex-grow max-w-2xl mx-5">
-                    <form className="w-full" role="search">
-                        <label htmlFor="searchBar" className="sr-only">Search elements</label>
-                        <input
-                            type="text"
-                            id="searchBar"
-                            placeholder="Search elements..."
-                            className="border rounded-md border-primary-gray px-4 py-2 w-full text-text-gray-darker"
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                        <button type="submit" className="sr-only">Search</button>
-                    </form>
-                </div>
-            )}
+        {/* Navegação e Carrinho */}
+        <div className="flex items-center space-x-4 md:space-x-6">
+          {/* Menu Mobile */}
+          <button
+            className="md:hidden text-primary-blue"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
 
-            {/* Navigation e Carrinho */}
-            <div className="flex items-center space-x-4 md:space-x-6">
-                {/* Menu Mobile */}
-                <button
-                    className="md:hidden text-primary-blue"
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    aria-label="Toggle menu"
-                >
-                    {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-                </button>
+          {/* Navegação Desktop */}
+          <nav
+            className={`${
+              isMenuOpen ? "block" : "hidden"
+            } absolute top-14 left-0 w-full bg-white shadow-md md:static md:flex md:space-x-6 md:bg-transparent md:shadow-none`}
+            aria-label="Main navigation"
+          >
+            <ul className="flex flex-col md:flex-row md:space-x-6 text-text-gray">
+              <li>
+                <Link href="/Elements" className="block px-4 py-2 hover:text-primary-blue font-medium">
+                  Elements
+                </Link>
+              </li>
+              <li>
+                <Link href="/#table" className="block px-4 py-2 hover:text-primary-blue font-medium">
+                  Table
+                </Link>
+              </li>
+              <li>
+                <Link href="/About" className="block px-4 py-2 hover:text-primary-blue font-medium">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="/Login" className="block px-4 py-2 hover:text-primary-blue font-medium">
+                  Admin
+                </Link>
+              </li>
+            </ul>
+          </nav>
 
-                {/* Navegação Desktop */}
-                <nav
-                    className={`${
-                        isMenuOpen ? "block" : "hidden"
-                    } absolute top-14 left-0 w-full bg-white shadow-md md:static md:flex md:space-x-6 md:bg-transparent md:shadow-none`}
-                    aria-label="Main navigation"
-                >
-                    <ul className="flex flex-col md:flex-row md:space-x-6 text-text-gray">
-                        <li>
-                            <Link href="/Elements" className="block px-4 py-2 hover:text-primary-blue font-medium">
-                                Elements
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/#table" className="block px-4 py-2 hover:text-primary-blue font-medium">
-                                Table
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/About" className="block px-4 py-2 hover:text-primary-blue font-medium">
-                                About
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/Login" className="block px-4 py-2 hover:text-primary-blue font-medium">
-                                Admin
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
+          {/* Carrinho */}
+          <div className="flex-shrink-0">
+            <button
+              onClick={() => setIsCartOpen(true)}
+              aria-label="View cart"
+              className="flex items-center gap-2 text-text-gray hover:text-primary-blue relative"
+            >
+              <FiShoppingCart size={24} />
+              {cartItems.length > 0 && (
+                <p className="h-5 w-5 flex justify-center items-center absolute text-white bg-primary-blue rounded-full text-xs left-3 top-2">
+                  {cartItems.length}
+                </p>
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
 
-                {/* Carrinho */}
-                <div className="flex-shrink-0">
-                    <Link href="/cart" aria-label="View cart" className="flex items-center gap-2 text-text-gray hover:text-primary-blue relative">
-                        <FiShoppingCart size={24} />
-                        {cartCount !== null && (
-                            <p className="h-6 w-6 flex justify-center items-center absolute text-white bg-primary-blue rounded-2xl font-semibold left-3 top-2">
-                                {cartCount}
-                            </p>
-                        )}
-                    </Link>
-                </div>
-            </div>
-        </header>
-    );
+      {/* Modal do Carrinho */}
+      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+    </>
+  );
 }

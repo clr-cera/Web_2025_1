@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { FiShoppingCart } from "react-icons/fi";
-import { ElementProps } from "@/types/Elements";
+import { useCart } from "@/context/CartContext";
+import { ElementType } from "@/services/elementsServices";
+
 
 // Mapeamento de cores predefinidas
 const colorPresets: Record<string, { background: string; text: string; button: string; buttonHover: string }> = {
@@ -31,9 +33,10 @@ const colorPresets: Record<string, { background: string; text: string; button: s
     // Adicione mais cores conforme necessário
 };
 
-export default function Element(props: ElementProps & { color: keyof typeof colorPresets }) {
+export default function Element(props: ElementType & { color: keyof typeof colorPresets }) {
     // Obtém as classes de cores predefinidas com base no parâmetro `color`
     const colors = colorPresets[props.color] || colorPresets.purple; // Default para "purple"
+    const { addToCart } = useCart(); // aqui você pega a função
 
     return (
         <Link href={`/Products/${props.name}`}>
@@ -61,7 +64,12 @@ export default function Element(props: ElementProps & { color: keyof typeof colo
                             Price: ${props.price}
                         </p>
                         <button
-                            className={`rounded flex items-center gap-2 px-2 py-2 text-white cursor-pointer transition duration-200 ${colors.button} ${colors.buttonHover}`}
+                            onClick={(e) => {
+                                addToCart(props)
+                                e.stopPropagation()
+                                e.preventDefault()
+                            }}
+                            className="rounded flex items-center gap-2 px-2 py-2 text-white bg-primary-blue hover:bg-secondary-blue"
                         >
                             <FiShoppingCart size={20} />
                             <span className="text-xs font-medium">Add to Cart</span>
