@@ -38,7 +38,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 
 ### Run JSON SERVER
-json-server --watch db.json --port 3001
+npx json-server --watch db.json --port 3001
 E ele estara disponivel em
 
 http://localhost:3001/elements

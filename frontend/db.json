@@ -9,7 +9,8 @@
       "category": "Non-Metals",
       "state": "Gas",
       "price": 0.02,
-      "stock": 150
+      "stock": 150,
+      "id": "658d"
     },
     {
       "atomic_number": 2,
@@ -20,7 +21,8 @@
       "category": "Noble Gases",
       "state": "Gas",
       "price": 0.01,
-      "stock": 100
+      "stock": 100,
+      "id": "2412"
     },
     {
       "atomic_number": 3,
@@ -31,7 +33,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.03,
-      "stock": 85
+      "stock": 85,
+      "id": "f3d9"
     },
     {
       "atomic_number": 4,
@@ -42,7 +45,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.05,
-      "stock": 75
+      "stock": 75,
+      "id": "bd53"
     },
     {
       "atomic_number": 5,
@@ -53,7 +57,8 @@
       "category": "Non-Metals",
       "state": "Solid",
       "price": 0.04,
-      "stock": 60
+      "stock": 60,
+      "id": "8119"
     },
     {
       "atomic_number": 6,
@@ -64,7 +69,8 @@
       "category": "Non-Metals",
       "state": "Solid",
       "price": 0.02,
-      "stock": 200
+      "stock": 200,
+      "id": "6f0c"
     },
     {
       "atomic_number": 7,
@@ -75,7 +81,8 @@
       "category": "Non-Metals",
       "state": "Gas",
       "price": 0.01,
-      "stock": 180
+      "stock": 180,
+      "id": "c2a0"
     },
     {
       "atomic_number": 8,
@@ -86,7 +93,8 @@
       "category": "Non-Metals",
       "state": "Gas",
       "price": 0.02,
-      "stock": 190
+      "stock": 190,
+      "id": "c260"
     },
     {
       "atomic_number": 10,
@@ -97,7 +105,8 @@
       "category": "Noble Gases",
       "state": "Gas",
       "price": 0.03,
-      "stock": 70
+      "stock": 70,
+      "id": "3a98"
     },
     {
       "atomic_number": 11,
@@ -108,7 +117,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.04,
-      "stock": 95
+      "stock": 95,
+      "id": "c98c"
     },
     {
       "atomic_number": 12,
@@ -119,7 +129,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.03,
-      "stock": 110
+      "stock": 110,
+      "id": "0a2f"
     },
     {
       "atomic_number": 13,
@@ -130,7 +141,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.03,
-      "stock": 120
+      "stock": 120,
+      "id": "02c2"
     },
     {
       "atomic_number": 14,
@@ -141,7 +153,8 @@
       "category": "Non-Metals",
       "state": "Solid",
       "price": 0.04,
-      "stock": 140
+      "stock": 140,
+      "id": "13ee"
     },
     {
       "atomic_number": 15,
@@ -152,7 +165,8 @@
       "category": "Non-Metals",
       "state": "Solid",
       "price": 0.03,
-      "stock": 100
+      "stock": 100,
+      "id": "8f2f"
     },
     {
       "atomic_number": 16,
@@ -163,7 +177,8 @@
       "category": "Non-Metals",
       "state": "Solid",
       "price": 0.02,
-      "stock": 130
+      "stock": 130,
+      "id": "20f0"
     },
     {
       "atomic_number": 17,
@@ -174,7 +189,8 @@
       "category": "Non-Metals",
       "state": "Gas",
       "price": 0.02,
-      "stock": 160
+      "stock": 160,
+      "id": "3c21"
     },
     {
       "atomic_number": 18,
@@ -185,7 +201,8 @@
       "category": "Noble Gases",
       "state": "Gas",
       "price": 0.03,
-      "stock": 90
+      "stock": 90,
+      "id": "5a39"
     },
     {
       "atomic_number": 19,
@@ -196,7 +213,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.04,
-      "stock": 85
+      "stock": 85,
+      "id": "a378"
     },
     {
       "atomic_number": 20,
@@ -207,7 +225,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.03,
-      "stock": 110
+      "stock": 110,
+      "id": "86ad"
     },
     {
       "atomic_number": 21,
@@ -218,7 +237,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.06,
-      "stock": 40
+      "stock": 40,
+      "id": "5300"
     },
     {
       "atomic_number": 22,
@@ -229,7 +249,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.07,
-      "stock": 70
+      "stock": 70,
+      "id": "e274"
     },
     {
       "atomic_number": 23,
@@ -240,7 +261,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.06,
-      "stock": 60
+      "stock": 60,
+      "id": "246c"
     },
     {
       "atomic_number": 24,
@@ -251,7 +273,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.05,
-      "stock": 50
+      "stock": 50,
+      "id": "d5b6"
     },
     {
       "atomic_number": 25,
@@ -262,7 +285,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.04,
-      "stock": 65
+      "stock": 65,
+      "id": "5dc1"
     },
     {
       "atomic_number": 26,
@@ -273,7 +297,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.03,
-      "stock": 200
+      "stock": 200,
+      "id": "d465"
     },
     {
       "atomic_number": 27,
@@ -284,7 +309,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.06,
-      "stock": 75
+      "stock": 75,
+      "id": "a159"
     },
     {
       "atomic_number": 28,
@@ -295,7 +321,8 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.05,
-      "stock": 85
+      "stock": 85,
+      "id": "c151"
     },
     {
       "atomic_number": 29,
@@ -306,52 +333,52 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.04,
-      "stock": 95
+      "stock": 95,
+      "id": "64f4"
     },
     {
       "atomic_number": 30,
       "atomic_mass": 65.38,
       "symbol": "Zn",
-      "name": "Zinc",
+      "name": "Zinc 2",
       "description": "Zinc is a bluish-silver metal used to galvanize steel, in batteries, and as a dietary supplement.",
       "category": "Metals",
       "state": "Solid",
       "price": 0.03,
-      "stock": 105
+      "stock": 105,
+      "id": "dd84"
     }
   ],
-  
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Gabriel Barbosa",
       "email": "Gabriel@admin.com",
       "role": "Admin"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Bruno Lima",
       "email": "bruno@user.com",
       "role": "Customer"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Clara Ernesto",
       "email": "Clara@admin.com",
       "role": "Admin"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Shogo Silva",
       "email": "Shogo Silva@user.com",
       "role": "Customer"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Renan",
       "email": "Renan@admin.com",
       "role": "Admin"
     }
   ]
-
 }
