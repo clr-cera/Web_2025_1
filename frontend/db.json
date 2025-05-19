@@ -365,19 +365,22 @@
     {
       "id": "1",
       "name": "Gabriel Barbosa",
-      "email": "Gabriel@admin.com",
-      "role": "Admin"
+      "email": "gabriel@admin.com",
+      "password": "12345",
+      "role": "Super Admin"
     },
     {
       "id": "2",
       "name": "Bruno Lima",
       "email": "bruno@user.com",
+      "password": "12345",
       "role": "Customer"
     },
     {
       "id": "3",
       "name": "Clara Ernesto",
       "email": "Clara@admin.com",
+      "password": "12345",
       "role": "Admin"
     },
     {
@@ -390,7 +393,21 @@
       "id": "5",
       "name": "Renan",
       "email": "Renan@admin.com",
+      "password": "12345",
       "role": "Admin"
+    },
+    {
+      "id": "6fb0",
+      "name": "Afonso",
+      "email": "afonso@email.com",
+      "password": "12345",
+      "role": "Customer"
+    },
+    {
+      "id": "f4ac",
+      "name": "opa",
+      "email": "opa@email.com",
+      "role": "Super Admin"
     }
   ]
 }

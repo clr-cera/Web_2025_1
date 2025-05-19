@@ -1,6 +1,6 @@
 "use client"
 
-import { useSearch } from "@/context/searchContext";
+import { useSearch } from "@/context/SearchContext";
 import Element from "../../components/Element";
 import { useEffect, useState } from "react";
 import { fetchAllElements, ElementType } from "@/services/elementsServices";

@@ -3,9 +3,10 @@ import "@/styles/globals.css";
 
 import { Inter } from "next/font/google";
 import Header from "@/components/Header";
-import { SearchProvider } from "@/context/searchContext";
+import { SearchProvider } from "@/context/SearchContext";
 import { CartProvider } from "@/context/CartContext";
 import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from "@/context/AuthContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,10 +28,12 @@ export default function RootLayout({
       <body className={`${inter.variable}`}>
       <Toaster position="top-right" />
       <CartProvider>
-        <SearchProvider>
-          <Header />
-          {children}
-        </SearchProvider>
+        <AuthProvider>
+          <SearchProvider>
+            <Header />
+            {children}
+          </SearchProvider>
+        </AuthProvider>
       </CartProvider>
       </body>
     </html>

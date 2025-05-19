@@ -4,17 +4,20 @@ import Link from "next/link";
 import { FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { useSearch } from "@/context/searchContext";
+import { useSearch } from "@/context/SearchContext";
 import { useCart } from "@/context/CartContext";
-import CartModal from "@/components/CartModal"; // certifique-se do caminho correto
+import CartModal from "@/components/CartModal";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Header() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+
   const { cartItems } = useCart();
   const { setSearchQuery } = useSearch();
+  const { user, logout } = useAuth();
 
   return (
     <>
@@ -26,11 +29,10 @@ export default function Header() {
           </h1>
         </div>
 
-        {/* Search Bar */}
+        {/* Search */}
         {isHomePage && (
           <div className="hidden md:flex flex-grow max-w-2xl mx-5">
             <form className="w-full" role="search">
-              <label htmlFor="searchBar" className="sr-only">Search elements</label>
               <input
                 type="text"
                 id="searchBar"
@@ -43,7 +45,7 @@ export default function Header() {
           </div>
         )}
 
-        {/* Navegação e Carrinho */}
+        {/* Navegação + carrinho */}
         <div className="flex items-center space-x-4 md:space-x-6">
           {/* Menu Mobile */}
           <button
@@ -54,34 +56,36 @@ export default function Header() {
             {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
 
-          {/* Navegação Desktop */}
+          {/* Navegação */}
           <nav
             className={`${
               isMenuOpen ? "block" : "hidden"
             } absolute top-14 left-0 w-full bg-white shadow-md md:static md:flex md:space-x-6 md:bg-transparent md:shadow-none`}
             aria-label="Main navigation"
           >
-            <ul className="flex flex-col md:flex-row md:space-x-6 text-text-gray">
-              <li>
-                <Link href="/Elements" className="block px-4 py-2 hover:text-primary-blue font-medium">
-                  Elements
-                </Link>
-              </li>
-              <li>
-                <Link href="/#table" className="block px-4 py-2 hover:text-primary-blue font-medium">
-                  Table
-                </Link>
-              </li>
-              <li>
-                <Link href="/About" className="block px-4 py-2 hover:text-primary-blue font-medium">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/Login" className="block px-4 py-2 hover:text-primary-blue font-medium">
-                  Admin
-                </Link>
-              </li>
+            <ul className="flex flex-col md:flex-row md:space-x-2 text-text-gray">
+              <li><Link href="/Elements" className="block px-4 py-2 hover:text-primary-blue font-medium">Elements</Link></li>
+              <li><Link href="/#table" className="block px-4 py-2 hover:text-primary-blue font-medium">Table</Link></li>
+              <li><Link href="/About" className="block px-4 py-2 hover:text-primary-blue font-medium">About</Link></li>
+
+              {!user && (
+                <li><Link href="/Login" className="block px-4 py-2 hover:text-primary-blue font-medium">Login</Link></li>
+              )}
+
+              {(user?.role === "Admin" || user?.role === "Super Admin") && (
+                <li><Link href="/Admin" className="block px-4 py-2 hover:text-primary-blue font-medium">Admin</Link></li>
+              )}
+
+              {user && (
+                <li>
+                  <button
+                    onClick={logout}
+                    className="block px-4 py-2 hover:text-red-600 cursor-pointer font-medium"
+                  >
+                    Logout
+                  </button>
+                </li>
+              )}
             </ul>
           </nav>
 
@@ -90,7 +94,7 @@ export default function Header() {
             <button
               onClick={() => setIsCartOpen(true)}
               aria-label="View cart"
-              className="flex items-center gap-2 text-text-gray hover:text-primary-blue relative"
+              className="flex items-center gap-2 text-text-gray hover:text-primary-blue relative cursor-pointer"
             >
               <FiShoppingCart size={24} />
               {cartItems.length > 0 && (

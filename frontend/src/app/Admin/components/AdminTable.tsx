@@ -148,8 +148,8 @@ export const AdminsTable: React.FC<AdminsTableProps> = ({ data = [] }) => {
           <div className='flex flex-col gap-1'>
               <label className='text-text-gray-darker'>Role</label>
               <select className="border px-3 py-2 rounded border-border-gray">
-                  <option value="admin">Admin</option>
-                  <option value="superAdmin">SuperAdmin</option>
+                  <option value="Admin">Admin</option>
+                  <option value="Super Admin">Super Admin</option>
               </select>
           </div>
 
