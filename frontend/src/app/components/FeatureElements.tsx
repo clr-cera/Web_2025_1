@@ -1,7 +1,7 @@
 "use client"
 
 import { useSearch } from "@/context/searchContext";
-import Element from "./Element";
+import Element from "../../components/Element";
 import { useEffect, useState } from "react";
 import { fetchAllElements, ElementType } from "@/services/elementsServices";
 
@@ -39,6 +39,8 @@ export default function FeatureElements() {
         <div className="flex flex-wrap gap-20 justify-center"> 
             {filteredElements.map(element => (
             <Element
+                id={element.id}
+                stock={element.stock}
                 key={element.atomic_number}
                 atomic_number={element.atomic_number}
                 atomic_mass={element.atomic_mass}

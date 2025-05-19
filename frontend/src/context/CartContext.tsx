@@ -39,14 +39,22 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   }, [cartItems]);
 
   const addToCart = (item: ElementType) => {
-    setCartItems(prev => {
-      const exists = prev.find(p => p.id === item.id);
-      if (exists) {
-        return prev.map(p => p.id === item.id ? { ...p, quantity: p.quantity + 1 } : p);
+    console.log("adicionando ao carrinho:", item.id);
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((i) => i.id === item.id);
+
+      if (existingItem) {
+        // Já existe -> incrementa quantidade
+        return prevItems.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        );
+      } else {
+        // Novo item -> adiciona com quantity: 1
+        return [...prevItems, { ...item, quantity: 1 }];
       }
-      return [...prev, { ...item, quantity: 1 }];
     });
   };
+
 
   const removeFromCart = (id: string) => {
     setCartItems(prev => prev.filter(p => p.id !== id));

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import Element from "../components/Element";
+import Element from "@/components/Element";
 import { ElementType, fetchElementsByCategory } from "@/services/elementsServices";
 
 // Mapeamento de cores por categoria (PARA A PAGINA, nao para os elementos)
@@ -111,6 +111,8 @@ export default function Elements() {
                 <div className="flex flex-wrap gap-20 justify-center mt-20">
                     {elements.map((element) => (
                         <Element
+                            id={element.id}
+                            stock={element.stock}
                             key={element.atomic_number}
                             atomic_number={element.atomic_number}
                             atomic_mass={element.atomic_mass}

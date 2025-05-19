@@ -37,7 +37,7 @@ export default function Element(props: ElementType & { color: keyof typeof color
     // Obtém as classes de cores predefinidas com base no parâmetro `color`
     const colors = colorPresets[props.color] || colorPresets.purple; // Default para "purple"
     const { addToCart } = useCart(); // aqui você pega a função
-
+    
     return (
         <Link href={`/Products/${props.name}`}>
             <div className={`w-60 rounded-xl border border-border-gray cursor-pointer hover:shadow-lg transition duration-200`}>
@@ -69,7 +69,7 @@ export default function Element(props: ElementType & { color: keyof typeof color
                                 e.stopPropagation()
                                 e.preventDefault()
                             }}
-                            className="rounded flex items-center gap-2 px-2 py-2 text-white bg-primary-blue hover:bg-secondary-blue"
+                            className="rounded cursor-pointer flex items-center gap-2 px-2 py-2 text-white bg-primary-blue hover:bg-secondary-blue"
                         >
                             <FiShoppingCart size={20} />
                             <span className="text-xs font-medium">Add to Cart</span>

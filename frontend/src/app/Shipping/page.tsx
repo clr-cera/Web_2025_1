@@ -1,4 +1,4 @@
-import CartElement from "@/components/CartElement";
+import CartElement from "@/components/CartItemCard";
 
 export default function ShippingPage() {
     // Objeto com os dados dinâmicos

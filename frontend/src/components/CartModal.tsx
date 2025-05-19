@@ -5,6 +5,7 @@ import Modal from "@/components/Modal";
 import { useCart } from "@/context/CartContext";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { PiTrashSimple } from "react-icons/pi";
+import CartItemCard from "./CartItemCard";
 
 interface CartModalProps {
   isOpen: boolean;
@@ -27,39 +28,7 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
           <p className="text-text-gray text-center">Your cart is empty.</p>
         ) : (
           cartItems.map((item) => (
-            <div key={item.id} className="text-black flex justify-between w-full items-center">
-              <div className="flex gap-4 items-center">
-                <div className="w-12 h-12 bg-background-blue flex justify-center items-center rounded-full">
-                  <p className="text-primary-blue font-semibold">{item.symbol}</p>
-                </div>
-                <div>
-                  <label className="font-semibold">{item.name}</label>
-                  <p className="text-xs text-text-gray">${item.price} per unit</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4 items-center">
-                <button
-                  onClick={() => decreaseQuantity(item.id)}
-                  className="text-black p-2 border border-border-gray rounded-md hover:bg-gray-100"
-                >
-                  <FaMinus size={10} />
-                </button>
-                <p className="font-semibold">{item.quantity}</p>
-                <button
-                  onClick={() => increaseQuantity(item.id)}
-                  className="text-black p-2 border border-border-gray rounded-md hover:bg-gray-100"
-                >
-                  <FaPlus size={10} />
-                </button>
-                <button
-                  onClick={() => removeFromCart(item.id)}
-                  className="text-red-600 hover:text-red-700"
-                >
-                  <PiTrashSimple size={18} />
-                </button>
-              </div>
-            </div>
+            <CartItemCard key={item.id} item={item} />
           ))
         )}
 

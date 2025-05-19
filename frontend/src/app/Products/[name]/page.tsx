@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { ElementType, fetchElementByName } from "@/services/elementsServices";
+import { useCart } from "@/context/CartContext";
 
 interface ProductPageProps {
   params: { name: string };
@@ -15,6 +16,10 @@ export default function ProductPage({ params }: ProductPageProps) {
   const [elementData, setElementData] = useState<ElementType | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+
+
+  const { addToCart } = useCart();
+
 
   // Funções para quantidade
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
@@ -104,7 +109,18 @@ export default function ProductPage({ params }: ProductPageProps) {
               </button>
             </div>
 
-            <button className="bg-primary-blue-darker rounded flex w-full justify-center items-center gap-2 px-2 py-2 text-white cursor-pointer hover:bg-primary-blue transition duration-200">
+            <button 
+              className="bg-primary-blue-darker rounded flex w-full justify-center items-center gap-2 px-2 py-2 text-white cursor-pointer hover:bg-primary-blue transition duration-200"
+              onClick={() => {
+                if (elementData) {
+                  for (let i = 0; i < quantity; i++) {
+                    addToCart(elementData);
+                  }
+                  setQuantity(1)
+                }
+              }}
+          
+            >
               <FiShoppingCart size={20} />
               <span className="text-lg font-medium">Add to Cart</span>
             </button>
