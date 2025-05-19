@@ -45,7 +45,7 @@
       "category": "Metals",
       "state": "Solid",
       "price": 0.05,
-      "stock": 75,
+      "stock": 10,
       "id": "bd53"
     },
     {
@@ -347,6 +347,18 @@
       "price": 0.03,
       "stock": 105,
       "id": "dd84"
+    },
+    {
+      "id": "ea2e",
+      "atomic_number": 50,
+      "atomic_mass": 50,
+      "symbol": "WOW",
+      "name": "WOWLIUM",
+      "description": "wwowoowwww",
+      "category": "Metals",
+      "state": "Solid",
+      "price": 50,
+      "stock": 0
     }
   ],
   "users": [

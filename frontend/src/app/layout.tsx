@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import Header from "@/components/Header";
 import { SearchProvider } from "@/context/searchContext";
 import { CartProvider } from "@/context/CartContext";
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({
   variable: "--font-inter",
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable}`}>
+      <Toaster position="top-right" />
       <CartProvider>
         <SearchProvider>
           <Header />

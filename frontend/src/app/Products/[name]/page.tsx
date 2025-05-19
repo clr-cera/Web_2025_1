@@ -86,6 +86,10 @@ export default function ProductPage({ params }: ProductPageProps) {
               <h4 className="font-medium text-lg text-text-gray">State</h4>
               <p className="font-semibold text-lg text-black">{elementData.state}</p>
             </div>
+            <div className="flex flex-col bg-background-gray rounded-md pt-2 pb-5 px-4">
+              <h4 className="font-medium text-lg text-text-gray">Stock</h4>
+              <p className="font-semibold text-lg text-black">{elementData.stock}</p>
+            </div>
           </div>
 
           <div>
@@ -109,21 +113,39 @@ export default function ProductPage({ params }: ProductPageProps) {
               </button>
             </div>
 
-            <button 
-              className="bg-primary-blue-darker rounded flex w-full justify-center items-center gap-2 px-2 py-2 text-white cursor-pointer hover:bg-primary-blue transition duration-200"
-              onClick={() => {
-                if (elementData) {
-                  for (let i = 0; i < quantity; i++) {
-                    addToCart(elementData);
-                  }
-                  setQuantity(1)
-                }
-              }}
-          
-            >
-              <FiShoppingCart size={20} />
-              <span className="text-lg font-medium">Add to Cart</span>
-            </button>
+
+            
+            {
+              elementData.stock === 0 ? (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                  className=" bg-primary-gray cursor-not-allowed rounded flex w-full justify-center items-center gap-2 px-2 py-2 text-white transition duration-200"
+                >
+                  <FiShoppingCart size={20} />
+                  <span className="text-xs font-medium">Out Of Stock</span>
+                </button>
+              ) : (
+                 <button 
+                    className="bg-primary-blue-darker rounded flex w-full justify-center items-center gap-2 px-2 py-2 text-white cursor-pointer hover:bg-primary-blue transition duration-200"
+                    onClick={() => {
+                      if (elementData) {
+                        for (let i = 0; i < quantity; i++) {
+                          addToCart(elementData);
+                        }
+                        setQuantity(1)
+                      }
+                    }}
+                
+                  >
+                  <FiShoppingCart size={20} />
+                  <span className="text-lg font-medium">Add to Cart</span>
+                </button>
+              )
+            }
+
           </div>
         </div>
       </div>

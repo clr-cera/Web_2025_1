@@ -26,7 +26,7 @@ export default function CartItemCard({ item }: CartItemCardProps) {
       </div>
 
       <div className="flex gap-6 items-center">
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-4 items-center">
           <button
             onClick={() => decreaseQuantity(item.id)}
             className="text-black p-2 border-2 border-border-gray cursor-pointer rounded-md hover:bg-gray-100"
