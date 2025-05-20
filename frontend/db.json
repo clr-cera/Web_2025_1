@@ -407,18 +407,6 @@
       "id": "dd84"
     },
     {
-      "id": "ea2e",
-      "atomic_number": 50,
-      "atomic_mass": 50,
-      "symbol": "WOW",
-      "name": "WOWLIUM",
-      "description": "wwowoowwww",
-      "category": "Metals",
-      "state": "Solid",
-      "price": 50,
-      "stock": 0
-    },
-    {
       "id": "da92",
       "atomic_number": 31,
       "atomic_mass": 69.723,
@@ -428,7 +416,7 @@
       "category": "Non-Metals",
       "state": "Solid",
       "price": 1,
-      "stock": 100,
+      "stock": 0,
       "row": 4,
       "column": 13
     }

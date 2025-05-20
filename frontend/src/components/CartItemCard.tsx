@@ -21,7 +21,7 @@ export default function CartItemCard({ item }: CartItemCardProps) {
 
         <div>
           <label className="font-semibold">{item.name}</label>
-          <p className="text-xs text-text-gray">${item.price.toFixed(2)} per unit</p>
+          <p className="text-xs text-text-gray">${item.price.toFixed(2)} per mol</p>
         </div>
       </div>
 

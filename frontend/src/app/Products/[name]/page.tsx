@@ -1,18 +1,18 @@
 "use client";
 
 import { notFound } from "next/navigation";
-import { useState, useEffect } from "react";
+import { use, useState, useEffect } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { ElementType, fetchElementByName } from "@/services/elementsServices";
 import { useCart } from "@/context/CartContext";
 
 interface ProductPageProps {
-  params: { name: string };
+  params: Promise<{ name: string }>;
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
-  const name = params.name;
+  const { name } = use(params); // Unwrap a Promise com react.use()
   const [elementData, setElementData] = useState<ElementType | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
@@ -66,7 +66,7 @@ export default function ProductPage({ params }: ProductPageProps) {
         <div className="w-full lg:w-[80%] flex flex-col gap-5">
           <div className="flex flex-col gap-4">
             <h1 className="font-semibold text-4xl lg:text-6xl text-black">{elementData.name}</h1>
-            <p className="font-semibold text-3xl lg:text-4xl text-primary-blue">${elementData.price}</p>
+            <p className="font-semibold text-3xl lg:text-4xl text-primary-blue">${elementData.price} per mol</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4 mt-4">
@@ -87,7 +87,7 @@ export default function ProductPage({ params }: ProductPageProps) {
               <p className="font-semibold text-lg text-black">{elementData.state}</p>
             </div>
             <div className="flex flex-col bg-background-gray rounded-md pt-2 pb-5 px-4">
-              <h4 className="font-medium text-lg text-text-gray">Stock</h4>
+              <h4 className="font-medium text-lg text-text-gray">Stock (mols)</h4>
               <p className="font-semibold text-lg text-black">{elementData.stock}</p>
             </div>
           </div>
