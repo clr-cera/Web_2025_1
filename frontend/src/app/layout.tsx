@@ -7,6 +7,7 @@ import { SearchProvider } from "@/context/SearchContext";
 import { CartProvider } from "@/context/CartContext";
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from "@/context/AuthContext";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,6 +33,7 @@ export default function RootLayout({
           <SearchProvider>
             <Header />
             {children}
+            <Footer />
           </SearchProvider>
         </AuthProvider>
       </CartProvider>

@@ -80,7 +80,7 @@ export default function Elements() {
     const styles = categoryStyles[selectedCategory];
 
     return (
-        <div className={`${styles.background} w-screen min-h-screen text-black flex flex-col items-center pt-30 gap-4`}>
+        <div className={`${styles.background} w-screen min-h-screen text-black flex flex-col items-center pt-30 gap-4 pb-10`}>
             {/* Título */}
             <h1 className={`font-extrabold text-2xl sm:text-3xl lg:text-4xl ${styles.title} text-center`}>
                 Chemical Elements Store
