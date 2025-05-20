@@ -1,33 +1,33 @@
-// src/components/ProductsTable.tsx
+// Componente responsável por exibir a tabela de produtos (elementos químicos)
+// Permite: busca, criação, edição e exclusão de produtos via modais
+
 "use client";
 
 import React, { useState } from 'react';
 import { BsBoxSeam } from 'react-icons/bs';
 import { MdEdit } from 'react-icons/md';
 import { FaRegTrashCan } from 'react-icons/fa6';
-import Modal from '@/components/Modal'; // ajuste o caminho se necessário
-import { ElementType } from '@/services/elementsServices';
-import { createElement, updateElement, deleteElement } from '@/services/elementsServices';
-
+import Modal from '@/components/Modal';
+import { ElementType, createElement, updateElement, deleteElement } from '@/services/elementsServices';
 
 interface ProductsTableProps {
   data?: ElementType[];
 }
- 
+
 export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [selectedProduct, setSelectedProduct] = useState<ElementType | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-
+  // Filtro de produtos com base no nome
   const filteredData = data.filter((item) =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <section className="bg-white shadow rounded p-4 mt-5">
+      {/* Cabeçalho */}
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center space-x-2">
           <BsBoxSeam size={25} />
@@ -41,8 +41,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
         </button>
       </div>
 
-
-
+      {/* Barra de pesquisa */}
       <input
         type="text"
         placeholder="Search Products"
@@ -51,6 +50,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
         className="w-full px-3 py-2 border border-border-gray rounded mb-4"
       />
 
+      {/* Tabela de produtos */}
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-border-gray">
           <thead>
@@ -68,6 +68,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                 <td className="py-2 px-4 font-medium">${item.price}</td>
                 <td className="py-2 px-4">{item.stock}</td>
                 <td className="py-2 px-4 space-x-2">
+                  {/* Editar */}
                   <button 
                     className="text-black cursor-pointer"
                     onClick={() => {
@@ -77,25 +78,27 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                   >
                     <MdEdit size={20} />
                   </button>
+
+                  {/* Deletar */}
                   <button 
                     className="text-red-600 cursor-pointer"
                     onClick={async () => {
                       if (confirm("Tem certeza que deseja deletar este produto?")) {
                         try {
                           await deleteElement(item.id);
-                          location.reload(); // ou atualize via state
+                          location.reload(); // Atualize via estado se possível
                         } catch (err) {
                           console.error("Erro ao deletar produto:", err);
                         }
                       }
                     }}
-                    
                   >
                     <FaRegTrashCan size={20} />
                   </button>
                 </td>
               </tr>
             ))}
+            {/* Caso nenhum produto seja encontrado */}
             {filteredData.length === 0 && (
               <tr>
                 <td colSpan={4} className="text-center py-4 text-text-gray">
@@ -107,29 +110,29 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
         </table>
       </div>
 
-
-      {/* Modal de cadastro */}
+      {/* Modal de criação */}
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title="Add New Product"
       >
-        <p className="font-semibold text-text-gray mb-10">Fill in the details for the new product.</p>
         <form
           onSubmit={async (e) => {
             e.preventDefault();
-            const form = e.currentTarget;
+            const formData = new FormData(e.currentTarget);
             try {
               const newProduct = {
-                atomic_number: Number((form[0] as HTMLInputElement).value),
-                atomic_mass: Number((form[1] as HTMLInputElement).value),
-                symbol: (form[2] as HTMLInputElement).value,
-                name: (form[3] as HTMLInputElement).value,
-                description: (form[4] as HTMLTextAreaElement).value,
-                category: (form[5] as HTMLSelectElement).value,
-                state: (form[6] as HTMLInputElement).value,
-                price: Number((form[7] as HTMLInputElement).value),
-                stock: Number((form[8] as HTMLInputElement).value),
+                atomic_number: Number(formData.get("atomic_number")),
+                atomic_mass: Number(formData.get("atomic_mass")),
+                symbol: formData.get("symbol") as string,
+                name: formData.get("name") as string,
+                description: formData.get("description") as string,
+                category: formData.get("category") as string,
+                state: formData.get("state") as string,
+                price: Number(formData.get("price")),
+                stock: Number(formData.get("stock")),
+                row: Number(formData.get("row")),
+                column: Number(formData.get("column")),
               };
 
               await createElement(newProduct);
@@ -141,107 +144,52 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
           }}
           className="flex flex-col gap-4 mt-2"
         >
-          <div className="flex flex-col gap-1">
-            <label className="text-text-gray-darker">Atomic Number</label>
-            <input
-              type="number"
-              placeholder="e.g. 31"
-              className="border px-3 py-2 rounded border-border-gray"
-            />
+          {/* Campos do formulário de criação */}
+          {[
+            { name: "atomic_number", label: "Atomic Number", type: "number", placeholder: "e.g. 31" },
+            { name: "atomic_mass", label: "Atomic Mass", type: "number", step: "0.001", placeholder: "e.g. 69.723" },
+            { name: "symbol", label: "Symbol", type: "text", placeholder: "e.g. Ga" },
+            { name: "name", label: "Name", type: "text", placeholder: "e.g. Gallium" },
+            { name: "description", label: "Description", type: "textarea", placeholder: "Gallium is a soft metal..." },
+            { name: "state", label: "State", type: "text", placeholder: "e.g. Solid" },
+            { name: "price", label: "Price ($)", type: "number", step: "0.01", placeholder: "e.g. 0.05" },
+            { name: "stock", label: "Stock", type: "number", placeholder: "e.g. 100" },
+          ].map(({ name, label, type, ...rest }) => (
+            <div key={name} className="flex flex-col gap-1">
+              <label className="text-text-gray-darker">{label}</label>
+              {type === "textarea" ? (
+                <textarea name={name} {...rest} rows={3} className="border px-3 py-2 rounded border-border-gray resize-none" />
+              ) : (
+                <input name={name} type={type} {...rest} className="border px-3 py-2 rounded border-border-gray" />
+              )}
+            </div>
+          ))}
+
+          {/* Linha e coluna */}
+          <div className="flex gap-4">
+            {["row", "column"].map((field) => (
+              <div key={field} className="flex flex-col gap-1 w-1/2">
+                <label className="text-text-gray-darker">{field[0].toUpperCase() + field.slice(1)}</label>
+                <input name={field} type="number" placeholder={`e.g. ${field === "row" ? 3 : 13}`} className="border px-3 py-2 rounded border-border-gray" />
+              </div>
+            ))}
           </div>
 
-          <div className="flex flex-col gap-1">
-            <label className="text-text-gray-darker">Atomic Mass</label>
-            <input
-              type="number"
-              step="0.001"
-              placeholder="e.g. 69.723"
-              className="border px-3 py-2 rounded border-border-gray"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-text-gray-darker">Symbol</label>
-            <input
-              type="text"
-              placeholder="e.g. Ga"
-              className="border px-3 py-2 rounded border-border-gray"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-text-gray-darker">Name</label>
-            <input
-              type="text"
-              placeholder="e.g. Gallium"
-              className="border px-3 py-2 rounded border-border-gray"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-text-gray-darker">Description</label>
-            <textarea
-              placeholder="e.g. Gallium is a soft metal that melts in your hand."
-              className="border px-3 py-2 rounded border-border-gray resize-none"
-              rows={3}
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-text-gray-darker">Category</label>
-            <select className="border px-3 py-2 rounded border-border-gray">
-              <option value="Metals">Metals</option>
-              <option value="Non-Metals">Non-Metals</option>
-              <option value="Noble Gases">Noble Gases</option>
-            </select>
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-text-gray-darker">State</label>
-            <input
-              type="text"
-              placeholder="e.g. Solid"
-              className="border px-3 py-2 rounded border-border-gray"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-text-gray-darker">Price ($)</label>
-            <input
-              type="number"
-              step="0.01"
-              placeholder="e.g. 0.05"
-              className="border px-3 py-2 rounded border-border-gray"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-text-gray-darker">Stock</label>
-            <input
-              type="number"
-              placeholder="e.g. 100"
-              className="border px-3 py-2 rounded border-border-gray"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="bg-primary-blue hover:bg-secondary-blue text-white font-semibold px-4 py-2 rounded mt-2 cursor-pointer"
-          >
+          <button type="submit" className="bg-primary-blue hover:bg-secondary-blue text-white font-semibold px-4 py-2 rounded mt-2 cursor-pointer">
             Create
           </button>
         </form>
       </Modal>
 
-      {/*Modal de update*/}
+      {/* Modal de edição */}
       {selectedProduct && (
         <Modal
-        isOpen={isEditModalOpen}
-        onClose={() => {
-          setIsEditModalOpen(false);
-          setSelectedProduct(null);
-        }}
-        title={`Edit Product: ${selectedProduct.name}`}
+          isOpen={isEditModalOpen}
+          onClose={() => {
+            setIsEditModalOpen(false);
+            setSelectedProduct(null);
+          }}
+          title={`Edit Product: ${selectedProduct.name}`}
         >
           <form
             onSubmit={async (e) => {
@@ -249,7 +197,6 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
               if (!selectedProduct) return;
 
               const formData = new FormData(e.currentTarget);
-
               try {
                 const updatedProduct = {
                   name: formData.get("name") as string,
@@ -261,6 +208,8 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                   description: formData.get("description") as string,
                   category: formData.get("category") as string,
                   state: formData.get("state") as string,
+                  row: Number(formData.get("row")),
+                  column: Number(formData.get("column")),
                 };
 
                 await updateElement(selectedProduct.id, updatedProduct);
@@ -273,104 +222,54 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             }}
             className="flex flex-col gap-4 mt-2"
           >
-            {/* CAMPOS PRINCIPAIS */}
-            <div className="flex flex-col gap-1">
-              <label className="text-text-gray-darker">Atomic Number</label>
-              <input
-                type="number"
-                name="atomic_number"
-                defaultValue={selectedProduct.atomic_number}
-                className="border px-3 py-2 rounded border-border-gray"
-                readOnly
-              />
+            {/* Campos de edição (mesma estrutura do cadastro, com defaultValue) */}
+            {[
+              { name: "atomic_number", label: "Atomic Number", readOnly: true },
+              { name: "name", label: "Name" },
+              { name: "price", label: "Price", type: "number", step: "0.01" },
+              { name: "stock", label: "Stock", type: "number" },
+              { name: "atomic_mass", label: "Atomic Mass", type: "number", step: "0.001" },
+              { name: "symbol", label: "Symbol" },
+              { name: "description", label: "Description", type: "textarea" },
+              { name: "state", label: "State" },
+            ].map(({ name, label, type = "text", readOnly = false, step }) => (
+              <div key={name} className="flex flex-col gap-1">
+                <label className="text-text-gray-darker">{label}</label>
+                {type === "textarea" ? (
+                  <textarea
+                    name={name}
+                    defaultValue={(selectedProduct as any)[name]}
+                    className="border px-3 py-2 rounded border-border-gray resize-none"
+                    rows={3}
+                  />
+                ) : (
+                  <input
+                    name={name}
+                    type={type}
+                    defaultValue={(selectedProduct as any)[name]}
+                    className="border px-3 py-2 rounded border-border-gray"
+                    readOnly={readOnly}
+                    step={step}
+                  />
+                )}
+              </div>
+            ))}
+
+            {/* Row/Column */}
+            <div className="flex gap-4">
+              {["row", "column"].map((field) => (
+                <div key={field} className="flex flex-col gap-1 w-1/2">
+                  <label className="text-text-gray-darker">{field[0].toUpperCase() + field.slice(1)}</label>
+                  <input
+                    name={field}
+                    type="number"
+                    defaultValue={(selectedProduct as any)[field]}
+                    className="border px-3 py-2 rounded border-border-gray"
+                  />
+                </div>
+              ))}
             </div>
-            <div className="flex flex-col gap-1">
-              <label className="text-text-gray-darker">Name</label>
-              <input
-                name="name"
-                type="text"
-                defaultValue={selectedProduct.name}
-                className="border px-3 py-2 rounded border-border-gray"
-              />
-            </div>
-      
-            <div className="flex flex-col gap-1">
-              <label className="text-text-gray-darker">Price</label>
-              <input
-                name="price"
-                type="number"
-                step="0.01"
-                defaultValue={selectedProduct.price}
-                className="border px-3 py-2 rounded border-border-gray"
-              />
-            </div>
-      
-            <div className="flex flex-col gap-1">
-              <label className="text-text-gray-darker">Stock</label>
-              <input
-                name="stock"
-                type="number"
-                defaultValue={selectedProduct.stock}
-                className="border px-3 py-2 rounded border-border-gray"
-              />
-            </div>
-      
-            {/* CAMPOS SECUNDÁRIOS */}
-      
-            <div className="flex flex-col gap-1">
-              <label className="text-text-gray-darker">Atomic Mass</label>
-              <input
-                name="atomic_mass"
-                type="number"
-                step="0.001"
-                defaultValue={selectedProduct.atomic_mass}
-                className="border px-3 py-2 rounded border-border-gray"
-              />
-            </div>
-      
-            <div className="flex flex-col gap-1">
-              <label className="text-text-gray-darker">Symbol</label>
-              <input
-                name="symbol"
-                type="text"
-                defaultValue={selectedProduct.symbol}
-                className="border px-3 py-2 rounded border-border-gray"
-              />
-            </div>
-      
-            <div className="flex flex-col gap-1">
-              <label className="text-text-gray-darker">Description</label>
-              <textarea
-                name="description"
-                defaultValue={selectedProduct.description}
-                className="border px-3 py-2 rounded border-border-gray resize-none"
-                rows={3}
-              />
-            </div>
-      
-            <div className="flex flex-col gap-1">
-              <label className="text-text-gray-darker">Category</label>
-              <select
-                name="category"
-                defaultValue={selectedProduct.category}
-                className="border px-3 py-2 rounded border-border-gray"
-              >
-                <option value="Metals">Metals</option>
-                <option value="Non-Metals">Non-Metals</option>
-                <option value="Noble Gases">Noble Gases</option>
-              </select>
-            </div>
-      
-            <div className="flex flex-col gap-1">
-              <label className="text-text-gray-darker">State</label>
-              <input
-                name="state"
-                type="text"
-                defaultValue={selectedProduct.state}
-                className="border px-3 py-2 rounded border-border-gray"
-              />
-            </div>
-      
+
             <button
               type="submit"
               className="bg-primary-blue hover:bg-secondary-blue text-white font-semibold px-4 py-2 rounded mt-2 cursor-pointer"
@@ -380,9 +279,6 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
           </form>
         </Modal>
       )}
-
-
-
     </section>
   );
 };

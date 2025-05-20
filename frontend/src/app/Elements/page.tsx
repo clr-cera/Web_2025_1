@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Element from "@/components/Element";
 import { ElementType, fetchElementsByCategory } from "@/services/elementsServices";
 
-// Mapeamento de cores por categoria (PARA A PAGINA, nao para os elementos)
+// Cores e estilos de fundo para cada categoria de elementos (usado no layout da página)
 const categoryStyles: Record<string, { background: string; title: string; button: string }> = {
     "All Elements": {
         background: "bg-background-blue",
@@ -29,22 +29,22 @@ const categoryStyles: Record<string, { background: string; title: string; button
     },
 };
 
-// Mapeamento de cores para os elementos
+// Cores visuais para os cards de elementos (individuais)
 const elementColors: Record<string, string> = {
     Metals: "yellow",
     "Non-Metals": "green",
     "Noble Gases": "purple",
-    default: "blue", // Cor padrão para elementos sem categoria específica
+    default: "blue", // fallback
 };
 
 export default function Elements() {
-    const searchParams = useSearchParams(); // Hook para capturar os parâmetros da URL
-    const [selectedCategory, setSelectedCategory] = useState<keyof typeof categoryStyles>("All Elements"); // Estado para a categoria selecionada
+    const searchParams = useSearchParams(); // Hook do Next para acessar parâmetros da URL
+    const [selectedCategory, setSelectedCategory] = useState<keyof typeof categoryStyles>("All Elements");
     const [elements, setElements] = useState<ElementType[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    // Atualiza a categoria com base no parâmetro da URL
+    // Quando a URL muda, atualiza a categoria ativa com base no parâmetro da query string
     useEffect(() => {
         const categoryFromParams = searchParams.get("category") as keyof typeof categoryStyles;
         if (categoryFromParams && categoryStyles[categoryFromParams]) {
@@ -52,49 +52,50 @@ export default function Elements() {
         }
     }, [searchParams]);
 
-    // Carrega elementos da API
+    // Busca os elementos da API conforme a categoria atual
     useEffect(() => {
         const loadElements = async () => {
-        try {
-            setLoading(true);
-            const data = await fetchElementsByCategory(selectedCategory);
-            setElements(data);
-            setError(null);
-        } catch (err) {
-            setError("Erro ao carregar elementos.");
-        } finally {
-            setLoading(false);
-        }
+            try {
+                setLoading(true);
+                const data = await fetchElementsByCategory(selectedCategory);
+                setElements(data);
+                setError(null);
+            } catch (err) {
+                setError("Erro ao carregar elementos.");
+            } finally {
+                setLoading(false);
+            }
         };
 
         loadElements();
     }, [selectedCategory]);
 
-
-    // Função para alterar a categoria selecionada
+    // Troca manual de categoria (ao clicar nos botões)
     const handleCategoryChange = (category: keyof typeof categoryStyles) => {
         setSelectedCategory(category);
     };
 
-    // Obtém os estilos da categoria selecionada
+    // Estilo visual para a categoria atual
     const styles = categoryStyles[selectedCategory];
 
     return (
-        <div className={`${styles.background} w-screen min-h-screen text-black flex flex-col items-center pt-30 gap-4`}>
-            {/* Título */}
+        <div className={`${styles.background} w-screen min-h-screen text-black flex flex-col items-center pt-30 gap-4 pb-10`}>
+            {/* Título da página */}
             <h1 className={`font-extrabold text-2xl sm:text-3xl lg:text-4xl ${styles.title} text-center`}>
                 Chemical Elements Store
             </h1>
+
+            {/* Descrição da página */}
             <p className="text-text-gray text-sm sm:text-base lg:text-lg w-11/12 sm:w-3/4 lg:w-1/2 text-center">
                 Browse our collection of pure elements, each with its unique properties and applications.
             </p>
 
-            {/* Filtros */}
+            {/* Botões de filtro de categorias */}
             <div className="flex flex-wrap justify-center mt-10 bg-white p-2 rounded-md border-2 border-border-gray gap-3 sm:gap-5 select-none">
                 {Object.keys(categoryStyles).map((category) => (
                     <div
                         key={category}
-                        onClick={() => handleCategoryChange(category as keyof typeof categoryStyles)} // Atualiza a categoria selecionada
+                        onClick={() => handleCategoryChange(category as keyof typeof categoryStyles)}
                         className={`px-4 py-2 rounded-md cursor-pointer text-sm sm:text-base transition-all duration-200 ${
                             selectedCategory === category
                                 ? styles.button
@@ -106,14 +107,14 @@ export default function Elements() {
                 ))}
             </div>
 
-            {/* Lista de Elementos */}
+            {/* Lista de elementos químicos */}
             <div>
-                <div className="flex flex-wrap gap-20 justify-center mt-20">
+                <div className="grid gap-10 mt-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-center">            
                     {elements.map((element) => (
                         <Element
+                            key={element.atomic_number}
                             id={element.id}
                             stock={element.stock}
-                            key={element.atomic_number}
                             atomic_number={element.atomic_number}
                             atomic_mass={element.atomic_mass}
                             symbol={element.symbol}

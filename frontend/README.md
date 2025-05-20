@@ -1,44 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## ElementStore – Loja de Elementos Químicos
 
-## Getting Started
+Este é um projeto web completo desenvolvido com **Next.js**, que simula uma loja de elementos químicos. Nele, usuários podem visualizar elementos da tabela periódica, adicioná-los ao carrinho, realizar um checkout e administradores podem gerenciar produtos e contas via painel administrativo.
 
-First, run the development server:
+---
+
+### Tecnologias utilizadas
+
+* [Next.js](https://nextjs.org/) - Utilizada como biblioteca para o React, que permite diversas praticidades, como gerenciamente automatico de paginas e rotas, execução em client-side/server-side etc.
+* [React](https://reactjs.org/) - Tecnologia escolhida para fazer o projeto
+* [TypeScript](https://www.typescriptlang.org/) - Usada para tipagem do js e jsx
+* [Tailwind CSS](https://tailwindcss.com/) - Tecnologia focada em fazer design da aplicação sem utilizar css puro, podemos por exemplo `className: text-xl font-bold`, nesse exemplo estamos colocando texto de tamanho grande e deixando o texto em negrito
+* [JSON Server](https://github.com/typicode/json-server) - (mock da API), utilizado nessa entrega como alternativa ao backend para verificar funcionalidades do frontend
+* [React Icons](https://react-icons.github.io/react-icons/) - Icones
+* `react-hot-toast`, `react-context`, etc.  - hot-toast para lidar com mensagens para o usuário e react-context para podermos tratar estados (states) fora dos componentes, de forma global utilizando contextos e providers
+
+---
+
+## Instalação (como rodar o projeto)
+
+1. **Clone o repositório:**
+
+2. **Instale as dependências:**
+
+```bash
+npm install
+```
+
+3. **Inicie o servidor JSON (API mock):**
+
+```bash
+npx json-server --watch db.json --port 3001
+```
+
+O servidor json estará disponivel em `http://localhost:3001`
+
+4. **Inicie o servidor Next.js:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O projeto estará disponível em `http://localhost:3000` ou na porta apresentada no terminal
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Estrutura de Pastas
 
-## Learn More
+```
+src/
+├── app/                # Páginas do Next.js
+│   ├── About/          # Página de about
+│   ├── Admin/          # Dashboard admin
+│   ├── Elements/       # Página de listagem por categoria
+│   ├── Login/          # Página de login
+│   ├── Products/[name] # Página de detalhe do produto
+│   ├── Register/       # Página de cadastro
+│   ├── Shipping/       # Página de checkout
+│   ├── Table/          # Página da Tabela Periódica (funcionalidade expecifica)
+│   ├── components/     # Componentes relacionados a pagina inicial
+│   └── page.tsx        # Página inicial
+│
+├── components/         # Componentes reutilizáveis para as paginas gerais
+│   ├── CartItemCard.tsx      
+│   ├── Header.tsx
+│   ├── Element.tsx
+│   ├── Modal.tsx
+│   ├── Footer.tsx
+│   └── CartModal.tsx
+│
+├── context/            # Contextos globais (Cart, Auth, Search)
+│   ├── AuthContext.tsx
+│   ├── CartContext.tsx
+│   └── SearchContext.tsx
+│
+├── services/           # Funções de requisição de API
+│   ├── adminServices.ts
+│   ├── authServices.ts
+│   └── elementsServices.ts
+│
+└── styles/             # Arquivos de estilo
+    └── globals.css     # Tailwind variables e estilos globais
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Login de Administrador
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para acessar o painel admin, voce pode usar uma conta com `admin@admin` com senha `12345` ou qualquer outra conta disponivel diretamente no `db.json` ou via painel de admin.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Observações
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Este projeto é **client-side only**, com `use client` na maioria dos arquivos.
+* A autenticação é feita via `localStorage`, não possui backend real.
 
-
-
-### Run JSON SERVER
-npx json-server --watch db.json --port 3001
-E ele estara disponivel em
-
-http://localhost:3001/elements
+---
