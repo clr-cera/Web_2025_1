@@ -219,7 +219,7 @@ export const AdminsTable: React.FC<AdminsTableProps> = ({ data = [] }) => {
               className="border px-3 py-2 rounded border-border-gray"
             >
               <option value="Admin">Admin</option>
-              <option value="SuperAdmin">SuperAdmin</option>
+              <option value="Super Admin">Super Admin</option>
             </select>
           </div>
 
