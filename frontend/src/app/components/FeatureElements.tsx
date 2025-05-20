@@ -36,22 +36,22 @@ export default function FeatureElements() {
     return (
         <div className="flex flex-col py-10 gap-10 px-20 items-center" id="FeaturedElementsSection">
         <h2 className="font-semibold text-2xl">Feature Elements</h2>
-        <div className="flex flex-wrap gap-20 justify-center"> 
+        <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-center">            
             {filteredElements.map(element => (
-            <Element
-                id={element.id}
-                stock={element.stock}
-                key={element.atomic_number}
-                atomic_number={element.atomic_number}
-                atomic_mass={element.atomic_mass}
-                symbol={element.symbol}
-                name={element.name}
-                description={element.description}
-                category={element.category}
-                state={element.state}
-                price={element.price}
-                color="blue"
-            />
+                <Element
+                    id={element.id}
+                    stock={element.stock}
+                    key={element.atomic_number}
+                    atomic_number={element.atomic_number}
+                    atomic_mass={element.atomic_mass}
+                    symbol={element.symbol}
+                    name={element.name}
+                    description={element.description}
+                    category={element.category}
+                    state={element.state}
+                    price={element.price}
+                    color="blue"
+                />
             ))}
         </div>
         </div>

@@ -108,7 +108,8 @@ export default function Elements() {
 
             {/* Lista de Elementos */}
             <div>
-                <div className="flex flex-wrap gap-20 justify-center mt-20">
+                <div className="grid gap-10 mt-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-center">            
+
                     {elements.map((element) => (
                         <Element
                             id={element.id}
