@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ElementType } from "@/services/elementsServices";
 
-// Mapeia cores de fundo, borda e texto por categoria
+// Define estilos visuais (cor de fundo, borda e texto) para cada categoria de elemento
 const categoryStyles: Record<
   string,
   { bg: string; border: string; text: string }
@@ -25,7 +25,9 @@ const categoryStyles: Record<
   },
 };
 
+// Componente visual que representa um único bloco da tabela periódica
 export default function ElementBlock({ element }: { element: ElementType }) {
+  // Aplica o estilo com base na categoria do elemento. Se não tiver, usa cinza como padrão.
   const style = categoryStyles[element.category] || {
     bg: "bg-gray-100",
     border: "border-gray-300",
@@ -33,6 +35,7 @@ export default function ElementBlock({ element }: { element: ElementType }) {
   };
 
   return (
+    // Cada elemento é um link que redireciona para a página de produto do elemento
     <Link
       href={`/Products/${element.name}`}
       className={`
@@ -44,10 +47,15 @@ export default function ElementBlock({ element }: { element: ElementType }) {
         transition-transform transform hover:scale-105 hover:shadow-md
       `}
     >
+      {/* Número atômico */}
       <div className="text-[10px] sm:text-xs font-medium">
         {element.atomic_number}
       </div>
+
+      {/* Símbolo do elemento (ex: H, He, O) */}
       <div className="text-base sm:text-lg font-bold">{element.symbol}</div>
+
+      {/* Nome do elemento (ex: Hydrogen) */}
       <div className="text-[10px] sm:text-xs truncate">{element.name}</div>
     </Link>
   );

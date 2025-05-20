@@ -6,9 +6,11 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export default function ShippingPage() {
+  // Acesso ao carrinho e funções auxiliares
   const { cartItems, getTotal, clearCart } = useCart();
   const router = useRouter();
 
+  // Estado para armazenar os dados do formulário de entrega
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -18,20 +20,22 @@ export default function ShippingPage() {
     number: "",
   });
 
+  // Atualiza os campos do formulário dinamicamente
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Função executada ao clicar em "Finalizar Pedido"
   const handleCheckout = () => {
-    const allFilled = Object.values(formData).every(Boolean);
+    const allFilled = Object.values(formData).every(Boolean); // verifica se todos os campos estão preenchidos
     if (!allFilled) {
       toast.error("Please, Enter all values.");
       return;
     }
 
     toast.success("Shop done!!!");
-    clearCart();
-    setTimeout(() => router.push("/"), 1500);
+    clearCart(); // limpa o carrinho
+    setTimeout(() => router.push("/"), 1500); // redireciona para home
   };
 
   return (
@@ -44,6 +48,7 @@ export default function ShippingPage() {
             <p className="text-center text-gray-500">Your cart is empty.</p>
           ) : (
             <>
+              {/* Lista de produtos no carrinho */}
               {cartItems.map((item) => (
                 <div
                   key={item.id}
@@ -60,6 +65,7 @@ export default function ShippingPage() {
                   </p>
                 </div>
               ))}
+              {/* Total geral */}
               <div className="border-t border-gray-300 pt-3 flex justify-between font-semibold text-lg">
                 <p>Total:</p>
                 <p>${getTotal().toFixed(2)}</p>
@@ -73,6 +79,7 @@ export default function ShippingPage() {
       <div className="lg:w-1/2 w-full">
         <h2 className="text-2xl font-bold text-primary-blue mb-5">Shipping Information</h2>
         <div className="bg-white rounded-2xl shadow-md border border-border-gray px-6 py-6 flex flex-col gap-5">
+          {/* Campos do formulário principal */}
           {[
             { label: "Full Name", name: "fullName" },
             { label: "Email", name: "email", type: "email" },
@@ -92,6 +99,7 @@ export default function ShippingPage() {
             </div>
           ))}
 
+          {/* Campos menores lado a lado: CEP e Número */}
           <div className="flex flex-col sm:flex-row gap-5">
             {["cep", "number"].map((field) => (
               <div key={field} className="flex flex-col gap-1 w-full">
@@ -108,6 +116,7 @@ export default function ShippingPage() {
             ))}
           </div>
 
+          {/* Botão de finalização do pedido */}
           <button
             onClick={handleCheckout}
             disabled={cartItems.length === 0}

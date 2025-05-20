@@ -9,27 +9,31 @@ import { useCart } from "@/context/CartContext";
 import CartModal from "@/components/CartModal";
 import { useAuth } from "@/context/AuthContext";
 
+// Componente do cabeçalho que aparece em todas as páginas
+// Contém logo, navegação, barra de pesquisa, ícone do carrinho e menu responsivo
 export default function Header() {
-  const pathname = usePathname();
-  const isHomePage = pathname === "/";
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const pathname = usePathname(); // Detecta a página atual
+  const isHomePage = pathname === "/"; // Mostra a barra de busca apenas na home
 
-  const { cartItems } = useCart();
-  const { setSearchQuery } = useSearch();
-  const { user, logout } = useAuth();
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Controle do menu mobile
+  const [isCartOpen, setIsCartOpen] = useState(false); // Controle do modal do carrinho
+
+  const { cartItems } = useCart(); // Itens do carrinho
+  const { setSearchQuery } = useSearch(); // Atualiza a busca
+  const { user, logout } = useAuth(); // Info do usuário logado
 
   return (
     <>
+      {/* Cabeçalho fixo no topo */}
       <header className="flex items-center justify-between px-4 py-3 bg-white shadow-md md:px-6 md:py-4 fixed t-0 w-full z-50">
-        {/* Logo */}
+        {/* Logo do site */}
         <div className="flex-shrink-0">
           <h1 className="text-xl md:text-2xl text-primary-blue font-bold">
             <Link href="/">ElementStore</Link>
           </h1>
         </div>
 
-        {/* Search */}
+        {/* Campo de busca (aparece só na homepage) */}
         {isHomePage && (
           <div className="hidden md:flex flex-grow max-w-2xl mx-5">
             <form className="w-full" role="search">
@@ -45,9 +49,9 @@ export default function Header() {
           </div>
         )}
 
-        {/* Navegação + carrinho */}
+        {/* Ícones de menu e carrinho */}
         <div className="flex items-center space-x-4 md:space-x-6">
-          {/* Menu Mobile */}
+          {/* Botão do menu (versão mobile) */}
           <button
             className="md:hidden text-primary-blue"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -56,7 +60,7 @@ export default function Header() {
             {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
 
-          {/* Navegação */}
+          {/* Links de navegação */}
           <nav
             className={`${
               isMenuOpen ? "block" : "hidden"
@@ -68,14 +72,17 @@ export default function Header() {
               <li><Link href="/Table" className="block px-4 py-2 hover:text-primary-blue font-medium">Table</Link></li>
               <li><Link href="/About" className="block px-4 py-2 hover:text-primary-blue font-medium">About</Link></li>
 
+              {/* Login visível se usuário não estiver logado */}
               {!user && (
                 <li><Link href="/Login" className="block px-4 py-2 hover:text-primary-blue font-medium">Login</Link></li>
               )}
 
+              {/* Admin só visível para usuários com permissão */}
               {(user?.role === "Admin" || user?.role === "Super Admin") && (
                 <li><Link href="/Admin" className="block px-4 py-2 hover:text-primary-blue font-medium">Admin</Link></li>
               )}
 
+              {/* Logout visível se usuário estiver logado */}
               {user && (
                 <li>
                   <button
@@ -89,7 +96,7 @@ export default function Header() {
             </ul>
           </nav>
 
-          {/* Carrinho */}
+          {/* Botão do carrinho */}
           <div className="flex-shrink-0">
             <button
               onClick={() => setIsCartOpen(true)}
@@ -107,7 +114,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Modal do Carrinho */}
+      {/* Modal do carrinho (abre quando o ícone é clicado) */}
       <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );

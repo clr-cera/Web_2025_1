@@ -13,13 +13,16 @@ type Tab = 'products' | 'admins';
 
 export default function Page() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<Tab>('products');
-  const [productsData, setProductsData] = useState<ElementType[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [usersData, setUsersData] = useState<User[]>([]);
-  const [authorized, setAuthorized] = useState(false);
-  const [userRole, setUserRole] = useState<string | null>(null);
 
+  // Estados principais
+  const [activeTab, setActiveTab] = useState<Tab>('products'); // aba selecionada
+  const [productsData, setProductsData] = useState<ElementType[]>([]); // dados de produtos
+  const [loading, setLoading] = useState(true); // carregamento
+  const [usersData, setUsersData] = useState<User[]>([]); // dados de usuários
+  const [authorized, setAuthorized] = useState(false); // controle de acesso
+  const [userRole, setUserRole] = useState<string | null>(null); // tipo do usuário
+
+  // Verifica se o usuário está logado e autorizado
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (!user) {
@@ -43,6 +46,7 @@ export default function Page() {
     }
   }, []);
 
+  // Carrega os dados (produtos e usuários) após verificação de permissão
   useEffect(() => {
     if (!authorized) return;
 
@@ -62,12 +66,14 @@ export default function Page() {
     loadData();
   }, [authorized]);
 
+  // Enquanto não autorizado, não renderiza nada
   if (!authorized) return null;
 
   const isSuperAdmin = userRole === "Super Admin";
 
   return (
     <div className="px-15 max-w-6xl mx-auto text-black pt-24 min-h-screen">
+      {/* Cabeçalho da dashboard */}
       <header className="flex items-center space-x-3 mb-6">
         <div className="text-3xl">
           <BsShield size={50} className="text-text-gray-darker" />
@@ -77,7 +83,7 @@ export default function Page() {
         </h1>
       </header>
 
-      {/* Tabs */}
+      {/* Tabs de navegação */}
       <div className="flex flex-wrap w-fit mt-10 bg-background-gray p-1 rounded-md border-2 border-border-gray gap-3 sm:gap-5 select-none">
         <div
           onClick={() => setActiveTab("products")}
@@ -87,6 +93,7 @@ export default function Page() {
           Products
         </div>
 
+        {/* Aba "Admins" aparece somente para Super Admin */}
         {isSuperAdmin && (
           <div
             onClick={() => setActiveTab("admins")}
@@ -98,15 +105,20 @@ export default function Page() {
         )}
       </div>
 
-      {/* Conteúdo dinâmico */}
+      {/* Conteúdo baseado na aba ativa */}
       {activeTab === "products" ? (
-        loading ? <p className="mt-10 text-gray-500">Carregando produtos...</p> :
-        <ProductsTable data={productsData} />
+        loading ? (
+          <p className="mt-10 text-gray-500">Carregando produtos...</p>
+        ) : (
+          <ProductsTable data={productsData} />
+        )
       ) : (
         isSuperAdmin ? (
           <AdminsTable data={usersData.filter(user => user.role.toLowerCase().includes("admin"))} />
         ) : (
-          <p className="mt-10 text-red-500 font-semibold">Você não tem permissão para acessar esta seção.</p>
+          <p className="mt-10 text-red-500 font-semibold">
+            Você não tem permissão para acessar esta seção.
+          </p>
         )
       )}
     </div>
