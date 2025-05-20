@@ -3,8 +3,8 @@
 import React from "react";
 import Modal from "@/components/Modal";
 import { useCart } from "@/context/CartContext";
-import { FaMinus, FaPlus } from "react-icons/fa6";
-import { PiTrashSimple } from "react-icons/pi";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 import CartItemCard from "./CartItemCard";
 
 interface CartModalProps {
@@ -13,13 +13,19 @@ interface CartModalProps {
 }
 
 const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
-  const {
-    cartItems,
-    increaseQuantity,
-    decreaseQuantity,
-    removeFromCart,
-    getTotal,
-  } = useCart();
+  const { cartItems, getTotal } = useCart();
+  const { user } = useAuth();
+  const router = useRouter();
+
+  const handleCheckout = () => {
+    onClose(); // Fecha o modal antes de navegar
+
+    if (user) {
+      router.push("/Shipping");
+    } else {
+      router.push("/Login");
+    }
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Shopping Cart" widthClass="w-full sm:w-[600px]">
@@ -40,8 +46,8 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
             </div>
 
             <button
-              onClick={() => alert("Proceeding to checkout...")}
-              className="w-full bg-primary-blue hover:bg-secondary-blue text-white font-semibold px-4 py-2 rounded"
+              onClick={handleCheckout}
+              className="w-full bg-primary-blue hover:bg-secondary-blue text-white font-semibold px-4 py-2 rounded cursor-pointer"
             >
               Proceed to Checkout
             </button>

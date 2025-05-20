@@ -1,106 +1,127 @@
-import CartElement from "@/components/CartItemCard";
+"use client";
+
+import { useState } from "react";
+import { useCart } from "@/context/CartContext";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function ShippingPage() {
-    // Objeto com os dados dinâmicos
-    const shippingDetails = {
-        fullName: "Diogo Silva",
-        email: "DiogoSilva@email.com",
-        address: "rua episcopal",
-        city: "Sao Carlos",
-        cep: "4839204",
-        number: "49",
-        total: 1925.5,
-    };
+  const { cartItems, getTotal, clearCart } = useCart();
+  const router = useRouter();
 
-    return (
-        <div className="flex flex-col lg:flex-row pt-10 px-5 lg:px-20 gap-10 min-h-screen bg-background-blue text-black items-center">
-            {/* Imagem do elemento */}
-            <div className="lg:w-1/2 w-full flex flex-col self-start gap-5">
-                <h2 className="text-xl font-semibold text-text-gray-darker">Order Summary</h2>
-                <div className="flex flex-col justify-between self-center bg-white min-h-96 border-1 rounded-lg border-border-gray px-6 py-5 gap-4 transition-all duration-200 w-full">
-                    <CartElement />
-                    <div className="">
-                        <div className="w-full h-px mb-4 bg-border-gray" />
-                        <div className="w-full font-semibold flex justify-between">
-                            <p>Total</p>
-                            <p>{shippingDetails.total}</p>
-                        </div>
-                    </div>
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    address: "",
+    city: "",
+    cep: "",
+    number: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleCheckout = () => {
+    const allFilled = Object.values(formData).every(Boolean);
+    if (!allFilled) {
+      toast.error("Please, Enter all values.");
+      return;
+    }
+
+    toast.success("Shop done!!!");
+    clearCart();
+    setTimeout(() => router.push("/"), 1500);
+  };
+
+  return (
+    <div className="flex flex-col lg:flex-row pt-24 px-5 lg:px-20 gap-10 min-h-screen bg-background-blue text-black">
+      {/* RESUMO DO PEDIDO */}
+      <div className="lg:w-1/2 w-full flex flex-col gap-5">
+        <h2 className="text-2xl font-bold text-primary-blue">Order Summary</h2>
+        <div className="bg-white rounded-2xl shadow-md border border-border-gray px-6 py-5 gap-4 w-full flex flex-col">
+          {cartItems.length === 0 ? (
+            <p className="text-center text-gray-500">Your cart is empty.</p>
+          ) : (
+            <>
+              {cartItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex justify-between items-center border-b border-gray-200 py-3"
+                >
+                  <div>
+                    <p className="font-medium">{item.name}</p>
+                    <p className="text-sm text-gray-500">
+                      {item.quantity}x ${item.price.toFixed(2)}
+                    </p>
+                  </div>
+                  <p className="font-semibold text-primary-blue">
+                    ${(item.price * item.quantity).toFixed(2)}
+                  </p>
                 </div>
-            </div>
-
-            {/* Informações do elemento */}
-            <div className="lg:w-1/2 w-full">
-                <h2 className="text-xl font-semibold text-text-gray-darker">Shipping Details</h2>
-                <div className="w-full flex flex-col gap-10">
-                    <div className="flex flex-col gap-2 mt-5">
-                        <h2 className="">Full Name</h2>
-                        <input
-                            type="text"
-                            value={shippingDetails.fullName}
-                            readOnly
-                            className="w-full h-10 bg-white border border-border-gray rounded px-3 outline-none"
-                        />
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <h2>Email</h2>
-                        <input
-                            type="text"
-                            value={shippingDetails.email}
-                            readOnly
-                            className="w-full h-10 bg-white border border-border-gray rounded px-3 outline-none"
-                        />
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <h2>Address</h2>
-                        <input
-                            type="text"
-                            value={shippingDetails.address}
-                            readOnly
-                            className="w-full h-10 bg-white border border-border-gray rounded px-3 outline-none"
-                        />
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <h2>City</h2>
-                        <input
-                            type="text"
-                            value={shippingDetails.city}
-                            readOnly
-                            className="w-full h-10 bg-white border border-border-gray rounded px-3 outline-none"
-                        />
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-10">
-                        <div className="flex flex-col gap-2 w-full sm:w-1/2">
-                            <h2>CEP</h2>
-                            <input
-                                type="text"
-                                value={shippingDetails.cep}
-                                readOnly
-                                className="w-full h-10 bg-white border border-border-gray rounded px-3 outline-none"
-                            />
-                        </div>
-                        <div className="flex flex-col gap-2 w-full sm:w-1/2">
-                            <h2>Number</h2>
-                            <input
-                                type="text"
-                                value={shippingDetails.number}
-                                readOnly
-                                className="w-full h-10 bg-white border border-border-gray rounded px-3 outline-none"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="my-10">
-                        <button className="bg-primary-blue text-white font-semibold rounded-md p-2 w-full cursor-pointer hover:bg-secondary-blue">
-                            Proceed to Checkout
-                        </button>
-                    </div>
-                </div>
-            </div>
+              ))}
+              <div className="border-t border-gray-300 pt-3 flex justify-between font-semibold text-lg">
+                <p>Total:</p>
+                <p>${getTotal().toFixed(2)}</p>
+              </div>
+            </>
+          )}
         </div>
-    );
+      </div>
+
+      {/* FORMULÁRIO DE ENTREGA */}
+      <div className="lg:w-1/2 w-full">
+        <h2 className="text-2xl font-bold text-primary-blue mb-5">Shipping Information</h2>
+        <div className="bg-white rounded-2xl shadow-md border border-border-gray px-6 py-6 flex flex-col gap-5">
+          {[
+            { label: "Full Name", name: "fullName" },
+            { label: "Email", name: "email", type: "email" },
+            { label: "Address", name: "address" },
+            { label: "City", name: "city" },
+          ].map(({ label, name, type = "text" }) => (
+            <div key={name} className="flex flex-col gap-1">
+              <label className="font-medium text-sm text-text-gray">{label}</label>
+              <input
+                type={type}
+                name={name}
+                value={formData[name as keyof typeof formData]}
+                onChange={handleChange}
+                placeholder={`Type your ${label.toLowerCase()}`}
+                className="w-full border border-border-gray rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-primary-blue transition"
+              />
+            </div>
+          ))}
+
+          <div className="flex flex-col sm:flex-row gap-5">
+            {["cep", "number"].map((field) => (
+              <div key={field} className="flex flex-col gap-1 w-full">
+                <label className="font-medium text-sm text-text-gray">{field.toUpperCase()}</label>
+                <input
+                  type="text"
+                  name={field}
+                  value={formData[field as keyof typeof formData]}
+                  onChange={handleChange}
+                  placeholder={`Type your ${field}`}
+                  className="w-full border border-border-gray rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-primary-blue transition"
+                />
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={handleCheckout}
+            disabled={cartItems.length === 0}
+            className={`mt-6 w-full text-white font-semibold rounded-lg px-4 py-3 transition 
+              ${
+                cartItems.length === 0
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-primary-blue hover:bg-secondary-blue cursor-pointer"
+              }`}
+          >
+            Finalizar Pedido
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
