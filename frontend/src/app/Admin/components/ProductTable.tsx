@@ -118,18 +118,20 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
         <form
           onSubmit={async (e) => {
             e.preventDefault();
-            const form = e.currentTarget;
+            const formData = new FormData(e.currentTarget);
             try {
               const newProduct = {
-                atomic_number: Number((form[0] as HTMLInputElement).value),
-                atomic_mass: Number((form[1] as HTMLInputElement).value),
-                symbol: (form[2] as HTMLInputElement).value,
-                name: (form[3] as HTMLInputElement).value,
-                description: (form[4] as HTMLTextAreaElement).value,
-                category: (form[5] as HTMLSelectElement).value,
-                state: (form[6] as HTMLInputElement).value,
-                price: Number((form[7] as HTMLInputElement).value),
-                stock: Number((form[8] as HTMLInputElement).value),
+                atomic_number: Number(formData.get("atomic_number")),
+                atomic_mass: Number(formData.get("atomic_mass")),
+                symbol: formData.get("symbol") as string,
+                name: formData.get("name") as string,
+                description: formData.get("description") as string,
+                category: formData.get("category") as string,
+                state: formData.get("state") as string,
+                price: Number(formData.get("price")),
+                stock: Number(formData.get("stock")),
+                row: Number(formData.get("row")),
+                column: Number(formData.get("column")),
               };
 
               await createElement(newProduct);
@@ -145,6 +147,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             <label className="text-text-gray-darker">Atomic Number</label>
             <input
               type="number"
+              name="atomic_number"
               placeholder="e.g. 31"
               className="border px-3 py-2 rounded border-border-gray"
             />
@@ -154,6 +157,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             <label className="text-text-gray-darker">Atomic Mass</label>
             <input
               type="number"
+              name="atomic_mass"
               step="0.001"
               placeholder="e.g. 69.723"
               className="border px-3 py-2 rounded border-border-gray"
@@ -164,6 +168,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             <label className="text-text-gray-darker">Symbol</label>
             <input
               type="text"
+              name="symbol"
               placeholder="e.g. Ga"
               className="border px-3 py-2 rounded border-border-gray"
             />
@@ -173,6 +178,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             <label className="text-text-gray-darker">Name</label>
             <input
               type="text"
+              name="name"
               placeholder="e.g. Gallium"
               className="border px-3 py-2 rounded border-border-gray"
             />
@@ -181,6 +187,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
           <div className="flex flex-col gap-1">
             <label className="text-text-gray-darker">Description</label>
             <textarea
+              name="description"
               placeholder="e.g. Gallium is a soft metal that melts in your hand."
               className="border px-3 py-2 rounded border-border-gray resize-none"
               rows={3}
@@ -189,7 +196,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
 
           <div className="flex flex-col gap-1">
             <label className="text-text-gray-darker">Category</label>
-            <select className="border px-3 py-2 rounded border-border-gray">
+            <select name="category" className="border px-3 py-2 rounded border-border-gray">
               <option value="Metals">Metals</option>
               <option value="Non-Metals">Non-Metals</option>
               <option value="Noble Gases">Noble Gases</option>
@@ -200,6 +207,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             <label className="text-text-gray-darker">State</label>
             <input
               type="text"
+              name="state"
               placeholder="e.g. Solid"
               className="border px-3 py-2 rounded border-border-gray"
             />
@@ -209,6 +217,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             <label className="text-text-gray-darker">Price ($)</label>
             <input
               type="number"
+              name="price"
               step="0.01"
               placeholder="e.g. 0.05"
               className="border px-3 py-2 rounded border-border-gray"
@@ -219,9 +228,31 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             <label className="text-text-gray-darker">Stock</label>
             <input
               type="number"
+              name="stock"
               placeholder="e.g. 100"
               className="border px-3 py-2 rounded border-border-gray"
             />
+          </div>
+
+          <div className="flex gap-4">
+            <div className="flex flex-col gap-1 w-1/2">
+              <label className="text-text-gray-darker">Row</label>
+              <input
+                type="number"
+                name="row"
+                placeholder="e.g. 3"
+                className="border px-3 py-2 rounded border-border-gray"
+              />
+            </div>
+            <div className="flex flex-col gap-1 w-1/2">
+              <label className="text-text-gray-darker">Column</label>
+              <input
+                type="number"
+                name="column"
+                placeholder="e.g. 13"
+                className="border px-3 py-2 rounded border-border-gray"
+              />
+            </div>
           </div>
 
           <button
@@ -261,6 +292,8 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                   description: formData.get("description") as string,
                   category: formData.get("category") as string,
                   state: formData.get("state") as string,
+                  row: Number(formData.get("row")),
+                  column: Number(formData.get("column")),
                 };
 
                 await updateElement(selectedProduct.id, updatedProduct);
@@ -369,6 +402,26 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                 defaultValue={selectedProduct.state}
                 className="border px-3 py-2 rounded border-border-gray"
               />
+            </div>
+            <div className="flex gap-4">
+              <div className="flex flex-col gap-1 w-1/2">
+                <label className="text-text-gray-darker">Row</label>
+                <input
+                  name="row"
+                  type="number"
+                  defaultValue={selectedProduct.row}
+                  className="border px-3 py-2 rounded border-border-gray"
+                />
+              </div>
+              <div className="flex flex-col gap-1 w-1/2">
+                <label className="text-text-gray-darker">Column</label>
+                <input
+                  name="column"
+                  type="number"
+                  defaultValue={selectedProduct.column}
+                  className="border px-3 py-2 rounded border-border-gray"
+                />
+              </div>
             </div>
       
             <button

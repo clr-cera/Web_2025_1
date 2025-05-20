@@ -11,6 +11,8 @@ export type ElementType = {
   state: string;
   price: number;
   stock: number;
+  row?: number;
+  column?: number;
 };
 
 const API_BASE_URL = "http://localhost:3001";

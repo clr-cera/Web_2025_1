@@ -65,7 +65,7 @@ export default function Header() {
           >
             <ul className="flex flex-col md:flex-row md:space-x-2 text-text-gray">
               <li><Link href="/Elements" className="block px-4 py-2 hover:text-primary-blue font-medium">Elements</Link></li>
-              <li><Link href="/#table" className="block px-4 py-2 hover:text-primary-blue font-medium">Table</Link></li>
+              <li><Link href="/Table" className="block px-4 py-2 hover:text-primary-blue font-medium">Table</Link></li>
               <li><Link href="/About" className="block px-4 py-2 hover:text-primary-blue font-medium">About</Link></li>
 
               {!user && (
