@@ -51,7 +51,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row px-5 lg:px-20 gap-10 pt-30">
+    <div className="flex flex-col lg:flex-row px-5 lg:px-20 gap-10 pt-30 mb-80">
       {/* Imagem do elemento */}
       <div className="lg:w-1/2 flex justify-center items-center">
         <div className="bg-gray-200 w-full lg:w-[80%] aspect-square rounded-2xl relative">

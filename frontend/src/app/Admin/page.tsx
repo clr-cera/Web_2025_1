@@ -67,7 +67,7 @@ export default function Page() {
   const isSuperAdmin = userRole === "Super Admin";
 
   return (
-    <div className="px-15 max-w-6xl mx-auto text-black pt-24">
+    <div className="px-15 max-w-6xl mx-auto text-black pt-24 min-h-screen">
       <header className="flex items-center space-x-3 mb-6">
         <div className="text-3xl">
           <BsShield size={50} className="text-text-gray-darker" />
