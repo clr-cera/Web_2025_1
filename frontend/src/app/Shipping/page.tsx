@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 export default function ShippingPage() {
   // Acesso ao carrinho e funções auxiliares
-  const { cartItems, getTotal, clearCart } = useCart();
+  const { cartItems, getTotal, finalizePurchase } = useCart();
   const router = useRouter();
 
   // Estado para armazenar os dados do formulário de entrega
@@ -26,16 +26,21 @@ export default function ShippingPage() {
   };
 
   // Função executada ao clicar em "Finalizar Pedido"
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     const allFilled = Object.values(formData).every(Boolean); // verifica se todos os campos estão preenchidos
     if (!allFilled) {
-      toast.error("Please, Enter all values.");
+      toast.error("Please, enter all values.");
       return;
     }
 
-    toast.success("Shop done!!!");
-    clearCart(); // limpa o carrinho
-    setTimeout(() => router.push("/"), 1500); // redireciona para home
+    try {
+      await finalizePurchase(); // Chama a função do CartContext para finalizar a compra
+      toast.success("Purchase completed successfully!");
+      router.push("/"); // Redireciona para a página inicial
+    } catch (error) {
+      console.error("Error during checkout:", error);
+      toast.error("An error occurred during the purchase.");
+    }
   };
 
   return (
