@@ -9,6 +9,7 @@ import { MdEdit } from 'react-icons/md';
 import { FaRegTrashCan } from 'react-icons/fa6';
 import Modal from '@/components/Modal';
 import { ElementType, createElement, updateElement, deleteElement } from '@/services/elementsServices';
+import toast from 'react-hot-toast';
 
 interface ProductsTableProps {
   data?: ElementType[];
@@ -116,10 +117,24 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
         onClose={() => setIsModalOpen(false)}
         title="Add New Product"
       >
-        <form
+                <form
           onSubmit={async (e) => {
             e.preventDefault();
             const formData = new FormData(e.currentTarget);
+
+            // Validação de linha e coluna
+            const row = Number(formData.get("row"));
+            const column = Number(formData.get("column"));
+            if (row < 1 || row > 8) {
+              toast.error("Row must be between 1 and 8."); // Exibe erro com toast
+              toast("")
+              return;
+            }
+            if (column < 1 || column > 18) {
+              toast.error("Column must be between 1 and 18."); // Exibe erro com toast
+              return;
+            }
+
             try {
               const newProduct = {
                 atomic_number: Number(formData.get("atomic_number")),
@@ -131,8 +146,8 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                 state: formData.get("state") as string,
                 price: Number(formData.get("price")),
                 stock: Number(formData.get("stock")),
-                row: Number(formData.get("row")),
-                column: Number(formData.get("column")),
+                row,
+                column,
               };
 
               await createElement(newProduct);
@@ -211,6 +226,20 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
               if (!selectedProduct) return;
 
               const formData = new FormData(e.currentTarget);
+
+              // Validação de linha e coluna
+              const row = Number(formData.get("row"));
+              const column = Number(formData.get("column"));
+              if (row < 1 || row > 8) {
+                toast.error("Row must be between 1 and 8."); // Exibe erro com toast
+                return;
+              }
+              if (column < 1 || column > 18) {
+                toast.error("Column must be between 1 and 18."); // Exibe erro com toast
+
+                return;
+              }
+
               try {
                 const updatedProduct = {
                   name: formData.get("name") as string,
@@ -222,8 +251,8 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                   description: formData.get("description") as string,
                   category: formData.get("category") as string,
                   state: formData.get("state") as string,
-                  row: Number(formData.get("row")),
-                  column: Number(formData.get("column")),
+                  row,
+                  column,
                 };
 
                 await updateElement(selectedProduct.id, updatedProduct);
@@ -297,7 +326,6 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                 </div>
               ))}
             </div>
-
             <button
               type="submit"
               className="bg-primary-blue hover:bg-secondary-blue text-white font-semibold px-4 py-2 rounded mt-2 cursor-pointer"

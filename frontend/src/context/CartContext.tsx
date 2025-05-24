@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { ElementType } from "@/services/elementsServices";
+import { finalizePurchaseService } from "@/services/purchaseService"; // Importa o serviço de compra
 import toast from "react-hot-toast"; // Notificações visuais
 
 // Tipo do item no carrinho (elemento com quantidade)
@@ -18,6 +19,7 @@ interface CartContextProps {
   decreaseQuantity: (id: string) => void;
   getTotal: () => number;
   clearCart: () => void;
+  finalizePurchase: () => Promise<void>;
 }
 
 // Criação do contexto
@@ -57,7 +59,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       if (item.stock > 0) {
         return [...prevItems, { ...item, quantity: 1 }];
       } else {
-        toast.error("item out of stock.");
+        toast.error("Item out of stock.");
         return prevItems;
       }
     });
@@ -105,6 +107,18 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     setCartItems([]);
   };
 
+  // Finaliza a compra usando o serviço de compra
+  const finalizePurchase = async () => {
+    try {
+      await finalizePurchaseService(cartItems); // Chama o serviço de compra
+      clearCart(); // Limpa o carrinho após a compra
+      toast.success("Purchase completed successfully!");
+    } catch (error) {
+      console.error("Error during purchase:", error);
+      toast.error("An error occurred during the purchase.");
+    }
+  };
+
   // Torna as funções e dados acessíveis via context
   return (
     <CartContext.Provider
@@ -116,6 +130,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         decreaseQuantity,
         getTotal,
         clearCart,
+        finalizePurchase,
       }}
     >
       {children}

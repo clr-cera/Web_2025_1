@@ -9,7 +9,7 @@
       "category": "Non-Metals",
       "state": "Gas",
       "price": 0.02,
-      "stock": 150,
+      "stock": 145,
       "id": "658d",
       "row": 1,
       "column": 1
@@ -179,7 +179,7 @@
       "column": 14,
       "state": "Solid",
       "price": 0.04,
-      "stock": 140,
+      "stock": 139,
       "id": "13ee"
     },
     {
@@ -305,7 +305,7 @@
       "column": 5,
       "state": "Solid",
       "price": 0.06,
-      "stock": 60,
+      "stock": 59,
       "id": "246c"
     },
     {
@@ -319,7 +319,7 @@
       "column": 6,
       "state": "Solid",
       "price": 0.05,
-      "stock": 50,
+      "stock": 0,
       "id": "d5b6"
     },
     {
@@ -403,7 +403,7 @@
       "column": 12,
       "state": "Solid",
       "price": 0.03,
-      "stock": 105,
+      "stock": 94,
       "id": "dd84"
     },
     {
@@ -419,20 +419,6 @@
       "stock": 0,
       "row": 4,
       "column": 13
-    },
-    {
-      "id": "bef5",
-      "atomic_number": 40,
-      "atomic_mass": 4000,
-      "symbol": "GG",
-      "name": "GGlium",
-      "description": "GG is ggelinium",
-      "category": "Non-Metals",
-      "state": "Solid",
-      "price": 5,
-      "stock": 100,
-      "row": 40,
-      "column": 4
     }
   ],
   "users": [

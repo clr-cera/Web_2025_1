@@ -1,6 +1,6 @@
 "use client";
 
-import { notFound } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaMinus, FaPlus } from "react-icons/fa";
@@ -11,8 +11,9 @@ interface ProductPageProps {
   params: { name: string };
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const name = params.name; // Obtem o nome passado por parametro
+export default function ProductPage() {
+  const params = useParams(); // Usa o hook useParams para acessar os parâmetros da rota
+  const name = params?.name; // Obtém o nome do parâmetro da URL
   const [elementData, setElementData] = useState<ElementType | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
@@ -27,6 +28,8 @@ export default function ProductPage({ params }: ProductPageProps) {
   useEffect(() => {
     const loadElement = async () => {
       try {
+        if (!name) return notFound();
+        if (typeof name !== "string") return notFound();
         const element = await fetchElementByName(name);
         if (!element) return notFound();
         setElementData(element);
