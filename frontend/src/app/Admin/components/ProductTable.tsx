@@ -164,7 +164,21 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
               )}
             </div>
           ))}
-
+          <div className="flex flex-col gap-1">
+            <label className="text-text-gray-darker">Category</label>
+            <select
+              name="category"
+              className="border px-3 py-2 rounded border-border-gray text-text-gray"
+              defaultValue=""
+            >
+              <option value="" disabled>
+                Select a category
+              </option>
+              <option value="Metals">Metals</option>
+              <option value="Non-Metals">Non-metal</option>
+              <option value="Noble Gases">Noble Gases</option>
+            </select>
+          </div>
           {/* Linha e coluna */}
           <div className="flex gap-4">
             {["row", "column"].map((field) => (
@@ -254,7 +268,21 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                 )}
               </div>
             ))}
-
+            <div className="flex flex-col gap-1">
+              <label className="text-text-gray-darker">Category</label>
+              <select
+                name="category"
+                className="border px-3 py-2 rounded border-border-gray"
+                defaultValue={selectedProduct?.category || ""}
+              >
+                <option value="" disabled>
+                  Select a category
+                </option>
+                <option value="Metals">Metals</option>
+                <option value="Non-Metals">Non-metals</option>
+                <option value="Noble Gases">Noble Gases</option>
+              </select>
+            </div>
             {/* Row/Column */}
             <div className="flex gap-4">
               {["row", "column"].map((field) => (
