@@ -9,7 +9,7 @@ import ElementBlock from "@/app/Table/components/ElementBlock";
 const filters = ["All Elements", "Metals", "Non-metals", "Noble Gases"];
 
 // Dimensões da tabela periódica (linhas e colunas)
-const rows = 7;
+const rows = 8;
 const cols = 18;
 
 export default function PeriodicTablePage() {

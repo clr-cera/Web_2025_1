@@ -419,20 +419,6 @@
       "stock": 0,
       "row": 4,
       "column": 13
-    },
-    {
-      "id": "bef5",
-      "atomic_number": 40,
-      "atomic_mass": 4000,
-      "symbol": "GG",
-      "name": "GGlium",
-      "description": "GG is ggelinium",
-      "category": "Non-Metals",
-      "state": "Solid",
-      "price": 5,
-      "stock": 98,
-      "row": 40,
-      "column": 4
     }
   ],
   "users": [
