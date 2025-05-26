@@ -145,7 +145,7 @@ npm run dev
 
 O projeto estará disponível em `http://localhost:3000` ou na porta apresentada no terminal
 
-## Login de Administrador
+**Login de Administrador**
 
 Para acessar o painel admin, voce pode usar uma conta com `admin@admin` com senha `12345` ou qualquer outra conta disponivel diretamente no `db.json` ou via painel de admin.
 
