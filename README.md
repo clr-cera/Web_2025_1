@@ -74,16 +74,88 @@ Diagrama de navegação entre as páginas:
 
 
 ## Comentários do Código
-No momento não há programa implementado, apenas mockups e páginas estáticas HTML, no futuro nessa seção haverão comentários sobre o código da implementação.
+Para o desenvolvimento, utilizamos o framework Next que trabalha sobre o React. A maior parte dos comentários sobre o código estão dentro do código em si. A seguir, temos uma árvore de todos os arquivos do código (dentro da página src), comentando a funcionalidade do arquivo.
+```
+├── app                             # Páginas do Next.js
+│   ├── About/                      # Página de about
+│   ├── Admin                       # Página de admin
+│   │   ├── components              # Componentes usados na página de admin
+│   │   │   ├── AdminTable.tsx      # Componente da tabela de admins
+│   │   │   └── ProductTable.tsx    # Componente da tabela de produtos
+│   │   └── page.tsx                # Página de admin em si
+│   ├── components                  # Componentes relacionados a página inicial
+│   │   ├── Banner.tsx              # Componente do Banner
+│   │   ├── CategorySelector.tsx    # Componente do seletor de categorias
+│   │   └── FeatureElements.tsx     # Componente que exibe os elementos químicos disponíveis
+│   ├── Elements/                   # Página que exibe os elementos
+│   ├── layout.tsx                  # Define o layout de todas as páginas
+│   ├── Login/                      # Página de login
+│   ├── page.tsx                    # Página inicial
+│   ├── Products/[name]             # Página especifica dos produtos
+│   ├── Register/                   # Página de registro
+│   ├── Shipping/                   # Página de compra/pagamento
+│   └── Table                       # Página da tabela periódica
+│       ├── components              # Componentes da tabela periódica
+│       │   └── ElementBlock.tsx    # Componente que define os blocos de elemento
+│       └── page.tsx                # Página em si
+├── assets/                         # Assets utilizados
+├── components                      # Componentes globais
+│   ├── CartItemCard.tsx            # Componente de um item no carrinho
+│   ├── CartModal.tsx               # Componente do modal do carrinho
+│   ├── Element.tsx                 # Componente do elemento
+│   ├── Footer.tsx                  # Componente do footer
+│   ├── Header.tsx                  # Componente do footer
+│   └── Modal.tsx                   # Componente do modal
+├── context                         # Contextos globais
+│   ├── AuthContext.tsx             # Contexto de autenticação
+│   ├── CartContext.tsx             # Contexto do carrinho
+│   └── SearchContext.tsx           # Contexto de busca
+├── services                        # Funções de requisições da API
+│   ├── adminServices.ts            # Requisições relacionadas ao admin
+│   ├── authServices.ts             # Requisições relacionadas a autenticação
+│   ├── elementsServices.ts         # Requisições relacionadas ao elementos
+│   └── purchaseService.ts          # Requisições relacionadas a compra
+└── styles/                         # css global
+```
 
 ## Plano de Teste
-No momento não há programa para testar, mas no futuro haverá nessa seção o plano de teste do software.
+Como rodar o projeto para testar:
+
+1. **Clone o repositório:**
+
+2. **Instale as dependências:**
+
+```bash
+npm install
+```
+
+3. **Inicie o servidor JSON (API mock):**
+
+```bash
+npx json-server --watch db.json --port 3001
+```
+
+O servidor json estará disponivel em `http://localhost:3001`
+
+4. **Inicie o servidor Next.js:**
+
+```bash
+npm run dev
+```
+
+O projeto estará disponível em `http://localhost:3000` ou na porta apresentada no terminal
+
+## Login de Administrador
+
+Para acessar o painel admin, voce pode usar uma conta com `admin@admin` com senha `12345` ou qualquer outra conta disponivel diretamente no `db.json` ou via painel de admin.
 
 ## Resultados dos testes
-No momento não houve testes realizados, mas no futuro haverá nessa seção os resultados dos testes.
+Rodando o site e navegando e realizando atividades dentro da interface, não encontramos problemas com o frontend.
 
 ## Problemas
 Percebemos que a Barra de navegação é uma ótima ferramenta para adicionar a possibilidade de troca rápida entre páginas distintas do website, entretanto essa alta taxa de conecção entre as taxas dificultou a produção de um diagrama de navegação, pois tradicionalmente cada nó é uma página e as arestas é o link entre elas. Isso foi resolvido tornando a NavBar (Barra de navegação) um nó no diagrama de navegação, o que foge da regra de apenas páginas serem nós, mas facilita a produção do diagrama e a compreensão de quem o visualiza.
+*Adicionar outro problema*
 
 ## Comentários
 O Mockup das páginas foi produzido na ferramenta Figma.
+*Adicionar outro comentário*
