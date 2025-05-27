@@ -51,7 +51,7 @@ export default function ProductPage() {
   if (!elementData) return null;
 
   return (
-    <div className="flex flex-col lg:flex-row px-5 lg:px-20 gap-10 pt-30 mb-80">
+    <div className="flex flex-col lg:flex-row px-5 lg:px-20 gap-10 pt-30 mb-80 max-w-screen overflow-x-hidden">
       {/* Coluna da imagem */}
       <div className="lg:w-1/2 flex justify-center items-center">
         <div className="bg-gray-200 w-full lg:w-[80%] aspect-square rounded-2xl relative">
@@ -84,7 +84,7 @@ export default function ProductPage() {
             ))}
           </div>
 
-          <p className="text-text-gray">{elementData.description}</p>
+          <p className="text-text-gray whitespace-pre-line break-words">{elementData.description}</p>
 
           {/* Controles de quantidade e botão de compra */}
           <div className="flex justify-between gap-10 items-center">

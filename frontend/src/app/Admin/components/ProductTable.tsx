@@ -122,37 +122,75 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             e.preventDefault();
             const formData = new FormData(e.currentTarget);
 
-            // Validação de linha e coluna
+            // Validação de row e column
             const row = Number(formData.get("row"));
             const column = Number(formData.get("column"));
             if (row < 1 || row > 9) {
-              toast.error("Row must be between 1 and 8."); // Exibe erro com toast
-              toast("")
+              toast.error("Row must be between 1 and 9.");
               return;
             }
             if (column < 1 || column > 18) {
-              toast.error("Column must be between 1 and 18."); // Exibe erro com toast
+              toast.error("Column must be between 1 and 18.");
+              return;
+            }
+
+            // Extraindo e convertendo os dados
+            const atomic_number = Number(formData.get("atomic_number"));
+            const atomic_mass = Number(formData.get("atomic_mass"));
+            const price = Number(formData.get("price"));
+            const stock = Number(formData.get("stock"));
+            const symbol = formData.get("symbol") as string;
+            const name = formData.get("name") as string;
+            const state = formData.get("state") as string;
+
+            // Validações extras para evitar valores absurdos
+            if (atomic_number < 1 || atomic_number > 118) {
+              toast.error("Atomic Number must be between 1 and 118.");
+              return;
+            }
+            if (atomic_mass <= 0 || atomic_mass > 300) {
+              toast.error("Atomic Mass must be a positive number and under 300.");
+              return;
+            }
+            if (!symbol || symbol.trim().length === 0 || symbol.length > 3) {
+              toast.error("Please provide a valid chemical symbol (1-3 characters).");
+              return;
+            }
+            if (!name || name.trim().length === 0 || name.length > 25) {
+              toast.error("Please provide a valid name (1-25 characters).");
+              return;
+            }
+            if (price <= 0 || price > 100000) {
+              toast.error("Price must be greater than 0 and less than 100,000.");
+              return;
+            }
+            if (stock < 0 || stock > 1000000) {
+              toast.error("Stock must be between 0 and 1,000,000.");
+              return;
+            }
+            if (!state || state.trim().length === 0 || !["Solid", "Liquid", "Gas"].includes(state)) {
+              toast.error("Please provide a valid state (e.g. Solid, Liquid, Gas).");
               return;
             }
 
             try {
               const newProduct = {
-                atomic_number: Number(formData.get("atomic_number")),
-                atomic_mass: Number(formData.get("atomic_mass")),
-                symbol: formData.get("symbol") as string,
-                name: formData.get("name") as string,
+                atomic_number,
+                atomic_mass,
+                symbol,
+                name,
                 description: formData.get("description") as string,
                 category: formData.get("category") as string,
                 state: formData.get("state") as string,
-                price: Number(formData.get("price")),
-                stock: Number(formData.get("stock")),
+                price,
+                stock,
                 row,
                 column,
               };
 
               await createElement(newProduct);
               setIsModalOpen(false);
-              location.reload(); // ou use refetch
+              location.reload();
             } catch (err) {
               console.error("Erro ao criar produto:", err);
             }
@@ -190,7 +228,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                 Select a category
               </option>
               <option value="Metals">Metals</option>
-              <option value="Non-Metals">Non-metal</option>
+              <option value="Non-Metals">Non-Metals</option>
               <option value="Noble Gases">Noble Gases</option>
             </select>
           </div>
@@ -198,12 +236,13 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
           <div className="flex gap-4">
             {["row", "column"].map((field) => (
               <div key={field} className="flex flex-col gap-1 w-1/2">
-                <label className="text-text-gray-darker">{field[0].toUpperCase() + field.slice(1)}</label>
+                <label className="text-text-gray-darker">
+                  {field[0].toUpperCase() + field.slice(1)}
+                </label>
                 <input name={field} type="number" placeholder={`e.g. ${field === "row" ? 3 : 13}`} className="border px-3 py-2 rounded border-border-gray" />
               </div>
             ))}
           </div>
-
           <button type="submit" className="bg-primary-blue hover:bg-secondary-blue text-white font-semibold px-4 py-2 rounded mt-2 cursor-pointer">
             Create
           </button>
@@ -227,27 +266,65 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
 
               const formData = new FormData(e.currentTarget);
 
-              // Validação de linha e coluna
+              // Validação de row e column
               const row = Number(formData.get("row"));
               const column = Number(formData.get("column"));
               if (row < 1 || row > 9) {
-                toast.error("Row must be between 1 and 8."); // Exibe erro com toast
+                toast.error("Row must be between 1 and 9.");
                 return;
               }
               if (column < 1 || column > 18) {
-                toast.error("Column must be between 1 and 18."); // Exibe erro com toast
+                toast.error("Column must be between 1 and 18.");
+                return;
+              }
 
+              // Extraindo e convertendo os dados para edição
+              const atomic_number = Number(formData.get("atomic_number"));
+              const atomic_mass = Number(formData.get("atomic_mass"));
+              const price = Number(formData.get("price"));
+              const stock = Number(formData.get("stock"));
+              const symbol = formData.get("symbol") as string;
+              const name = formData.get("name") as string;
+              const state = formData.get("state") as string;
+
+              // Validações extras para evitar valores absurdos
+              if (atomic_number < 1 || atomic_number > 118) {
+                toast.error("Atomic Number must be between 1 and 118.");
+                return;
+              }
+              if (atomic_mass <= 0 || atomic_mass > 300) {
+                toast.error("Atomic Mass must be a positive number and under 300.");
+                return;
+              }
+              if (!symbol || symbol.trim().length === 0 || symbol.length > 3 ) {
+                toast.error("Please provide a valid chemical symbol (1-3 characters).");
+                return;
+              }
+              if (!name || name.trim().length === 0 || name.length > 25) {
+                toast.error("Please provide a valid name (1-25 characters).");
+                return;
+              }
+              if (price <= 0 || price > 100000) {
+                toast.error("Price must be greater than 0 and less than 100,000.");
+                return;
+              }
+              if (stock < 0 || stock > 1000000) {
+                toast.error("Stock must be between 0 and 1,000,000.");
+                return;
+              }
+              if (!state || state.trim().length === 0 || !["Solid", "Liquid", "Gas"].includes(state)) {
+                toast.error("Please provide a valid state (e.g. Solid, Liquid, Gas).");
                 return;
               }
 
               try {
                 const updatedProduct = {
                   name: formData.get("name") as string,
-                  price: Number(formData.get("price")),
-                  stock: Number(formData.get("stock")),
-                  atomic_number: Number(formData.get("atomic_number")),
-                  atomic_mass: Number(formData.get("atomic_mass")),
-                  symbol: formData.get("symbol") as string,
+                  price,
+                  stock,
+                  atomic_number,
+                  atomic_mass,
+                  symbol,
                   description: formData.get("description") as string,
                   category: formData.get("category") as string,
                   state: formData.get("state") as string,
@@ -316,7 +393,9 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             <div className="flex gap-4">
               {["row", "column"].map((field) => (
                 <div key={field} className="flex flex-col gap-1 w-1/2">
-                  <label className="text-text-gray-darker">{field[0].toUpperCase() + field.slice(1)}</label>
+                  <label className="text-text-gray-darker">
+                    {field[0].toUpperCase() + field.slice(1)}
+                  </label>
                   <input
                     name={field}
                     type="number"
@@ -326,10 +405,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                 </div>
               ))}
             </div>
-            <button
-              type="submit"
-              className="bg-primary-blue hover:bg-secondary-blue text-white font-semibold px-4 py-2 rounded mt-2 cursor-pointer"
-            >
+            <button type="submit" className="bg-primary-blue hover:bg-secondary-blue text-white font-semibold px-4 py-2 rounded mt-2 cursor-pointer">
               Save Changes
             </button>
           </form>

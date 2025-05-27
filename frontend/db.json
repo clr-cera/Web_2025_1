@@ -419,6 +419,20 @@
       "stock": 0,
       "row": 4,
       "column": 13
+    },
+    {
+      "id": "2a1f",
+      "atomic_number": 110,
+      "atomic_mass": 300,
+      "symbol": "Eas",
+      "name": "blablaasdasdasdasdasdas",
+      "description": "112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd",
+      "category": "Metals",
+      "state": "Gas",
+      "price": 100000,
+      "stock": 23213,
+      "row": 9,
+      "column": 6
     }
   ],
   "users": [
