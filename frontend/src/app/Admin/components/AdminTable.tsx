@@ -41,7 +41,7 @@ export const AdminsTable: React.FC<AdminsTableProps> = ({ data = [] }) => {
           <BsShield size={22} />
           <h2 className="ml-2 text-2xl font-semibold">Users</h2>
         </div>
-        <button 
+        <button
           className="bg-primary-blue hover:bg-secondary-blue text-white font-medium px-4 py-2 rounded cursor-pointer"
           onClick={() => setIsModalOpen(true)}
         >
@@ -127,16 +127,17 @@ export const AdminsTable: React.FC<AdminsTableProps> = ({ data = [] }) => {
             const form = e.currentTarget;
             const name = (form[0] as HTMLInputElement).value;
             const email = (form[1] as HTMLInputElement).value;
+            const password = (form[2] as HTMLInputElement).value;
             const role = (form[3] as HTMLSelectElement).value;
 
             try {
-              await createUser({ name, email, role });
+              await createUser({ name, email, password, role });
               setIsModalOpen(false);
               location.reload();
             } catch (err) {
               console.error("Erro ao criar admin:", err);
             }
-          }} 
+          }}
           className="flex flex-col gap-4 mt-2"
         >
           <div className='flex flex-col gap-1'>
@@ -197,7 +198,7 @@ export const AdminsTable: React.FC<AdminsTableProps> = ({ data = [] }) => {
               } catch (err) {
                 console.error("Erro ao atualizar admin:", err);
               }
-            }} 
+            }}
             className="flex flex-col gap-4 mt-2"
           >
             <div className="flex flex-col gap-1">
