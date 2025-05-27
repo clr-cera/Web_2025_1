@@ -3,6 +3,7 @@ export type User = {
   id: number;
   name: string;
   email: string;
+  password: string;
   role: string;
 };
 
@@ -28,7 +29,7 @@ export async function fetchUsers(): Promise<User[]> {
  */
 export async function createUser(data: Omit<User, "id">): Promise<User> {
   // Validação básica
-  if (!data.name || !data.email || !data.role) {
+  if (!data.name || !data.email || !data.role || !data.password) {
     throw new Error("Campos obrigatórios ausentes");
   }
 

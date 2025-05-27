@@ -70,7 +70,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                 <td className="py-2 px-4">{item.stock}</td>
                 <td className="py-2 px-4 space-x-2">
                   {/* Editar */}
-                  <button 
+                  <button
                     className="text-black cursor-pointer"
                     onClick={() => {
                       setSelectedProduct(item);
@@ -81,7 +81,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                   </button>
 
                   {/* Deletar */}
-                  <button 
+                  <button
                     className="text-red-600 cursor-pointer"
                     onClick={async () => {
                       if (confirm("Tem certeza que deseja deletar este produto?")) {
@@ -117,7 +117,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
         onClose={() => setIsModalOpen(false)}
         title="Add New Product"
       >
-                <form
+        <form
           onSubmit={async (e) => {
             e.preventDefault();
             const formData = new FormData(e.currentTarget);
@@ -125,7 +125,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             // Validação de linha e coluna
             const row = Number(formData.get("row"));
             const column = Number(formData.get("column"));
-            if (row < 1 || row > 8) {
+            if (row < 1 || row > 9) {
               toast.error("Row must be between 1 and 8."); // Exibe erro com toast
               toast("")
               return;
@@ -230,7 +230,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
               // Validação de linha e coluna
               const row = Number(formData.get("row"));
               const column = Number(formData.get("column"));
-              if (row < 1 || row > 8) {
+              if (row < 1 || row > 9) {
                 toast.error("Row must be between 1 and 8."); // Exibe erro com toast
                 return;
               }

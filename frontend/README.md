@@ -86,7 +86,7 @@ src/
 
 ## Login de Administrador
 
-Para acessar o painel admin, voce pode usar uma conta com `admin@admin` com senha `12345` ou qualquer outra conta disponivel diretamente no `db.json` ou via painel de admin.
+Para acessar o painel admin, voce pode usar uma conta com `admin@admin.com` com senha `12345` ou qualquer outra conta disponivel diretamente no `db.json` ou via painel de admin.
 
 ---
 
