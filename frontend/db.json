@@ -413,7 +413,7 @@
       "symbol": "Ga",
       "name": "Gallium",
       "description": "Gallium is a soft metal that smells in your hands",
-      "category": "Non-Metals",
+      "category": "Metals",
       "state": "Solid",
       "price": 1,
       "stock": 0,
@@ -467,7 +467,22 @@
       "id": "88e7",
       "name": "Admin",
       "email": "admin@admin.com",
+      "password": "12345",
       "role": "Super Admin"
+    },
+    {
+      "id": "e64f",
+      "name": "teste",
+      "email": "teste@admin.com",
+      "password": "123456",
+      "role": "Super Admin"
+    },
+    {
+      "id": "a6a6",
+      "name": "Gabigol",
+      "email": "gabigol@user.com",
+      "password": "1234567",
+      "role": "Customer"
     }
   ]
 }
