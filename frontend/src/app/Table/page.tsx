@@ -9,7 +9,7 @@ import ElementBlock from "@/app/Table/components/ElementBlock";
 const filters = ["All Elements", "Metals", "Non-metals", "Noble Gases"];
 
 // Dimensões da tabela periódica (linhas e colunas)
-const rows = 8;
+const rows = 9;
 const cols = 18;
 
 export default function PeriodicTablePage() {
@@ -59,18 +59,17 @@ export default function PeriodicTablePage() {
 
       {/* Container da tabela */}
       <div className="bg-white py-5 rounded-lg">
-        
+
         {/* Botões de filtro por categoria */}
         <div className="flex justify-center mb-8 gap-2 flex-wrap">
           {filters.map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-4 py-1 text-sm rounded-md font-semibold transition cursor-pointer ${
-                filter === cat
-                  ? "bg-primary-blue text-white"
-                  : "bg-gray-100 text-gray-700"
-              }`}
+              className={`px-4 py-1 text-sm rounded-md font-semibold transition cursor-pointer ${filter === cat
+                ? "bg-primary-blue text-white"
+                : "bg-gray-100 text-gray-700"
+                }`}
             >
               {cat}
             </button>
