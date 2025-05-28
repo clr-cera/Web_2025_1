@@ -12,6 +12,7 @@ export type ElementType = {
   stock: number;
   row?: number; // Posição na tabela periódica (linha)
   column?: number; // Posição na tabela periódica (coluna)
+  image_url?: string; // Link para a imagem do elemento
 };
 
 // URL base da API usada para comunicação com o backend (JSON server local)

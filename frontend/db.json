@@ -12,7 +12,8 @@
       "stock": 145,
       "id": "658d",
       "row": 1,
-      "column": 1
+      "column": 1,
+      "image_url": "https://lactec.com.br/wp-content/uploads/2023/02/lactec_hidrogenio_blog_capa-scaled.jpg"
     },
     {
       "atomic_number": 2,
@@ -413,12 +414,41 @@
       "symbol": "Ga",
       "name": "Gallium",
       "description": "Gallium is a soft metal that smells in your hands",
-      "category": "Non-Metals",
+      "category": "Metals",
       "state": "Solid",
       "price": 1,
       "stock": 0,
       "row": 4,
       "column": 13
+    },
+    {
+      "id": "2a1f",
+      "atomic_number": 110,
+      "atomic_mass": 300,
+      "symbol": "Eas",
+      "name": "blablaasdasdasdasdasdas",
+      "description": "112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd",
+      "category": "Metals",
+      "state": "Gas",
+      "price": 100000,
+      "stock": 23213,
+      "row": 9,
+      "column": 6
+    },
+    {
+      "id": "f532",
+      "atomic_number": 111,
+      "atomic_mass": 282,
+      "symbol": "RG",
+      "name": "roentgenio",
+      "description": "Rotttt",
+      "category": "Metals",
+      "state": "Solid",
+      "price": 4,
+      "stock": 300,
+      "row": 7,
+      "column": 11,
+      "image_url": "https://static.mundoeducacao.uol.com.br/mundoeducacao/conteudo_legenda/5143f4d5c9fa31e822b46f63f91f06b5.jpg"
     }
   ],
   "users": [
@@ -467,7 +497,22 @@
       "id": "88e7",
       "name": "Admin",
       "email": "admin@admin.com",
+      "password": "12345",
       "role": "Super Admin"
+    },
+    {
+      "id": "e64f",
+      "name": "teste",
+      "email": "teste@admin.com",
+      "password": "123456",
+      "role": "Super Admin"
+    },
+    {
+      "id": "a6a6",
+      "name": "Gabigol",
+      "email": "gabigol@user.com",
+      "password": "1234567",
+      "role": "Customer"
     }
   ]
 }

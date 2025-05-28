@@ -11,7 +11,8 @@ import Footer from "@/components/Footer";
 import { SearchProvider } from "@/context/SearchContext";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
+import ToasterClient from "./components/ToasterClient";
 
 // Inicializa a fonte Inter como variável CSS global
 const inter = Inter({
@@ -30,11 +31,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-<html lang="en">
+    <html lang="en">
       {/* Aplica a fonte Inter usando a classe CSS da variável */}
       <body className={inter.variable}>
         {/* Componente para mostrar mensagens (ex: sucesso, erro) via toast */}
-        <Toaster position="top-right" />
+        <ToasterClient/>
         {/* CartProvider: mantém os dados do carrinho acessíveis em qualquer parte do app */}
         <CartProvider>
           {/* AuthProvider: gerencia autenticação e informações do usuário logado */}
@@ -47,7 +48,6 @@ export default function RootLayout({
               {children}
               {/* Rodapé com links ou informações gerais */}
               <Footer />
-
             </SearchProvider>
           </AuthProvider>
         </CartProvider>
