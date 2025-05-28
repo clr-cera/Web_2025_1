@@ -27,7 +27,8 @@
       "state": "Gas",
       "price": 0.01,
       "stock": 100,
-      "id": "2412"
+      "id": "2412",
+      "image_url": "https://i.ebayimg.com/images/g/za4AAOSwZtlaOVAa/s-l1200.jpg"
     },
     {
       "atomic_number": 3,
@@ -41,7 +42,8 @@
       "state": "Solid",
       "price": 0.03,
       "stock": 85,
-      "id": "f3d9"
+      "id": "f3d9",
+      "image_url": "https://www.bruker.com/pt/products-and-solutions/mr/nmr-epr-battery-research-and-manufacturing/structure-and-behavior-of-lithium-ion-batteries/_jcr_content/root/overviewstage/mobileImage.coreimg.82.1920.jpeg/1696917269502/lithium-ion-batteries-teaser.jpeg"
     },
     {
       "atomic_number": 4,
@@ -83,7 +85,8 @@
       "state": "Solid",
       "price": 0.02,
       "stock": 200,
-      "id": "6f0c"
+      "id": "6f0c",
+      "image_url": "https://media.istockphoto.com/id/481365786/pt/foto/de-diamante.jpg?s=612x612&w=0&k=20&c=huCF5rQsiz365Qab5WlducE2pKdbAS3-qE5EJ-PH9Pc="
     },
     {
       "atomic_number": 7,
@@ -125,7 +128,8 @@
       "state": "Gas",
       "price": 0.03,
       "stock": 70,
-      "id": "3a98"
+      "id": "3a98",
+      "image_url": "https://se.lighting/wp-content/uploads/2024/07/LED-neon-strip-500x500.jpg"
     },
     {
       "atomic_number": 11,
@@ -349,7 +353,8 @@
       "state": "Solid",
       "price": 0.03,
       "stock": 200,
-      "id": "d465"
+      "id": "d465",
+      "image_url": "https://static.wikia.nocookie.net/minecraft-fanpage/images/8/8d/Piq_27787_400x400.png/revision/latest?cb=20140214193905"
     },
     {
       "atomic_number": 27,
@@ -363,7 +368,8 @@
       "state": "Solid",
       "price": 0.06,
       "stock": 75,
-      "id": "a159"
+      "id": "a159",
+      "image_url": "https://static.nationalgeographicbrasil.com/files/styles/image_3200/public/gettyimages-1297129862.webp?w=1600&h=900"
     },
     {
       "atomic_number": 28,
@@ -420,35 +426,6 @@
       "stock": 0,
       "row": 4,
       "column": 13
-    },
-    {
-      "id": "2a1f",
-      "atomic_number": 110,
-      "atomic_mass": 300,
-      "symbol": "Eas",
-      "name": "blablaasdasdasdasdasdas",
-      "description": "112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd112312312312qwedasd",
-      "category": "Metals",
-      "state": "Gas",
-      "price": 100000,
-      "stock": 23213,
-      "row": 9,
-      "column": 6
-    },
-    {
-      "id": "f532",
-      "atomic_number": 111,
-      "atomic_mass": 282,
-      "symbol": "RG",
-      "name": "roentgenio",
-      "description": "Rotttt",
-      "category": "Metals",
-      "state": "Solid",
-      "price": 4,
-      "stock": 300,
-      "row": 7,
-      "column": 11,
-      "image_url": "https://static.mundoeducacao.uol.com.br/mundoeducacao/conteudo_legenda/5143f4d5c9fa31e822b46f63f91f06b5.jpg"
     }
   ],
   "users": [
