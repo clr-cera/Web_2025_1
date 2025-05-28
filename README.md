@@ -150,7 +150,15 @@ O projeto estará disponível em `http://localhost:3000` ou na porta apresentada
 Para acessar o painel admin, voce pode usar uma conta com `admin@admin` com senha `12345` ou qualquer outra conta disponivel diretamente no `db.json` ou via painel de admin.
 
 ## Resultados dos testes
-Rodando o site, navegando e realizando atividades dentro da interface, encontramos alguns problemas com o frontend que foram solucionados antes da data limite da milestone 2.
+Produtos foram criados, removidos, atualizados e lidos com sucesso. 
+
+Usuários foram criados, removidos, atualizados e lidos com sucesso. 
+
+Foi tentado posicionar elementos em posições absurdas da tabela periódica e isso não quebrou a página. 
+
+Foi tentado criar elementos com nomes imensos e isso causou problemas no design que foram remediados. 
+
+Foi tentado logar com a senha incorreta em usuários e admins e ocorreu o resultado esperado (logar apenas com a senha correta).
 
 ## Problemas
 Percebemos que a Barra de navegação é uma ótima ferramenta para adicionar a possibilidade de troca rápida entre páginas distintas do website, entretanto essa alta taxa de conecção entre as taxas dificultou a produção de um diagrama de navegação, pois tradicionalmente cada nó é uma página e as arestas é o link entre elas. Isso foi resolvido tornando a NavBar (Barra de navegação) um nó no diagrama de navegação, o que foge da regra de apenas páginas serem nós, mas facilita a produção do diagrama e a compreensão de quem o visualiza.
