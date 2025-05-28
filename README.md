@@ -150,12 +150,18 @@ O projeto estará disponível em `http://localhost:3000` ou na porta apresentada
 Para acessar o painel admin, voce pode usar uma conta com `admin@admin` com senha `12345` ou qualquer outra conta disponivel diretamente no `db.json` ou via painel de admin.
 
 ## Resultados dos testes
-Rodando o site e navegando e realizando atividades dentro da interface, não encontramos problemas com o frontend.
+Rodando o site, navegando e realizando atividades dentro da interface, encontramos alguns problemas com o frontend que foram solucionados antes da data limite da milestone 2.
 
 ## Problemas
+###Milestone 1
 Percebemos que a Barra de navegação é uma ótima ferramenta para adicionar a possibilidade de troca rápida entre páginas distintas do website, entretanto essa alta taxa de conecção entre as taxas dificultou a produção de um diagrama de navegação, pois tradicionalmente cada nó é uma página e as arestas é o link entre elas. Isso foi resolvido tornando a NavBar (Barra de navegação) um nó no diagrama de navegação, o que foge da regra de apenas páginas serem nós, mas facilita a produção do diagrama e a compreensão de quem o visualiza.
-*Adicionar outro problema*
+
+###Milestone 2
+Sem um back-end, seria muito inconveniente criar uma estrutura para adicionar nossas próprias imagens para representar os elementos. Portanto optamos pelo administrador associar o link de uma imagem na web a um elemento para que essa imagem represente o elemento, sem a possibilidade de fazer o upload de suas próprias imagens.
 
 ## Comentários
+###Milestone 1
 O Mockup das páginas foi produzido na ferramenta Figma.
-*Adicionar outro comentário*
+
+###Milestone 2
+Parte da validação dos dados foi deixada para a Milestone 3, essa escolha foi estratégica porque no Milestone 3 implementaremos o banco de dados em si e a forma como os dados são salvos no banco podem ajudar na validação. Por exemplo, atualmente o e-mail dos usuários tem diferenciação entre letras maiúsculas e minúsculas, o que não é o comportamento correto para a armazenagem de e-mails. Porém isso será resolvido automaticamente quando implementarmos o banco de dados, tornando desnecessário criar uma solução no momento.
