@@ -12,7 +12,8 @@
       "stock": 145,
       "id": "658d",
       "row": 1,
-      "column": 1
+      "column": 1,
+      "image_url": "https://lactec.com.br/wp-content/uploads/2023/02/lactec_hidrogenio_blog_capa-scaled.jpg"
     },
     {
       "atomic_number": 2,
@@ -433,6 +434,21 @@
       "stock": 23213,
       "row": 9,
       "column": 6
+    },
+    {
+      "id": "f532",
+      "atomic_number": 111,
+      "atomic_mass": 282,
+      "symbol": "RG",
+      "name": "roentgenio",
+      "description": "Rotttt",
+      "category": "Metals",
+      "state": "Solid",
+      "price": 4,
+      "stock": 300,
+      "row": 7,
+      "column": 11,
+      "image_url": "https://static.mundoeducacao.uol.com.br/mundoeducacao/conteudo_legenda/5143f4d5c9fa31e822b46f63f91f06b5.jpg"
     }
   ],
   "users": [

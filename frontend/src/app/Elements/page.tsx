@@ -112,6 +112,7 @@ export default function Elements() {
                 <div className="grid gap-10 mt-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-center">            
                     {elements.map((element) => (
                         <Element
+                            image_url={element.image_url}
                             key={element.atomic_number}
                             id={element.id}
                             stock={element.stock}
