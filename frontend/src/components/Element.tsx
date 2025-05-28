@@ -51,6 +51,19 @@ export default function Element(props: ElementType & { color: keyof typeof color
         
         {/* Área visual superior do elemento (Imagem) */}
         <div className={`h-60 w-full rounded-t-xl relative select-none ${colors.background}`}>
+          {/* Exibe a imagem do elemento, ou um fundo padrão caso não haja imagem */}
+          {props.image_url ? (
+            <img
+              src={props.image_url}
+              alt={props.name}
+              className="w-full h-full object-cover rounded-t-xl"
+            />
+          ) : (
+            <div className="flex items-center justify-center w-full h-full text-gray-500">
+              No Image Available
+            </div>
+          )}
+
           {/* Exibe o símbolo do elemento no topo direito */}
           <div className={`px-2 w-fit rounded-xl text-white text-sm absolute right-2 top-2 ${colors.button}`}>
             {props.symbol}

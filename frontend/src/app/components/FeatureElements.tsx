@@ -41,20 +41,23 @@ export default function FeatureElements() {
             {/* Grid responsiva com os elementos filtrados */}
             <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-center">
                 {filteredElements.map(element => (
-                    <Element
-                        id={element.id}
-                        stock={element.stock}
-                        key={element.atomic_number}
-                        atomic_number={element.atomic_number}
-                        atomic_mass={element.atomic_mass}
-                        symbol={element.symbol}
-                        name={element.name}
-                        description={element.description}
-                        category={element.category}
-                        state={element.state}
-                        price={element.price}
-                        color="blue"
-                    />
+                    <div key={element.id}>
+                        <Element
+                            image_url={element.image_url}
+                            id={element.id}
+                            stock={element.stock}
+                            key={element.atomic_number}
+                            atomic_number={element.atomic_number}
+                            atomic_mass={element.atomic_mass}
+                            symbol={element.symbol}
+                            name={element.name}
+                            description={element.description}
+                            category={element.category}
+                            state={element.state}
+                            price={element.price}
+                            color="blue"
+                        />
+                    </div>
                 ))}
             </div>
         </div>

@@ -12,19 +12,17 @@ interface ProductPageProps {
 }
 
 export default function ProductPage() {
-  const params = useParams(); // Usa o hook useParams para acessar os parâmetros da rota
-  const name = params?.name; // Obtém o nome do parâmetro da URL
+  const params = useParams();
+  const name = params?.name;
   const [elementData, setElementData] = useState<ElementType | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
 
-  const { addToCart } = useCart(); //Função para adicionar ao carrinho usando o provider do Card
+  const { addToCart } = useCart();
 
-  // Ajusta a quantidade
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
-  // Carrega o elemento com base no nome da URL
   useEffect(() => {
     const loadElement = async () => {
       try {
@@ -55,6 +53,17 @@ export default function ProductPage() {
       {/* Coluna da imagem */}
       <div className="lg:w-1/2 flex justify-center items-center">
         <div className="bg-gray-200 w-full lg:w-[80%] aspect-square rounded-2xl relative">
+          {elementData.image_url ? (
+            <img
+              src={elementData.image_url}
+              alt={elementData.name}
+              className="w-full h-full object-cover rounded-2xl"
+            />
+          ) : (
+            <div className="flex items-center justify-center w-full h-full text-gray-500">
+              No Image Available
+            </div>
+          )}
           <div className="px-3 bg-primary-blue w-fit rounded-xl text-white text-lg absolute right-2 top-2">
             {elementData.symbol}
           </div>

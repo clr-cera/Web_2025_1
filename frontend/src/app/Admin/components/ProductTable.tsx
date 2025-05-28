@@ -142,6 +142,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             const symbol = formData.get("symbol") as string;
             const name = formData.get("name") as string;
             const state = formData.get("state") as string;
+            const image_url = formData.get("image_url") as string; // URL da imagem
 
             // Validações extras para evitar valores absurdos
             if (atomic_number < 1 || atomic_number > 118) {
@@ -186,6 +187,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                 stock,
                 row,
                 column,
+                image_url, // Adiciona a URL da imagem
               };
 
               await createElement(newProduct);
@@ -207,6 +209,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
             { name: "state", label: "State", type: "text", placeholder: "e.g. Solid" },
             { name: "price", label: "Price ($)", type: "number", step: "0.01", placeholder: "e.g. 0.05" },
             { name: "stock", label: "Stock", type: "number", placeholder: "e.g. 100" },
+            { name: "image_url", label: "Image URL", type: "text", placeholder: "e.g. https://example.com/image.jpg" }, // Campo para URL da imagem
           ].map(({ name, label, type, ...rest }) => (
             <div key={name} className="flex flex-col gap-1">
               <label className="text-text-gray-darker">{label}</label>
@@ -286,6 +289,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
               const symbol = formData.get("symbol") as string;
               const name = formData.get("name") as string;
               const state = formData.get("state") as string;
+              const image_url = formData.get("image_url") as string; // URL da imagem
 
               // Validações extras para evitar valores absurdos
               if (atomic_number < 1 || atomic_number > 118) {
@@ -296,7 +300,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                 toast.error("Atomic Mass must be a positive number and under 300.");
                 return;
               }
-              if (!symbol || symbol.trim().length === 0 || symbol.length > 3 ) {
+              if (!symbol || symbol.trim().length === 0 || symbol.length > 3) {
                 toast.error("Please provide a valid chemical symbol (1-3 characters).");
                 return;
               }
@@ -330,6 +334,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                   state: formData.get("state") as string,
                   row,
                   column,
+                  image_url, // Adiciona a URL da imagem
                 };
 
                 await updateElement(selectedProduct.id, updatedProduct);
@@ -344,21 +349,22 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
           >
             {/* Campos de edição (mesma estrutura do cadastro, com defaultValue) */}
             {[
-              { name: "atomic_number", label: "Atomic Number", readOnly: true },
-              { name: "name", label: "Name" },
-              { name: "price", label: "Price", type: "number", step: "0.01" },
-              { name: "stock", label: "Stock", type: "number" },
-              { name: "atomic_mass", label: "Atomic Mass", type: "number", step: "0.001" },
-              { name: "symbol", label: "Symbol" },
-              { name: "description", label: "Description", type: "textarea" },
-              { name: "state", label: "State" },
-            ].map(({ name, label, type = "text", readOnly = false, step }) => (
+              { name: "atomic_number", label: "Atomic Number", readOnly: true, defaultValue: selectedProduct.atomic_number },
+              { name: "name", label: "Name", defaultValue: selectedProduct.name },
+              { name: "price", label: "Price", type: "number", step: "0.01", defaultValue: selectedProduct.price },
+              { name: "stock", label: "Stock", type: "number", defaultValue: selectedProduct.stock },
+              { name: "atomic_mass", label: "Atomic Mass", type: "number", step: "0.001", defaultValue: selectedProduct.atomic_mass },
+              { name: "symbol", label: "Symbol", defaultValue: selectedProduct.symbol },
+              { name: "description", label: "Description", type: "textarea", defaultValue: selectedProduct.description },
+              { name: "state", label: "State", defaultValue: selectedProduct.state },
+              { name: "image_url", label: "Image URL", type: "text", defaultValue: selectedProduct.image_url }, // Campo para URL da imagem
+            ].map(({ name, label, type = "text", readOnly = false, step, defaultValue }) => (
               <div key={name} className="flex flex-col gap-1">
                 <label className="text-text-gray-darker">{label}</label>
                 {type === "textarea" ? (
                   <textarea
                     name={name}
-                    defaultValue={(selectedProduct as any)[name]}
+                    defaultValue={defaultValue}
                     className="border px-3 py-2 rounded border-border-gray resize-none"
                     rows={3}
                   />
@@ -366,7 +372,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                   <input
                     name={name}
                     type={type}
-                    defaultValue={(selectedProduct as any)[name]}
+                    defaultValue={defaultValue}
                     className="border px-3 py-2 rounded border-border-gray"
                     readOnly={readOnly}
                     step={step}
