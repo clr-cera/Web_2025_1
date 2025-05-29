@@ -426,6 +426,21 @@
       "stock": 0,
       "row": 4,
       "column": 13
+    },
+    {
+      "id": "d029",
+      "atomic_number": 55,
+      "atomic_mass": 55,
+      "symbol": "55",
+      "name": "12345678902",
+      "description": "55",
+      "category": "Metals",
+      "state": "Solid",
+      "price": 55,
+      "stock": 55,
+      "row": 4,
+      "column": 10,
+      "image_url": ""
     }
   ],
   "users": [

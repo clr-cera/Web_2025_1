@@ -157,8 +157,8 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
               toast.error("Please provide a valid chemical symbol (1-3 characters).");
               return;
             }
-            if (!name || name.trim().length === 0 || name.length > 25) {
-              toast.error("Please provide a valid name (1-25 characters).");
+            if (!name || name.trim().length === 0 || name.length > 12) {
+              toast.error("Please provide a valid name (1-12 characters).");
               return;
             }
             if (price <= 0 || price > 100000) {
@@ -304,8 +304,8 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                 toast.error("Please provide a valid chemical symbol (1-3 characters).");
                 return;
               }
-              if (!name || name.trim().length === 0 || name.length > 25) {
-                toast.error("Please provide a valid name (1-25 characters).");
+              if (!name || name.trim().length === 0 || name.length > 12) {
+                toast.error("Please provide a valid name (1-12 characters).");
                 return;
               }
               if (price <= 0 || price > 100000) {
