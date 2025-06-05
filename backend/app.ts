@@ -5,7 +5,7 @@ import usersRouter from './routes/users';
 import elementsRouter from './routes/elements';
 import session from 'express-session';
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 const app = express();
 

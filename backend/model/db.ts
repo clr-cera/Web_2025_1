@@ -5,15 +5,25 @@ const connectionString: string = process.env.MONGO_CONNECTION_STRING || 'mongodb
 mongoose.connect(connectionString)
 
 const UserSchema = new mongoose.Schema({
-  name: {
+  email: {
     type: String,
+    required: true,
     index: true,
     unique: true,
   },
-  email: String,
-  password: String,
-  role: String,
+  name: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
 
+  role: {
+    type: String,
+    required: true,
+  }
 })
 const User = mongoose.model('User', UserSchema);
 
