@@ -2,6 +2,7 @@ import express from 'express'
 import logger from 'morgan';
 import pingRouter from './routes/ping';
 import usersRouter from './routes/users';
+import elementsRouter from './routes/elements';
 import session from 'express-session';
 
 const port = process.env.PORT || 3000;
@@ -13,6 +14,7 @@ app.use(logger('dev'));
 
 app.use('/', pingRouter);
 app.use('/users', usersRouter);
+app.use('/elements', elementsRouter);
 
 app.use(session({
   resave: false, // don't save session if unmodified
