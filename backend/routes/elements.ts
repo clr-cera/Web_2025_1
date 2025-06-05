@@ -1,6 +1,6 @@
 import express from 'express'
-import { ElementService } from '../services/elements';
-import { authMiddleware, adminMiddleware } from './middleware';
+import { ElementService } from '../services/elements.ts';
+import { authMiddleware, adminMiddleware } from './middleware.ts';
 
 var router = express.Router();
 

@@ -1,4 +1,4 @@
-import { UserRepository } from '../repository/users';
+import { UserRepository } from '../repository/users.ts';
 import { VerifyPassword } from '../repository/hash.ts';
 import { createJwtToken } from '../repository/jwt.ts'
 class UserService {

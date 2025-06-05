@@ -1,4 +1,4 @@
-import { ElementRepository } from "../repository/elements";
+import { ElementRepository } from "../repository/elements.ts";
 
 class ElementService {
   static async getAllElements() {

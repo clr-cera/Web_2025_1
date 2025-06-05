@@ -1,8 +1,8 @@
 import express from 'express'
 import logger from 'morgan';
-import pingRouter from './routes/ping';
-import usersRouter from './routes/users';
-import elementsRouter from './routes/elements';
+import pingRouter from './routes/ping.ts';
+import usersRouter from './routes/users.ts';
+import elementsRouter from './routes/elements.ts';
 
 const port = process.env.PORT || 3001;
 

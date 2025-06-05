@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { HashPassword } from '../repository/hash.ts';
 
 const connectionString: string = process.env.MONGO_CONNECTION_STRING || 'mongodb://admin:admin@localhost:27017';
 
@@ -26,6 +27,16 @@ const UserSchema = new mongoose.Schema({
   }
 })
 const User = mongoose.model('User', UserSchema);
+const user = await User.create({
+  email: 'admin@admin.com.br',
+  name: 'admin',
+  password: HashPassword('admin'),
+  role: 'Super Admin'
+})
+
+if (user) {
+  console.log('Super Admin user created successfully');
+}
 
 const ElementSchema = new mongoose.Schema({
   atomic_number: Number,
