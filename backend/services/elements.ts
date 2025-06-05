@@ -10,6 +10,9 @@ class ElementService {
   static async getElementByName(name: string) {
     return await ElementRepository.getElementByName(name);
   }
+  static async getElementById(id: string) {
+    return await ElementRepository.getElementById(id);
+  }
   static async createElement(elementData: any) {
     return await ElementRepository.createElement(elementData);
   }
@@ -18,6 +21,17 @@ class ElementService {
   }
   static async deleteElementById(id: string) {
     return await ElementRepository.deleteElementById(id);
+  }
+  static async patchElementStock(id: string, updatedStock: number) {
+    const element = await ElementRepository.getElementById(id);
+    if (!element) {
+      throw new Error("Element not found");
+    }
+    if (updatedStock > element.stock) {
+      throw new Error("Insufficient stock");
+    }
+
+    return await ElementRepository.updateElementStock(id, updatedStock);
   }
 }
 

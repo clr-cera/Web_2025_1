@@ -36,7 +36,11 @@ const ElementSchema = new mongoose.Schema({
   category: String, // Ex: "Metals", "Non-Metals", "Noble Gases"
   state: String, // Ex: "Solid", "Gas"
   price: Number,
-  stock: Number,
+  stock: {
+    type: Number,
+    min: 0,
+    required: true,
+  },
   row: Number, // Posição na tabela periódica (linha)
   column: Number, // Posição na tabela periódica (coluna)
   image_url: String, // Link para a imagem do elemento

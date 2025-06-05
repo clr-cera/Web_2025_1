@@ -10,6 +10,9 @@ class ElementRepository {
   static async getElementByName(name: string) {
     return await Element.findOne({ name: name })
   }
+  static async getElementById(id: string) {
+    return await Element.findOne({ _id: id })
+  }
   static async createElement(elementData: any) {
     return await Element.create(elementData)
   }
@@ -18,6 +21,9 @@ class ElementRepository {
   }
   static async deleteElementById(id: string) {
     return await Element.deleteOne({ _id: id })
+  }
+  static async updateElementStock(id: string, stock: number) {
+    return await Element.updateOne({ _id: id }, { stock: stock })
   }
 }
 
