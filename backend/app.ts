@@ -3,7 +3,6 @@ import logger from 'morgan';
 import pingRouter from './routes/ping';
 import usersRouter from './routes/users';
 import elementsRouter from './routes/elements';
-import session from 'express-session';
 
 const port = process.env.PORT || 3001;
 
@@ -16,12 +15,6 @@ app.use('/', pingRouter);
 app.use('/users', usersRouter);
 app.use('/elements', elementsRouter);
 
-app.use(session({
-  resave: false, // don't save session if unmodified
-  saveUninitialized: false, // don't create session until something stored
-  secret: process.env.SESSION_SECRET || "I love cats",
-  cookie: { secure: false }
-}))
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

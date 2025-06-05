@@ -12,16 +12,7 @@ const options = {
 function createJwtToken(email: string): string {
   return jwt.sign({ email: email }, secret, options);
 }
-function verifyJwtToken(token: string): boolean {
-  try {
-    jwt.verify(token, secret);
-    return true;
-  } catch (err) {
-    return false;
-  }
-}
-
-function getEmailFromToken(token: string): string | null {
+function verifyJwtToken(token: string): string | null {
   try {
     const { email } = jwt.verify(token, secret) as JwtPayload;
     return email
@@ -30,4 +21,5 @@ function getEmailFromToken(token: string): string | null {
   }
 }
 
-export { createJwtToken, verifyJwtToken, getEmailFromToken };
+
+export { createJwtToken, verifyJwtToken };

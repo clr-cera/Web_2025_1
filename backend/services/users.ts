@@ -33,6 +33,21 @@ class UserService {
       return token;
     }
   }
+
+  static async isAdmin(email: string) {
+    const user = await UserRepository.GetUserByEmail(email);
+    if (!user) {
+      return false;
+    }
+    return user.role == "Admin" || user.role == "Super Admin";
+  }
+  static async isSuperAdmin(email: string) {
+    const user = await UserRepository.GetUserByEmail(email);
+    if (!user) {
+      return false;
+    }
+    return user.role == "Super Admin";
+  }
 }
 
 
