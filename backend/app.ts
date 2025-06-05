@@ -1,7 +1,7 @@
 import express from 'express'
 import logger from 'morgan';
-import pingRouter from './routes/ping.mjs';
-import usersRouter from './routes/users.mjs';
+import pingRouter from './routes/ping';
+import usersRouter from './routes/users';
 import session from 'express-session';
 
 const port = process.env.PORT || 3000;

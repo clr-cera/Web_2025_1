@@ -3,20 +3,29 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./app.mts",
+    "start": "node ./app.ts",
     "dbstart": "docker compose -f './db_docker/mongo.yml' up -d",
     "dbstop": "docker compose -f './db_docker/mongo.yml' down",
     "dbaccess": "mongosh  --username admin --password admin"
   },
   "dependencies": {
+    "@types/express": "^5.0.2",
+    "@types/express-session": "^1.18.1",
+    "@types/morgan": "^1.9.9",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "es-promise": "^1.0.3",
+    "esrun": "^3.2.26",
     "express": "~4.16.1",
     "express-session": "^1.18.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "mongodb": "^6.16.0",
+    "mongoose": "^8.15.1",
     "morgan": "~1.9.1",
     "pbkdf2-password": "^1.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.29"
   }
 }
