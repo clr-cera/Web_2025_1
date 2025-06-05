@@ -1,5 +1,5 @@
 import { User } from '../model/db.ts';
-import { VerifyPassword, HashPassword } from './hash.ts';
+import { HashPassword } from './hash.ts';
 
 class UserRepository {
   static async GetAllUsers() {

@@ -52,5 +52,18 @@ router.delete('/:email', async (req, res, _) => {
   res.send({ message: "Usuário deletado com sucesso" });
 })
 
+router.post('/login', async (req, res, _) => {
+  const { email, password } = req.body;
+  try {
+    const token = UserService.loginUser(email, password)
+    if (token === null) {
+      res.status(401).send({ error: "Email ou senha inválidos" });
+    }
+    res.json({ auth: true, token: token });
+  } catch (error) {
+    res.status(401).send({ error: "Email ou senha inválidos" });
+  }
+})
+
 
 export default router;
