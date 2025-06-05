@@ -1,4 +1,5 @@
 import { User } from '../model/db.ts';
+import { VerifyPassword, HashPassword } from './hash.ts';
 
 class UserRepository {
   static async GetAllUsers() {
@@ -21,9 +22,11 @@ class UserRepository {
   }
 
   static async UpdateUserByEmail(email: string, updateData: any) {
+    updateData.password = HashPassword(updateData.password);
     return await User.updateOne({ email: email }, updateData)
   }
   static async CreateUser(userData: any) {
+    userData.password = HashPassword(userData.password);
     return await User.create(userData)
   }
 }

@@ -13,6 +13,7 @@
     "@types/express-session": "^1.18.1",
     "@types/morgan": "^1.9.9",
     "cookie-parser": "~1.4.4",
+    "crypto": "^1.0.1",
     "debug": "~2.6.9",
     "es-promise": "^1.0.3",
     "esrun": "^3.2.26",
