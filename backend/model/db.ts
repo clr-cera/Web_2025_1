@@ -27,15 +27,17 @@ const UserSchema = new mongoose.Schema({
   }
 })
 const User = mongoose.model('User', UserSchema);
-const user = await User.create({
-  email: 'admin@admin.com.br',
-  name: 'admin',
-  password: HashPassword('admin'),
-  role: 'Super Admin'
-})
+try {
+  await User.create({
+    email: 'admin@admin.com.br',
+    name: 'admin',
+    password: HashPassword('admin'),
+    role: 'Super Admin'
+  })
 
-if (user) {
   console.log('Super Admin user created successfully');
+} catch (error) {
+
 }
 
 const ElementSchema = new mongoose.Schema({

@@ -13,6 +13,7 @@ router.get(
   async (_, res, __) => {
     const users = await UserService.getUsers();
     res.send(users)
+    return
   });
 
 // Only Super Admins can use
@@ -24,6 +25,7 @@ router.get(
   async (_, res, __) => {
     const admins = await UserService.getAdmins();
     res.send(admins);
+    return
   });
 
 // Only Super Admins can use
@@ -36,8 +38,10 @@ router.get(
     const user = await UserService.getUserByEmail(req.params.email);
     if (!user) {
       res.status(404).send({ error: "Usuário não encontrado" })
+      return
     }
     res.send(user);
+    return
   })
 
 // Only Super Admins can use
@@ -50,8 +54,10 @@ router.post(
     const user = await UserService.createUser(req.body)
     if (!user) {
       res.status(404).send({ error: 'Erro ao criar usuário, já existe uma conta com este email' });
+      return
     }
     res.send({ message: "Usuário criado com sucesso", body: user });
+    return
   })
 
 // Create user
@@ -61,8 +67,10 @@ router.post('/register',
     const user = await UserService.createUser(req.body)
     if (!user) {
       res.status(404).send({ error: 'Erro ao criar usuário, já existe uma conta com este email' });
+      return
     }
     res.send({ message: "Usuário criado com sucesso", body: user });
+    return
   })
 
 // Only Super Admins can use
@@ -73,10 +81,16 @@ router.put(
   superAdminMiddleware,
   async (req, res, _) => {
     const updateData = await UserService.updateUserByEmail(req.params.email, req.body);
-    if (updateData.matchedCount === 0) {
+    if (updateData === null) {
+      res.status(404).send({ error: "Erro ao atualizar usuário, já existe uma conta com este email" });
+      return
+    }
+    else if (updateData.matchedCount === 0) {
       res.status(404).send({ error: "Usuário não encontrado" });
+      return
     }
     res.send({ message: "Usuário atualizado com sucesso" });
+    return
   })
 
 // Only Super Admins can use
@@ -88,27 +102,40 @@ router.delete(
   async (req, res, _) => {
     if (req.params.email === res.locals.email) {
       res.status(403).send({ error: "Você não pode deletar sua própria conta" });
+      return
     }
     const deleteData = await UserService.deleteUserByEmail(req.params.email);
     if (deleteData.deletedCount === 0) {
       res.status(404).send({ error: "Usuário não encontrado" });
+      return
     }
     res.send({ message: "Usuário deletado com sucesso" });
+    return
   })
 
 // Login user and send token
 router.post(
   '/login',
   async (req, res, _) => {
-    const { email, password } = req.body;
     try {
-      const token = UserService.loginUser(email, password)
-      if (token === null) {
+      const { email, password } = req.body;
+      console.log("Login attempt for email:", email);
+      try {
+        const token = await UserService.loginUser(email, password)
+        if (token === null) {
+          res.status(401).send({ error: "Email ou senha inválidos" });
+          return
+        }
+        console.log("Login with token:", token)
+        res.json({ auth: true, token: token });
+        return
+      } catch (error) {
         res.status(401).send({ error: "Email ou senha inválidos" });
+        return
       }
-      res.json({ auth: true, token: token });
     } catch (error) {
-      res.status(401).send({ error: "Email ou senha inválidos" });
+      res.status(400).send({ error: "Payload falta email e/ou senha" });
+      return
     }
   })
 

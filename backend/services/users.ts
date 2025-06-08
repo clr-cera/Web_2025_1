@@ -12,13 +12,21 @@ class UserService {
     return await UserRepository.GetUserByEmail(email)
   }
   static async createUser(userData: any) {
-    return await UserRepository.CreateUser(userData);
+    try {
+      return await UserRepository.CreateUser(userData);
+    } catch (error) {
+      return null; // User already exists
+    }
   }
   static async deleteUserByEmail(email: string) {
     return await UserRepository.DeleteUserByEmail(email)
   }
   static async updateUserByEmail(email: string, updateData: any) {
-    return await UserRepository.UpdateUserByEmail(email, updateData);
+    try {
+      return await UserRepository.UpdateUserByEmail(email, updateData);
+    } catch (error) {
+      return null; // Email already exists in database
+    }
   }
   static async loginUser(email: string, password: string) {
     const user = await UserRepository.GetUserByEmail(email);
