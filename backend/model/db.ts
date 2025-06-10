@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { HashPassword } from '../repository/hash.ts';
 
-const connectionString: string = process.env.MONGO_CONNECTION_STRING || 'mongodb://admin:admin@localhost:27017';
+const connectionString: string = process.env.MONGO_CONNECTION_STRING || 'mongodb+srv://admin:admin@elementstore.8njphnl.mongodb.net/?retryWrites=true&w=majority&appName=elementStore';
 
 mongoose.connect(connectionString)
 
