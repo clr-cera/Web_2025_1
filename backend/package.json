@@ -4,9 +4,6 @@
   "private": true,
   "scripts": {
     "start": "node ./app.ts",
-    "dbstart": "docker compose -f './db_docker/mongo.yml' up -d",
-    "dbstop": "docker compose -f './db_docker/mongo.yml' down",
-    "dbaccess": "mongosh  --username admin --password admin"
   },
   "dependencies": {
     "@types/express": "^5.0.2",
