@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   }
-})
+}, { strict: true });
 const User = mongoose.model('User', UserSchema);
 try {
   await User.create({
@@ -46,8 +46,14 @@ const ElementSchema = new mongoose.Schema({
   symbol: String,
   name: String,
   description: String,
-  category: String, // Ex: "Metals", "Non-Metals", "Noble Gases"
-  state: String, // Ex: "Solid", "Gas"
+  category: {
+    type: String,
+    enum: ['Metals', 'Non-Metals', 'Noble Gases'],
+  },
+  state: {
+    type: String,
+    enum: ['Solid', 'Liquid', 'Gas'],
+  }, // Ex: "Solid", "Gas"
   price: Number,
   stock: {
     type: Number,
@@ -57,7 +63,9 @@ const ElementSchema = new mongoose.Schema({
   row: Number, // Posição na tabela periódica (linha)
   column: Number, // Posição na tabela periódica (coluna)
   image_url: String, // Link para a imagem do elemento
-})
+}, { strict: true });
+
+ElementSchema.index({ row: 1, column: 1 }, { unique: true });
 
 const Element = mongoose.model('Element', ElementSchema);
 
