@@ -41,27 +41,51 @@ try {
 }
 
 const ElementSchema = new mongoose.Schema({
-  atomic_number: Number,
-  atomic_mass: Number,
-  symbol: String,
-  name: String,
+  atomic_number: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
+  atomic_mass: {
+    type: Number,
+    required: true,
+  },
+  symbol: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
   description: String,
   category: {
     type: String,
     enum: ['Metals', 'Non-Metals', 'Noble Gases'],
+    required: true,
   },
   state: {
     type: String,
     enum: ['Solid', 'Liquid', 'Gas'],
-  }, // Ex: "Solid", "Gas"
-  price: Number,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
   stock: {
     type: Number,
     min: 0,
     required: true,
   },
-  row: Number, // Posição na tabela periódica (linha)
-  column: Number, // Posição na tabela periódica (coluna)
+  row: {
+    type: Number,
+    required: true,
+  }, // Posição na tabela periódica (linha)
+  column: {
+    type: Number,
+    required: true,
+  }, // Posição na tabela periódica (coluna)
   image_url: String, // Link para a imagem do elemento
 }, { strict: true });
 
