@@ -127,7 +127,9 @@ router.post(
           return
         }
         console.log("Login with token:", token)
-        res.json({ auth: true, token: token });
+
+        const user = await UserService.getUserByEmail(email);
+        res.json({ auth: true, token: token, user: user });
         return
       } catch (error) {
         res.status(401).send({ error: "Email ou senha inválidos" });

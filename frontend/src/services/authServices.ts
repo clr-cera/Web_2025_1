@@ -16,11 +16,23 @@ const API_BASE_URL = "http://localhost:3001";
  */
 export async function login(email: string, password: string): Promise<AuthUser | null> {
   try {
-    const res = await fetch(`${API_BASE_URL}/users?email=${email}&password=${password}`);
+    const res = await fetch(API_BASE_URL + "/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      })
+    });
     if (!res.ok) throw new Error("Erro ao conectar ao servidor");
 
-    const users = await res.json();
-    return users.length > 0 ? users[0] : null; // retorna o primeiro usuário encontrado (email único)
+    const body = await res.json()
+
+    const user = body.user as AuthUser;
+    const token = body.token;
+    localStorage.setItem("token", token); // Armazena o token no localStorage
+
+    return user;
   } catch (err) {
     console.error("Erro no login:", err);
     return null;
@@ -32,7 +44,7 @@ export async function login(email: string, password: string): Promise<AuthUser |
  * Cria um novo usuário com a role padrão "Customer"
  */
 export async function register(name: string, email: string, password: string) {
-  const res = await fetch(API_BASE_URL + "/users", {
+  const res = await fetch(API_BASE_URL + "/users/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

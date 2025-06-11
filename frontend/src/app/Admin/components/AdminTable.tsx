@@ -93,7 +93,7 @@ export const AdminsTable: React.FC<AdminsTableProps> = ({ data = [] }) => {
                     onClick={async () => {
                       if (confirm("Tem certeza que deseja deletar este admin?")) {
                         try {
-                          await deleteUser(admin.id);
+                          await deleteUser(admin.email);
                           location.reload(); // Idealmente substituir por atualização via estado
                         } catch (err) {
                           console.error("Erro ao deletar admin:", err);
@@ -190,7 +190,7 @@ export const AdminsTable: React.FC<AdminsTableProps> = ({ data = [] }) => {
 
               try {
                 if (selectedAdmin) {
-                  await updateUser(selectedAdmin.id, { name, email, role });
+                  await updateUser(selectedAdmin.email, { name, email, role });
                   setIsEditModalOpen(false);
                   setSelectedAdmin(null);
                   location.reload();

@@ -14,7 +14,11 @@ const API_URL = "http://localhost:3001";
  * Busca todos os usuários da API
  */
 export async function fetchUsers(): Promise<User[]> {
-  const res = await fetch(`${API_URL}/users`);
+  const res = await fetch(`${API_URL}/users`, {
+    headers: {
+      "Authorization": localStorage.getItem("token") || ""
+    },
+  });
 
   if (!res.ok) {
     throw new Error("Erro ao buscar usuários");
@@ -35,7 +39,10 @@ export async function createUser(data: Omit<User, "id">): Promise<User> {
 
   const res = await fetch(API_URL + "/users", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem("token") || ""
+    },
     body: JSON.stringify(data),
   });
 
@@ -48,10 +55,13 @@ export async function createUser(data: Omit<User, "id">): Promise<User> {
  * @param id - ID do usuário a ser atualizado
  * @param data - Dados parciais para atualização
  */
-export async function updateUser(id: number, data: Partial<User>): Promise<User> {
-  const res = await fetch(`${API_URL}/users/${id}`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+export async function updateUser(email: string, data: Partial<User>): Promise<User> {
+  const res = await fetch(`${API_URL}/users/${email}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem("token") || ""
+    },
     body: JSON.stringify(data),
   });
 
@@ -62,8 +72,11 @@ export async function updateUser(id: number, data: Partial<User>): Promise<User>
 /**
  * Deleta um usuário pelo ID
  */
-export async function deleteUser(id: number): Promise<void> {
-  const res = await fetch(`${API_URL}/users/${id}`, {
+export async function deleteUser(email: string): Promise<void> {
+  const res = await fetch(`${API_URL}/users/${email}`, {
+    headers: {
+      "Authorization": localStorage.getItem("token") || ""
+    },
     method: "DELETE",
   });
 

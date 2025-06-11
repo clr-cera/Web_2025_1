@@ -29,7 +29,7 @@ class UserService {
     }
   }
   static async loginUser(email: string, password: string) {
-    const user = await UserRepository.GetUserByEmail(email);
+    const user = await UserRepository.GetUserByEmailWithPassword(email);
     if (!user) {
       throw new Error('User not found');
     }

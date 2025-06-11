@@ -3,7 +3,7 @@ import { HashPassword } from './hash.ts';
 
 class UserRepository {
   static async GetAllUsers() {
-    return await User.find();
+    return await User.find().select('-password'); // Exclude password from the result
   }
   static async GetAdminUsers() {
     return await User.find({
@@ -11,10 +11,14 @@ class UserRepository {
         { 'role': 'Admin' },
         { 'role': 'Super Admin' },
       ]
-    });
+    }).select('-password'); // Exclude password from the result
   }
   static async GetUserByEmail(email: string) {
-    return await User.findOne({ email: email });
+    return await User.findOne({ email: email }).select('-password'); // Exclude password from the result
+  }
+
+  static async GetUserByEmailWithPassword(email: string) {
+    return await User.findOne({ email: email })
   }
 
   static async DeleteUserByEmail(email: string) {
@@ -27,7 +31,9 @@ class UserRepository {
   }
   static async CreateUser(userData: any) {
     userData.password = HashPassword(userData.password);
-    return await User.create(userData)
+    const user = await User.create(userData)
+    user.password = ""; // Exclude password from the returned user object
+    return user
   }
 }
 export { UserRepository }

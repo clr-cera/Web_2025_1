@@ -17,12 +17,14 @@ async function authMiddleware(req: any, res: any, next: any) {
 async function adminMiddleware(req: any, res: any, next: any) {
   if (!await UserService.isAdmin(res.locals.email)) {
     res.status(403).send({ error: "Acesso negado, apenas administradores podem acessar esta rota" });
+    return
   }
   next();
 }
 async function superAdminMiddleware(req: any, res: any, next: any) {
   if (!await UserService.isSuperAdmin(res.locals.email)) {
     res.status(403).send({ error: "Acesso negado, apenas administradores podem acessar esta rota" });
+    return
   }
   next();
 }

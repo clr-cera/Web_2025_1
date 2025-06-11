@@ -32,7 +32,6 @@ export default function ProductPage() {
         if (!element) return notFound();
         setElementData(element);
       } catch (err) {
-        console.error("Erro ao carregar elemento:", err);
         notFound();
       } finally {
         setLoading(false);
