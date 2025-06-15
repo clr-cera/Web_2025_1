@@ -15,7 +15,7 @@ export default function CartItemCard({ item }: CartItemCardProps) {
 
   return (
     <div className="text-black flex justify-between w-full py-4 border-b border-border-gray">
-      
+
       {/* Área com o símbolo e nome do elemento */}
       <div className="flex gap-4 items-center">
         {/* Ícone com o símbolo do elemento */}

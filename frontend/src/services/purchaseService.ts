@@ -13,6 +13,7 @@ export const finalizePurchaseService = async (cartItems: CartItem[]) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": localStorage.getItem("token") || "",
       },
       body: JSON.stringify({ stock: updatedStock }),
     });

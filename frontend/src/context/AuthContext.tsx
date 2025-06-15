@@ -49,6 +49,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   // Função para deslogar o usuário, limpar o carrinho e redirecionar
   const logout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("token"); // Remove o token de autenticação
     setUser(null);
     clearCart(); // Remove todos os itens do carrinho
     router.push("/"); // Redireciona para a home

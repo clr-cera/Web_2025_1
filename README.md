@@ -74,7 +74,8 @@ Diagrama de navegação entre as páginas:
 
 
 ## Comentários do Código
-Para o desenvolvimento, utilizamos o framework Next que trabalha sobre o React. A maior parte dos comentários sobre o código estão dentro do código em si. A seguir, temos uma árvore de todos os arquivos do código (dentro da página src), comentando a funcionalidade do arquivo.
+**Frontend:**
+Para o desenvolvimento do Frontend, utilizamos o framework Next que trabalha sobre o React. A maior parte dos comentários sobre o código estão dentro do código em si. A seguir, temos uma árvore de todos os arquivos do frontend (dentro da página src), comentando a funcionalidade do arquivo.
 ```
 ├── app                             # Páginas do Next.js
 │   ├── About/                      # Página de about
@@ -118,26 +119,42 @@ Para o desenvolvimento, utilizamos o framework Next que trabalha sobre o React. 
 └── styles/                         # css global
 ```
 
-## Plano de Teste
+**Backend:**
+Para o desenvolvimento do Backend, utilizamos o framework Mongoose para interagir com a base de dados MongoDB. A maior parte dos comentários sobre o código estão dentro do código em si. A seguir, temos uma árvore de todos os arquivos do backend (dentro da página src), comentando a funcionalidade do arquivo.
+
+//FAZER A ARVORE AQUI
+
+
+## Build Procedures
 Como rodar o projeto para testar:
 
 1. **Clone o repositório:**
 
-2. **Instale as dependências:**
+2. **Na pasta /backend:**
+
+Instale as dependências:
 
 ```bash
 npm install
 ```
 
-3. **Inicie o servidor JSON (API mock):**
+Execute o backend e deixe o terminal rodando:
 
 ```bash
-npx json-server --watch db.json --port 3001
+npm run start
 ```
 
-O servidor json estará disponivel em `http://localhost:3001`
+O servidor backend estará disponível em `http://localhost:3001` ou na porta apresentada no terminal
 
-4. **Inicie o servidor Next.js:**
+3. **Na pasta /frontend:**
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Execute o frontend e deixe o terminal rodando:
 
 ```bash
 npm run dev
@@ -145,9 +162,15 @@ npm run dev
 
 O projeto estará disponível em `http://localhost:3000` ou na porta apresentada no terminal
 
+AVISO: Como o projeto está sendo executado em modo desenvolvedor, as telas são compiladas quando abertas pela primeira vez, portanto o tempo de transição vai ser alto na primeira vez que acessar uma tela. Note que isso não é um problema, pois em um cenário real o site seria todo compilado antes de ser disponibilizado publicamente, o que automaticamente elimina esse problema.
+
 **Login de Administrador**
 
-Para acessar o painel admin, voce pode usar uma conta com `admin@admin` com senha `12345` ou qualquer outra conta disponivel diretamente no `db.json` ou via painel de admin.
+Para acessar o painel admin, voce pode usar uma conta com `admin@admin.com` com senha `12345` ou qualquer outra conta disponivel via painel de admin.
+
+## Plano de Teste
+
+Para a milestone 3, realizamos todos os testes feitos no frontend novamente. Dessa forma garantindo que a integração com o banco de dados não causou problemas na integridade do frontend. Além disso, foram criadas diversas requisições usando postman e insomnia e enviadas ao backend para garantir que ele trata qualquer tipo de informação diferente. Enviamos tanto requisições com dados válidos tanto com dados inválidos, para ficar claro de que o backend trata dados inválidos corretamente e não compromete o banco de dados.
 
 ## Resultados dos testes
 Produtos foram criados, removidos, atualizados e lidos com sucesso. 
@@ -156,16 +179,20 @@ Usuários foram criados, removidos, atualizados e lidos com sucesso.
 
 Foi tentado posicionar elementos em posições absurdas da tabela periódica e isso não quebrou a página. 
 
-Foi tentado criar elementos com nomes imensos e isso causou problemas no design que foram remediados. 
-
 Foi tentado logar com a senha incorreta em usuários e admins e ocorreu o resultado esperado (logar apenas com a senha correta).
 
-## Problemas
-Percebemos que a Barra de navegação é uma ótima ferramenta para adicionar a possibilidade de troca rápida entre páginas distintas do website, entretanto essa alta taxa de conecção entre as taxas dificultou a produção de um diagrama de navegação, pois tradicionalmente cada nó é uma página e as arestas é o link entre elas. Isso foi resolvido tornando a NavBar (Barra de navegação) um nó no diagrama de navegação, o que foge da regra de apenas páginas serem nós, mas facilita a produção do diagrama e a compreensão de quem o visualiza.
+As requisições com dados inválidos enviadas ao back-end não comprometeram o banco de dados, assim como as requisições válidas foram tratadas corretamente e o back-end foi capaz de ler, inserir, editar e remover entradas do banco de dados.
 
-Sem um back-end, seria muito inconveniente criar uma estrutura para adicionar nossas próprias imagens para representar os elementos. Portanto optamos pelo administrador associar o link de uma imagem na web a um elemento para que essa imagem represente o elemento, sem a possibilidade de fazer o upload de suas próprias imagens.
+## Problemas
+Milestone 1: Percebemos que a Barra de navegação é uma ótima ferramenta para adicionar a possibilidade de troca rápida entre páginas distintas do website, entretanto essa alta taxa de conecção entre as taxas dificultou a produção de um diagrama de navegação, pois tradicionalmente cada nó é uma página e as arestas é o link entre elas. Isso foi resolvido tornando a NavBar (Barra de navegação) um nó no diagrama de navegação, o que foge da regra de apenas páginas serem nós, mas facilita a produção do diagrama e a compreensão de quem o visualiza.
+
+Milestone 2: Sem um back-end, seria muito inconveniente criar uma estrutura para adicionar nossas próprias imagens para representar os elementos. Portanto optamos pelo administrador associar o link de uma imagem na web a um elemento para que essa imagem represente o elemento, sem a possibilidade de fazer o upload de suas próprias imagens.
+
+Milestone 3: Decidimos que guardar imagens no nosso banco de dados seria inconveniente, apesar de estar nos planos originais do projeto. Essa alteração foi muito benéfica tanto para otimizar tempo de desenvolvimento tanto para a interação do usuário com a página. Percebemos que, ao adicionar imagem a um produto, é mais fácil encontrar um link para a imagem necessária do que baixar ela e enviar o arquivo para o site. Apesar de sabermos que isso poderia causar inconsistências no site ao longo dos anos, pois imagens de terceiros podem mudar de endereço.
 
 ## Comentários
-O Mockup das páginas foi produzido na ferramenta Figma.
+Milestone 1: O Mockup das páginas foi produzido na ferramenta Figma.
 
-Parte da validação dos dados foi deixada para a Milestone 3, essa escolha foi estratégica porque no Milestone 3 implementaremos o banco de dados em si e a forma como os dados são salvos no banco podem ajudar na validação. Por exemplo, atualmente o e-mail dos usuários tem diferenciação entre letras maiúsculas e minúsculas, o que não é o comportamento correto para a armazenagem de e-mails. Porém isso será resolvido automaticamente quando implementarmos o banco de dados, tornando desnecessário criar uma solução no momento.
+Milestone 2: Parte da validação dos dados foi deixada para a Milestone 3, essa escolha foi estratégica porque no Milestone 3 implementaremos o banco de dados em si e a forma como os dados são salvos no banco podem ajudar na validação. Por exemplo, atualmente o e-mail dos usuários tem diferenciação entre letras maiúsculas e minúsculas, o que não é o comportamento correto para a armazenagem de e-mails. Porém isso será resolvido automaticamente quando implementarmos o banco de dados, tornando desnecessário criar uma solução no momento.
+
+Milestone 3: Na milestone 3 concluímos o projeto, todas as funcionalidades planejadas foram implementadas, testadas e funcionando.

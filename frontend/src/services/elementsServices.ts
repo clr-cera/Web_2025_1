@@ -26,7 +26,11 @@ export async function fetchAllElements(): Promise<ElementType[]> {
   if (!res.ok) {
     throw new Error("Erro ao buscar elementos");
   }
-  return res.json();
+  let data = await res.json();
+  for (const element of data) {
+    element.id = element._id
+  }
+  return data;
 }
 
 /**
@@ -34,12 +38,16 @@ export async function fetchAllElements(): Promise<ElementType[]> {
  * Se for "All Elements", retorna todos sem filtro.
  */
 export async function fetchElementsByCategory(category: string): Promise<ElementType[]> {
-  const query = category === "All Elements" ? "" : `?category=${encodeURIComponent(category)}`;
+  const query = category === "All Elements" ? "" : '/category/' + category;
   const res = await fetch(`${API_BASE_URL}/elements${query}`);
   if (!res.ok) {
     throw new Error("Erro ao buscar elementos");
   }
-  return res.json();
+  let data = await res.json();
+  for (const element of data) {
+    element.id = element._id
+  }
+  return data;
 }
 
 /**
@@ -47,10 +55,11 @@ export async function fetchElementsByCategory(category: string): Promise<Element
  * Retorna o primeiro encontrado (o nome é considerado único).
  */
 export async function fetchElementByName(name: string): Promise<ElementType | undefined> {
-  const res = await fetch(`${API_BASE_URL}/elements?name=${encodeURIComponent(name)}`);
+  const res = await fetch(`${API_BASE_URL}/elements/name/${name}`);
   if (!res.ok) throw new Error("Erro ao buscar elemento");
-  const data = await res.json();
-  return data[0]; // A busca retorna um array; pegamos o primeiro
+  let data = await res.json();
+  data.id = data._id; // Ajusta o ID para o formato esperado
+  return data; // A busca retorna um array; pegamos o primeiro
 }
 
 /**
@@ -62,7 +71,11 @@ export async function fetchDashboardProducts(): Promise<ElementType[]> {
   if (!res.ok) {
     throw new Error("Erro ao carregar produtos");
   }
-  return res.json();
+  let data = await res.json();
+  for (const element of data) {
+    element.id = element._id
+  }
+  return data;
 }
 
 /**
@@ -72,7 +85,10 @@ export async function fetchDashboardProducts(): Promise<ElementType[]> {
 export async function createElement(data: Omit<ElementType, "id">): Promise<ElementType> {
   const res = await fetch(`${API_BASE_URL}/elements`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem("token") || ""
+    },
     body: JSON.stringify(data),
   });
 
@@ -87,12 +103,19 @@ export async function createElement(data: Omit<ElementType, "id">): Promise<Elem
 export async function updateElement(id: string, data: Partial<ElementType>): Promise<ElementType> {
   const res = await fetch(`${API_BASE_URL}/elements/${id}`, {
     method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem("token") || ""
+    },
     body: JSON.stringify(data),
   });
 
   if (!res.ok) throw new Error("Erro ao atualizar produto");
-  return res.json();
+  let resdata = await res.json();
+  for (const element of resdata) {
+    element.id = element._id
+  }
+  return resdata;
 }
 
 /**
@@ -101,6 +124,9 @@ export async function updateElement(id: string, data: Partial<ElementType>): Pro
 export async function deleteElement(id: string): Promise<void> {
   const res = await fetch(`${API_BASE_URL}/elements/${id}`, {
     method: "DELETE",
+    headers: {
+      "Authorization": localStorage.getItem("token") || ""
+    },
   });
 
   if (!res.ok) throw new Error("Erro ao deletar produto");

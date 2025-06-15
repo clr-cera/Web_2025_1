@@ -126,10 +126,9 @@ export default function ShippingPage() {
             onClick={handleCheckout}
             disabled={cartItems.length === 0}
             className={`mt-6 w-full text-white font-semibold rounded-lg px-4 py-3 transition 
-              ${
-                cartItems.length === 0
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-primary-blue hover:bg-secondary-blue cursor-pointer"
+              ${cartItems.length === 0
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-primary-blue hover:bg-secondary-blue cursor-pointer"
               }`}
           >
             Finalizar Pedido

@@ -53,9 +53,11 @@ export default function Page() {
     const loadData = async () => {
       try {
         const products = await fetchDashboardProducts();
-        const users = await fetchUsers();
+        if (userRole === "Super Admin") {
+          const users = await fetchUsers();
+          setUsersData(users);
+        }
         setProductsData(products);
-        setUsersData(users);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
       } finally {
