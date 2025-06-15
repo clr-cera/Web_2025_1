@@ -65,25 +65,25 @@ O backend é estruturado em vários componentes principais:
 
 ```
 backend/
-├── app.ts \# Ponto de entrada da aplicação, configura o servidor e os middlewares
+├── app.ts # Ponto de entrada da aplicação, configura o servidor e os middlewares
 ├── model/
-│ └── db.ts \# Conexão com o banco de dados Mongoose e definições de Schema
-├── package-lock.json \# Arquivo de lock para as dependências do npm
-├── package.json \# Arquivo JSON para dependências e scripts
-├── bun.lock \# Arquivo de lock para as dependências do bun
+│ └── db.ts # Conexão com o banco de dados Mongoose e definições de Schema
+├── package-lock.json # Arquivo de lock para as dependências do npm
+├── package.json # Arquivo JSON para dependências e scripts
+├── bun.lock # Arquivo de lock para as dependências do bun
 ├── repository/
-│ ├── elements.ts \# Operações de banco de dados para os elementos
-│ ├── hash.ts \# Operações de hashing para as senhas
-│ ├── jwt.ts \# Operações de token para JWT
-│ └── users.ts \# Operações de banco de dados para os usuários
+│ ├── elements.ts # Operações de banco de dados para os elementos
+│ ├── hash.ts # Operações de hashing para as senhas
+│ ├── jwt.ts # Operações de token para JWT
+│ └── users.ts # Operações de banco de dados para os usuários
 ├── routes/
-│ ├── elements.ts \# Manipuladores de requisição para os elementos
-│ ├── middleware.ts \# Middleware para autenticação
-│ ├── ping.ts \# Rota de ping para verificação de saúde do sistema
-│ └── users.ts \# Manipuladores de requisição para os usuários
+│ ├── elements.ts # Manipuladores de requisição para os elementos
+│ ├── middleware.ts # Middleware para autenticação
+│ ├── ping.ts # Rota de ping para verificação de saúde do sistema
+│ └── users.ts # Manipuladores de requisição para os usuários
 └── services/
- ├── elements.ts \# Orquestração da lógica para os elementos
- └── users.ts \# Orquestração da lógica para os usuários
+ ├── elements.ts # Orquestração da lógica para os elementos
+ └── users.ts # Orquestração da lógica para os usuários
 ```
 
 ---
@@ -91,5 +91,5 @@ backend/
 ## **Observações**
 
 - O usuário administrador é criado automaticamente na primeira vez que o backend acessa a base de dados. As credenciais são:
-  - Email: <admin@admin.com.br>
+  - Email: `admin@admin.com.br`
   - Senha: `admin`
