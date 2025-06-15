@@ -1,6 +1,8 @@
 import { User } from '../model/db.ts';
 import { HashPassword } from './hash.ts';
 
+
+// Class to handle database CRUD operations related to users
 class UserRepository {
   static async GetAllUsers() {
     return await User.find().select('-password'); // Exclude password from the result

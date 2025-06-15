@@ -14,6 +14,7 @@ const config = {
   digest: "sha512"
 };
 
+// Function to hash a password using PBKDF2
 function HashPassword(password: string): string {
   const { iterations, hashBytes, digest, saltBytes } = config;
   const salt = randomBytes(saltBytes).toString("hex");
@@ -22,6 +23,7 @@ function HashPassword(password: string): string {
   return [salt, hash].join("$");
 }
 
+// Function to verify a password against a stored hash
 function VerifyPassword(password: string, combined: string): boolean {
   const { iterations, hashBytes, digest } = config;
   const [salt, originalHash] = combined.split("$");

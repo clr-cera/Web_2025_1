@@ -1,5 +1,6 @@
 import { Element } from '../model/db.ts';
 
+// Class to handle database CRUD operations related to elements
 class ElementRepository {
   static async getAllElements() {
     return await Element.find()

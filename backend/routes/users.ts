@@ -45,7 +45,7 @@ router.get(
   })
 
 // Only Super Admins can use
-// Create user
+// Create user with any role
 router.post(
   '/',
   authMiddleware,
@@ -60,7 +60,7 @@ router.post(
     return
   })
 
-// Create user
+// Create customer user
 router.post('/register',
   async (req, res, _) => {
     req.body.role = "Customer"; // Default role for new users

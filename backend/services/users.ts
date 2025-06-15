@@ -1,6 +1,8 @@
 import { UserRepository } from '../repository/users.ts';
 import { VerifyPassword } from '../repository/hash.ts';
 import { createJwtToken } from '../repository/jwt.ts'
+
+// Class to handle business logic related to users
 class UserService {
   static async getUsers() {
     return await UserRepository.GetAllUsers()
@@ -28,6 +30,8 @@ class UserService {
       return null; // Email already exists in database
     }
   }
+
+  // Creates JWT token for the user after verifying email and password
   static async loginUser(email: string, password: string) {
     const user = await UserRepository.GetUserByEmailWithPassword(email);
     if (!user) {
@@ -42,6 +46,7 @@ class UserService {
     }
   }
 
+  // Checks if the user is an admin or super admin
   static async isAdmin(email: string) {
     const user = await UserRepository.GetUserByEmail(email);
     if (!user) {
@@ -49,6 +54,8 @@ class UserService {
     }
     return user.role == "Admin" || user.role == "Super Admin";
   }
+
+  // Checks if the user is a super admin
   static async isSuperAdmin(email: string) {
     const user = await UserRepository.GetUserByEmail(email);
     if (!user) {

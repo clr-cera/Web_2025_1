@@ -1,5 +1,6 @@
 import { ElementRepository } from "../repository/elements.ts";
 
+// Class to handle business logic related to elements
 class ElementService {
   static async getAllElements() {
     return await ElementRepository.getAllElements();
@@ -22,6 +23,8 @@ class ElementService {
   static async deleteElementById(id: string) {
     return await ElementRepository.deleteElementById(id);
   }
+  // Purchase Element logic
+  // If the stock is greater than the requested amount, update the stock
   static async patchElementStock(id: string, updatedStock: number) {
     const element = await ElementRepository.getElementById(id);
     if (!element) {
