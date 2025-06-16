@@ -75,16 +75,18 @@ Diagrama de navegação entre as páginas:
 
 ## Comentários do Código
 **Frontend:**
-Para o desenvolvimento do Frontend, utilizamos o framework Next que trabalha sobre o React. A maior parte dos comentários sobre o código estão dentro do código em si. A seguir, temos uma árvore de todos os arquivos do frontend (dentro da página src), comentando a funcionalidade do arquivo.
+Para o desenvolvimento do Frontend, utilizamos o framework Next que trabalha sobre o React. A maior parte dos comentários sobre o código estão dentro do código em si. A seguir, temos uma árvore de todos os arquivos do frontend, comentando a funcionalidade do arquivo.
+
 ```
-├── app                             # Páginas do Next.js
+frontend/
+├── app/                            # Páginas do Next.js
 │   ├── About/                      # Página de about
-│   ├── Admin                       # Página de admin
-│   │   ├── components              # Componentes usados na página de admin
+│   ├── Admin/                      # Página de admin
+│   │   ├── components/             # Componentes usados na página de admin
 │   │   │   ├── AdminTable.tsx      # Componente da tabela de admins
 │   │   │   └── ProductTable.tsx    # Componente da tabela de produtos
 │   │   └── page.tsx                # Página de admin em si
-│   ├── components                  # Componentes relacionados a página inicial
+│   ├── components/                 # Componentes relacionados a página inicial
 │   │   ├── Banner.tsx              # Componente do Banner
 │   │   ├── CategorySelector.tsx    # Componente do seletor de categorias
 │   │   └── FeatureElements.tsx     # Componente que exibe os elementos químicos disponíveis
@@ -95,23 +97,23 @@ Para o desenvolvimento do Frontend, utilizamos o framework Next que trabalha sob
 │   ├── Products/[name]             # Página especifica dos produtos
 │   ├── Register/                   # Página de registro
 │   ├── Shipping/                   # Página de compra/pagamento
-│   └── Table                       # Página da tabela periódica
-│       ├── components              # Componentes da tabela periódica
+│   └── Table/                      # Página da tabela periódica
+│       ├── components/             # Componentes da tabela periódica
 │       │   └── ElementBlock.tsx    # Componente que define os blocos de elemento
 │       └── page.tsx                # Página em si
 ├── assets/                         # Assets utilizados
-├── components                      # Componentes globais
+├── components/                     # Componentes globais
 │   ├── CartItemCard.tsx            # Componente de um item no carrinho
 │   ├── CartModal.tsx               # Componente do modal do carrinho
 │   ├── Element.tsx                 # Componente do elemento
 │   ├── Footer.tsx                  # Componente do footer
 │   ├── Header.tsx                  # Componente do footer
 │   └── Modal.tsx                   # Componente do modal
-├── context                         # Contextos globais
+├── context/                        # Contextos globais
 │   ├── AuthContext.tsx             # Contexto de autenticação
 │   ├── CartContext.tsx             # Contexto do carrinho
 │   └── SearchContext.tsx           # Contexto de busca
-├── services                        # Funções de requisições da API
+├── services/                       # Funções de requisições da API
 │   ├── adminServices.ts            # Requisições relacionadas ao admin
 │   ├── authServices.ts             # Requisições relacionadas a autenticação
 │   ├── elementsServices.ts         # Requisições relacionadas ao elementos
@@ -120,10 +122,30 @@ Para o desenvolvimento do Frontend, utilizamos o framework Next que trabalha sob
 ```
 
 **Backend:**
-Para o desenvolvimento do Backend, utilizamos o framework Mongoose para interagir com a base de dados MongoDB. A maior parte dos comentários sobre o código estão dentro do código em si. A seguir, temos uma árvore de todos os arquivos do backend (dentro da página src), comentando a funcionalidade do arquivo.
+Para o desenvolvimento do Backend utilizamos o framework Express JS. A integração com o banco de dados é feita utilizando o framework Mongoose para interagir com a base de dados MongoDB. A maior parte dos comentários sobre o código estão dentro do código em si. A seguir, temos uma árvore de todos os arquivos do backend, comentando a funcionalidade do arquivo.
 
-//FAZER A ARVORE AQUI
-
+```
+backend/
+├── app.ts # Ponto de entrada da aplicação, configura o servidor e os middlewares
+├── model/
+│ └── db.ts # Conexão com o banco de dados Mongoose e definições de Schema
+├── package-lock.json # Arquivo de lock para as dependências do npm
+├── package.json # Arquivo JSON para dependências e scripts
+├── bun.lock # Arquivo de lock para as dependências do bun
+├── repository/
+│ ├── elements.ts # Operações de banco de dados para os elementos
+│ ├── hash.ts # Operações de hashing para as senhas
+│ ├── jwt.ts # Operações de token para JWT
+│ └── users.ts # Operações de banco de dados para os usuários
+├── routes/
+│ ├── elements.ts # Manipuladores de requisição para os elementos
+│ ├── middleware.ts # Middleware para autenticação
+│ ├── ping.ts # Rota de ping para verificação de saúde do sistema
+│ └── users.ts # Manipuladores de requisição para os usuários
+└── services/
+ ├── elements.ts # Orquestração da lógica para os elementos
+ └── users.ts # Orquestração da lógica para os usuários
+```
 
 ## Build Procedures
 Como rodar o projeto para testar:
@@ -188,7 +210,7 @@ Milestone 1: Percebemos que a Barra de navegação é uma ótima ferramenta para
 
 Milestone 2: Sem um back-end, seria muito inconveniente criar uma estrutura para adicionar nossas próprias imagens para representar os elementos. Portanto optamos pelo administrador associar o link de uma imagem na web a um elemento para que essa imagem represente o elemento, sem a possibilidade de fazer o upload de suas próprias imagens.
 
-Milestone 3: Decidimos que guardar imagens no nosso banco de dados seria inconveniente, apesar de estar nos planos originais do projeto. Essa alteração foi muito benéfica tanto para otimizar tempo de desenvolvimento tanto para a interação do usuário com a página. Percebemos que, ao adicionar imagem a um produto, é mais fácil encontrar um link para a imagem necessária do que baixar ela e enviar o arquivo para o site. Apesar de sabermos que isso poderia causar inconsistências no site ao longo dos anos, pois imagens de terceiros podem mudar de endereço.
+Milestone 3: Decidimos que mesmo com um back-end, guardar imagens no nosso banco de dados seria inconveniente, apesar de estar nos planos originais do projeto. Essa alteração foi muito benéfica tanto para otimizar tempo de desenvolvimento quanto para a interação do usuário com a página. Percebemos que, ao adicionar imagem a um produto, é mais fácil encontrar um link para a imagem necessária do que baixar ela e enviar o arquivo para o site. Apesar de sabermos que isso poderia causar inconsistências no site ao longo dos anos, pois imagens de terceiros podem mudar de endereço.
 
 ## Comentários
 Milestone 1: O Mockup das páginas foi produzido na ferramenta Figma.
