@@ -170,7 +170,7 @@ Para acessar o painel admin, voce pode usar uma conta com `admin@admin.com` com 
 
 ## Plano de Teste
 
-Para a milestone 3, realizamos todos os testes feitos no frontend novamente. Dessa forma garantindo que a integração com o banco de dados não causou problemas na integridade do frontend. Além disso, foram criadas diversas requisições usando postman e insomnia e enviadas ao backend para garantir que ele trata qualquer tipo de informação diferente. Enviamos tanto requisições com dados válidos tanto com dados inválidos, para ficar claro de que o backend trata dados inválidos corretamente e não compromete o banco de dados.
+Para a milestone 3, realizamos todos os testes feitos no frontend novamente. Dessa forma garantindo que a integração com o banco de dados não causou problemas na integridade do frontend. Além disso, foram criadas diversas requisições usando o insomnia e enviadas ao backend para garantir que ele trata qualquer tipo de informação diferente. Enviamos tanto requisições com dados válidos tanto com dados inválidos, para ficar claro de que o backend trata dados inválidos corretamente e não compromete o banco de dados.
 
 ## Resultados dos testes
 Produtos foram criados, removidos, atualizados e lidos com sucesso. 
