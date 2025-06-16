@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./app.ts",
-    "start_bun": "bun ./app.ts",
+    "start_bun": "bun ./app.ts"
   },
   "dependencies": {
     "@types/cors": "^2.8.19",
