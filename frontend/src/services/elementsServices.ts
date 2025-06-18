@@ -15,7 +15,7 @@ export type ElementType = {
   image_url?: string; // Link para a imagem do elemento
 };
 
-// URL base da API usada para comunicação com o backend (JSON server local)
+// URL base da API usada para comunicação com o backend
 const API_BASE_URL = "http://localhost:3001";
 
 /**

@@ -8,7 +8,7 @@ export const finalizePurchaseService = async (cartItems: CartItem[]) => {
       throw new Error(`Insufficient stock for ${item.name}`);
     }
 
-    // Atualiza o estoque no backend (JSON Server)
+    // Atualiza o estoque no backend
     await fetch(`http://localhost:3001/elements/${item.id}`, {
       method: "PATCH",
       headers: {

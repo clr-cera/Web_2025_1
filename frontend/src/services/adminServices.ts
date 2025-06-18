@@ -7,7 +7,7 @@ export type User = {
   role: string;
 };
 
-// URL base da API (ajuste conforme ambiente de produção) - ATUALMENTE ESTAMOS USANDO JSONSERVER LOCALMENTE
+// URL base da API (ajuste conforme ambiente de produção)
 const API_URL = "http://localhost:3001";
 
 /**
