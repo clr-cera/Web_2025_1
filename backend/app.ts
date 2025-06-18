@@ -21,9 +21,9 @@ app.use(cors())
 
 // Set up routes
 // ping, users and elements routes
-app.use('/', pingRouter);
-app.use('/users', usersRouter);
-app.use('/elements', elementsRouter);
+app.use('/api', pingRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/elements', elementsRouter);
 
 
 app.listen(port, () => {

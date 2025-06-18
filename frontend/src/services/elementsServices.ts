@@ -16,7 +16,7 @@ export type ElementType = {
 };
 
 // URL base da API usada para comunicação com o backend
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = "http://element.clr.dev.br/api";
 
 /**
  * Busca todos os elementos disponíveis na API
