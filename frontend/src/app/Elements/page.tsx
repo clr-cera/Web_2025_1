@@ -41,8 +41,10 @@ export default function Elements() {
   const searchParams = useSearchParams(); // Hook do Next para acessar parâmetros da URL
   const [selectedCategory, setSelectedCategory] = useState<keyof typeof categoryStyles>("All Elements");
   const [elements, setElements] = useState<ElementType[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // eslint-disable-next-line
+  const [_loading, setLoading] = useState(true);
+  // eslint-disable-next-line
+  const [_error, setError] = useState<string | null>(null);
 
   // Quando a URL muda, atualiza a categoria ativa com base no parâmetro da query string
   useEffect(() => {
@@ -60,6 +62,7 @@ export default function Elements() {
         const data = await fetchElementsByCategory(selectedCategory);
         setElements(data);
         setError(null);
+        // eslint-disable-next-line
       } catch (err) {
         setError("Erro ao carregar elementos.");
       } finally {

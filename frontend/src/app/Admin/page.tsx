@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import { BsShield } from 'react-icons/bs';
 import { ProductsTable } from './components/ProductTable';
-import { AdminsTable, Admin } from './components/AdminTable';
+import { AdminsTable } from './components/AdminTable';
 import { fetchDashboardProducts } from '@/services/elementsServices';
 import { fetchUsers, User } from '@/services/adminServices';
 import { ElementType } from '@/services/elementsServices';
