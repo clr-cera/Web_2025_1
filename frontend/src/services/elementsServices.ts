@@ -102,7 +102,7 @@ export async function createElement(data: Omit<ElementType, "id">): Promise<Elem
  */
 export async function updateElement(id: string, data: Partial<ElementType>): Promise<ElementType> {
   const res = await fetch(`${API_BASE_URL}/elements/${id}`, {
-    method: "PATCH",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       "Authorization": localStorage.getItem("token") || ""
@@ -112,9 +112,6 @@ export async function updateElement(id: string, data: Partial<ElementType>): Pro
 
   if (!res.ok) throw new Error("Erro ao atualizar produto");
   let resdata = await res.json();
-  for (const element of resdata) {
-    element.id = element._id
-  }
   return resdata;
 }
 
