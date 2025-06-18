@@ -105,7 +105,7 @@ export default function ProductPage() {
               </button>
               <p className="font-semibold text-black text-xl">{quantity}</p>
               <button
-                onClick={incrementQuantity}
+                onClick={()=>{quantity >= elementData.stock? null : incrementQuantity() }}
                 className="text-black p-2 border-2 border-border-gray rounded-md cursor-pointer hover:bg-gray-100"
               >
                 <FaPlus size={15} />

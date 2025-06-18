@@ -42,27 +42,21 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Adiciona um item ao carrinho ou incrementa quantidade se já existir
   const addToCart = (item: ElementType) => {
-    setCartItems((prevItems) => {
-      const existingItem = prevItems.find((i) => i.id === item.id);
+    const existingItem = cartItems.find((i) => i.id === item.id);
 
-      if (existingItem) {
-        // Impede ultrapassar o estoque
-        if (existingItem.quantity >= item.stock) {
-          toast.error("Insufficient stock");
-          return prevItems;
-        }
-        return prevItems.map((i) =>
+    if (existingItem) {
+      setCartItems((prevItems) =>
+        prevItems.map((i) =>
           i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
-        );
-      }
-
-      if (item.stock > 0) {
-        return [...prevItems, { ...item, quantity: 1 }];
-      } else {
+        )
+      );
+    } else {
+      if (item.stock === 0) {
         toast.error("Item out of stock.");
-        return prevItems;
+        return;
       }
-    });
+      setCartItems((prevItems) => [...prevItems, { ...item, quantity: 1 }]);
+    }
   };
 
   // Remove completamente um item do carrinho
