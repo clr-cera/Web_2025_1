@@ -2,8 +2,9 @@
   "name": "backend",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "start": "node ./app.ts",
+    "start": "tsx ./app.ts",
     "start_bun": "bun ./app.ts"
   },
   "dependencies": {
@@ -26,7 +27,9 @@
     "mongodb": "^6.16.0",
     "mongoose": "^8.15.1",
     "morgan": "~1.9.1",
-    "pbkdf2-password": "^1.2.1"
+    "pbkdf2-password": "^1.2.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.3"
   },
   "devDependencies": {
     "@types/node": "^22.15.29"
