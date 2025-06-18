@@ -16,7 +16,7 @@ export type ElementType = {
 };
 
 // URL base da API usada para comunicação com o backend
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = "http://localhost:3001/api";
 
 /**
  * Busca todos os elementos disponíveis na API
@@ -26,7 +26,7 @@ export async function fetchAllElements(): Promise<ElementType[]> {
   if (!res.ok) {
     throw new Error("Erro ao buscar elementos");
   }
-  let data = await res.json();
+  const data = await res.json();
   for (const element of data) {
     element.id = element._id
   }
@@ -43,7 +43,7 @@ export async function fetchElementsByCategory(category: string): Promise<Element
   if (!res.ok) {
     throw new Error("Erro ao buscar elementos");
   }
-  let data = await res.json();
+  const data = await res.json();
   for (const element of data) {
     element.id = element._id
   }
@@ -57,7 +57,7 @@ export async function fetchElementsByCategory(category: string): Promise<Element
 export async function fetchElementByName(name: string): Promise<ElementType | undefined> {
   const res = await fetch(`${API_BASE_URL}/elements/name/${name}`);
   if (!res.ok) throw new Error("Erro ao buscar elemento");
-  let data = await res.json();
+  const data = await res.json();
   data.id = data._id; // Ajusta o ID para o formato esperado
   return data; // A busca retorna um array; pegamos o primeiro
 }
@@ -71,7 +71,7 @@ export async function fetchDashboardProducts(): Promise<ElementType[]> {
   if (!res.ok) {
     throw new Error("Erro ao carregar produtos");
   }
-  let data = await res.json();
+  const data = await res.json();
   for (const element of data) {
     element.id = element._id
   }
@@ -111,7 +111,10 @@ export async function updateElement(id: string, data: Partial<ElementType>): Pro
   });
 
   if (!res.ok) throw new Error("Erro ao atualizar produto");
-  let resdata = await res.json();
+  const resdata = await res.json();
+  for (const element of resdata) {
+    element.id = element._id
+  }
   return resdata;
 }
 

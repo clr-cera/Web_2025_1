@@ -7,7 +7,7 @@ export interface AuthUser {
 }
 
 // URL base da API utilizada
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = "http://localhost:3001/api";
 
 /**
  * Função de login

@@ -405,6 +405,7 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({ data = [] }) => {
                   <input
                     name={field}
                     type="number"
+                    // eslint-disable-next-line
                     defaultValue={(selectedProduct as any)[field]}
                     className="border px-3 py-2 rounded border-border-gray"
                   />

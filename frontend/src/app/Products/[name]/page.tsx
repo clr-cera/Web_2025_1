@@ -7,10 +7,6 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { ElementType, fetchElementByName } from "@/services/elementsServices";
 import { useCart } from "@/context/CartContext";
 
-interface ProductPageProps {
-  params: { name: string };
-}
-
 export default function ProductPage() {
   const params = useParams();
   const name = params?.name;
@@ -32,6 +28,7 @@ export default function ProductPage() {
         if (!element) return notFound();
         setElementData(element);
       } catch (err) {
+        console.error("Error fetching element data:", err);
         notFound();
       } finally {
         setLoading(false);
@@ -105,7 +102,11 @@ export default function ProductPage() {
               </button>
               <p className="font-semibold text-black text-xl">{quantity}</p>
               <button
-                onClick={()=>{quantity >= elementData.stock? null : incrementQuantity() }}
+                onClick={() => {
+                  if (quantity >= elementData.stock) {
+                    incrementQuantity()
+                  }
+                }}
                 className="text-black p-2 border-2 border-border-gray rounded-md cursor-pointer hover:bg-gray-100"
               >
                 <FaPlus size={15} />
