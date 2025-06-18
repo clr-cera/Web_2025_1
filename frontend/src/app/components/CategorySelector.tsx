@@ -44,7 +44,7 @@ export default function CategorySelector() {
             <div className="w-12 h-12 rounded-md bg-primary-purple flex items-center justify-center">
               <BiWater size={30} color="white" />
             </div>
-            <h3 className="font-semibold text-lg">Gases</h3>
+            <h3 className="font-semibold text-lg">Noble Gases</h3>
             <p className="font-medium text-text-gray-darker text-left">
               Gaseous elements with unique properties
             </p>
