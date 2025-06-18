@@ -28,7 +28,9 @@ class UserRepository {
   }
 
   static async UpdateUserByEmail(email: string, updateData: any) {
-    updateData.password = HashPassword(updateData.password);
+    if (updateData.password) {
+      updateData.password = HashPassword(updateData.password);
+    }
     return await User.updateOne({ email: email }, updateData)
   }
   static async CreateUser(userData: any) {
