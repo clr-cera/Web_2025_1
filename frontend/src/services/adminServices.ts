@@ -8,7 +8,7 @@ export type User = {
 };
 
 // URL base da API (ajuste conforme ambiente de produção)
-const API_URL = "http://element.clr.dev.br/api";
+const API_URL = "http://localhost:3001/api";
 
 /**
  * Busca todos os usuários da API

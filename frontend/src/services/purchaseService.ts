@@ -1,6 +1,6 @@
 import { CartItem } from "@/context/CartContext";
 
-const API_BASE_URL = "http://element.clr.dev.br/api";
+const API_BASE_URL = "http://localhost:3001/api";
 
 export const finalizePurchaseService = async (cartItems: CartItem[]) => {
   for (const item of cartItems) {

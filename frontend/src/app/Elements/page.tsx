@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import Element from "@/components/Element";
 import { ElementType, fetchElementsByCategory } from "@/services/elementsServices";
 
@@ -38,7 +37,6 @@ const elementColors: Record<string, string> = {
 };
 
 export default function Elements() {
-  const searchParams = useSearchParams(); // Hook do Next para acessar parâmetros da URL
   const [selectedCategory, setSelectedCategory] = useState<keyof typeof categoryStyles>("All Elements");
   const [elements, setElements] = useState<ElementType[]>([]);
   // eslint-disable-next-line
@@ -48,11 +46,12 @@ export default function Elements() {
 
   // Quando a URL muda, atualiza a categoria ativa com base no parâmetro da query string
   useEffect(() => {
+    const searchParams = new URLSearchParams(document.location.search);
     const categoryFromParams = searchParams.get("category") as keyof typeof categoryStyles;
     if (categoryFromParams && categoryStyles[categoryFromParams]) {
       setSelectedCategory(categoryFromParams);
     }
-  }, [searchParams]);
+  }, []);
 
   // Busca os elementos da API conforme a categoria atual
   useEffect(() => {

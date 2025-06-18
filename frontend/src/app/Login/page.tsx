@@ -104,7 +104,7 @@ export default function Page() {
           {/* Link para página de cadastro */}
           <div>
             <p className="font-medium text-text-gray text-center mt-10">
-              Don't have an account?{" "}
+              {"Don't have an account?"}{" "}
               <a href="/Register" className="text-primary-blue">
                 Register
               </a>
