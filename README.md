@@ -176,10 +176,20 @@ Instale as dependências:
 npm install
 ```
 
-Execute o frontend e deixe o terminal rodando:
+Você pode executar o frontend em modo desenvolvedor (sem otimização, transições lentas):
 
 ```bash
 npm run dev
+```
+
+É preterivel gerar uma build otimizada com:
+```bash
+npm run build
+```
+
+Após gerar a build otimizada, execute o site com:
+```bash
+npm run start
 ```
 
 O projeto estará disponível em `http://localhost:3000` ou na porta apresentada no terminal
@@ -188,7 +198,7 @@ AVISO: Como o projeto está sendo executado em modo desenvolvedor, as telas são
 
 **Login de Administrador**
 
-Para acessar o painel admin, voce pode usar uma conta com `admin@admin.com` com senha `12345` ou qualquer outra conta disponivel via painel de admin.
+Para acessar o painel admin, voce pode usar uma conta com `admin@admin.com.br` com senha `admin` ou qualquer outra conta disponivel via painel de admin.
 
 ## Plano de Teste
 
