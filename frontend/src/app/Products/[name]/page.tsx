@@ -103,7 +103,7 @@ export default function ProductPage() {
               <p className="font-semibold text-black text-xl">{quantity}</p>
               <button
                 onClick={() => {
-                  if (quantity >= elementData.stock) {
+                  if (quantity < elementData.stock) {
                     incrementQuantity()
                   }
                 }}
@@ -128,9 +128,9 @@ export default function ProductPage() {
             ) : (
               <button
                 onClick={() => {
-                  for (let i = 0; i < quantity; i++) {
-                    addToCart(elementData);
-                  }
+                  const itemWithQuantity = { ...elementData, quantity };
+                  addToCart(itemWithQuantity);
+                  setQuantity(1);
                   setQuantity(1);
                 }}
                 className="bg-primary-blue-darker rounded flex w-full justify-center items-center gap-2 px-2 py-2 text-white cursor-pointer hover:bg-primary-blue transition duration-200"
