@@ -41,13 +41,18 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   }, [cartItems]);
 
   // Adiciona um item ao carrinho ou incrementa quantidade se já existir
-  const addToCart = (item: ElementType) => {
+  const addToCart = (item: ElementType & { quantity?: number }) => {
     const existingItem = cartItems.find((i) => i.id === item.id);
+    const quantityToAdd = item.quantity || 1;
 
     if (existingItem) {
+      if (existingItem.quantity + quantityToAdd > item.stock) {
+        toast.error("Insufficient stock");
+        return;
+      }
       setCartItems((prevItems) =>
         prevItems.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+          i.id === item.id ? { ...i, quantity: i.quantity + quantityToAdd } : i
         )
       );
     } else {
@@ -55,7 +60,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         toast.error("Item out of stock.");
         return;
       }
-      setCartItems((prevItems) => [...prevItems, { ...item, quantity: 1 }]);
+      setCartItems((prevItems) => [...prevItems, { ...item, quantity: quantityToAdd }]);
     }
   };
 
