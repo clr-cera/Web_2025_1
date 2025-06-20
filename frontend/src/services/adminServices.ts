@@ -8,7 +8,7 @@ export type User = {
 };
 
 // URL base da API (ajuste conforme ambiente de produção)
-const API_URL = "http://localhost:3001/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 /**
  * Busca todos os usuários da API

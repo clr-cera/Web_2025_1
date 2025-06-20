@@ -3,7 +3,36 @@ services:
     build:
       context: ./backend/
       dockerfile: Dockerfile
+    depends_on:
+      - mongo
     ports:
       - "3001:3001"
     volumes:
       - ./backend:/app
+    environment:
+      - MONGO_CONNECTION_STRING
+      - SESSION_SECRET
+      - SUPER_ADMIN_PASSWORD
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+  mongo:
+    image: "mongo:latest"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_INITDB_DATABASE
+    ports:
+      - "27017:27017"
+    volumes:
+      - "mongodb_data:/data/db"
+
+volumes:
+  mongodb_data:

@@ -16,12 +16,13 @@ export type ElementType = {
 };
 
 // URL base da API usada para comunicação com o backend
-const API_BASE_URL = "http://localhost:3001/api";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 /**
  * Busca todos os elementos disponíveis na API
  */
 export async function fetchAllElements(): Promise<ElementType[]> {
+  console.log("API_URL:", API_BASE_URL);
   const res = await fetch(`${API_BASE_URL}/elements`);
   if (!res.ok) {
     throw new Error("Erro ao buscar elementos");
