@@ -17,9 +17,15 @@ RUN bun run build
 
 # Stage 4: Run the production application
 FROM base AS runner
-WORKDIR /app
+
 ENV NODE_ENV=production
+
+WORKDIR /app
+
+COPY next.config.ts .
+COPY package.json .
+COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./
-EXPOSE 3000
-CMD ["bun", "run", "start"]
+COPY --from=builder /app/.next/static ./.next/static
+
+CMD ["bun", "server.js"]

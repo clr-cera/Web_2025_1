@@ -7,8 +7,6 @@ services:
       - mongo
     ports:
       - "3001:3001"
-    volumes:
-      - ./backend:/app
     environment:
       - MONGO_CONNECTION_STRING
       - SESSION_SECRET
@@ -21,8 +19,6 @@ services:
       - backend
     ports:
       - "3000:3000"
-    volumes:
-      - ./frontend:/app
   mongo:
     image: "mongo:latest"
     environment:
